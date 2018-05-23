@@ -13,6 +13,7 @@
 {
   "user": {
     "username": "unimemo",
+    "proPic": "image.url",
     "token": "jwt.token.here"
   }
 }
@@ -138,3 +139,65 @@ If a request fails any validations, expect a 422 and errors in the following for
 401 for Unauthorized requests, when a request requires authentication but it isn't provided
 
 404 for Not found requests, when a resource can't be found to fulfill the request
+
+
+## Endpoints:
+
+### Authentication:
+
+`POST /api/users/login`
+
+Example request body:
+```JSON
+{
+  "user": {
+    "username": "unimemo",
+    "password": "password"
+  }
+}
+```
+
+No authentication required, returns a [User](#users-for-authentication)
+
+Required fields: `username`, `password`
+
+### Registration:
+
+`POST /api/users`
+
+Example request body:
+```JSON
+{
+  "user": {
+    "username": "unimemo",
+    "password": "password"
+  }
+}
+```
+
+No authentication required, returns a [User](#users-for-authentication)
+
+Required fields: `username`, `password`
+
+### Get Current User
+
+`GET /api/user`
+
+Authentication required, returns a [User](#users-for-authentication) that's the current user
+
+### Update User
+
+`PUT /api/user`
+
+Example request body:
+```JSON
+{
+  "user": {
+    "proPic": "newImage.url"
+  }
+}
+```
+
+Authentication required, returns the [User](#users-for-authentication)
+
+Optional field: `proPic`
