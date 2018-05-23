@@ -62,7 +62,7 @@
 ```JSON
 {
   "record": {
-    "year": "2014",
+    "year": "2014年",
     "key": "關注點",
     "businesses": [
       ["汽油機", null, 73.5],
@@ -85,7 +85,7 @@
 {
   "records": [
     {
-      "year": "2014",
+      "year": "2014年",
       "key": "關注點",
       "businesses": [
         ["汽油機", null, 73.5],
@@ -201,3 +201,123 @@ Example request body:
 Authentication required, returns the [User](#users-for-authentication)
 
 Optional field: `proPic`
+
+### List Companies
+
+`GET /api/companies`
+
+Query Parameters:
+
+Limit number of companies (default is 24):
+
+`?limit=24`
+
+Offset number of companies (default is 0):
+
+`?offset=0`
+
+Authentication required, returns [multiple companies](#multiple-companies), ordered by most recent first
+
+### Create Company
+
+`POST /api/companies`
+
+Example request body:
+```JSON
+{
+  "company": {
+    "symbol": "1",
+    "abbr": "長和",
+    "logo": "image.url", 
+    "name": "長江和記實業有限公司"
+  }
+}
+```
+
+Authentication required, returns the [Company](#single-company)
+
+Required fields: `symbol`, `name`
+
+Optional fields: `abbr`, `logo`
+
+### Update Company
+
+`PUT /api/companies/:symbol`
+
+Example request body:
+```JSON
+{
+  "company": {
+    "logo": "companyLogo.url"
+  }
+}
+```
+
+Authentication required, returns the updated [Company](#single-company)
+
+Optional fields: `symbol`, `name`, `abbr`, `logo`
+
+### Delete Company
+
+`DELETE /api/companies/:symbol`
+
+Authentication required, returns `{}`
+
+### Get Records from a Company
+
+`GET /api/companies/:symbol/records`
+
+Authentication required, returns [multiple records](#multiple-records), ordered by `year`
+
+### Add Record to a Company
+
+`POST /api/requests/:symbol/records`
+
+Example request body:
+```JSON
+{
+  "record": {
+    "year": "2014年",
+    "key": "關注點",
+    "businesses": [
+      ["汽油機", null, 73.5],
+      ["柴油機", null, 16],
+      ["零件 服務", null, 10.5]
+    ],
+    "grossMargin": null,
+    "actionsToBe": [],
+    "actionsDone": [
+      "研發能力:arrow_up:",
+      "潘陽物業租予寶馬"
+    ]
+  }
+}
+```
+
+Authentication required, returns the [Record](#single-record)
+
+Required field: `year`
+Optional fields: `key`, `businesses`, `grossMargin`, `actionsToBe`, `actionsDone`
+
+### Update Record
+
+`PUT /api/companies/:symbol/records/:year`
+
+Example request body:
+```JSON
+{
+  "record": {
+    "grossMargin": 77.7
+  }
+}
+```
+
+Authentication required, returns the updated [Record](#single-record)
+
+Optional fields: `key`, `businesses`, `grossMargin`, `actionsToBe`, `actionsDone`
+
+### Delete Record
+
+`DELETE /api/companies/:symbol/records/:year`
+
+Authentication required, returns `{}`
