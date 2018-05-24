@@ -80,7 +80,7 @@
       }
     ],
     "grossProfitMargin": null,
-    "actionsToBe": [],
+    "plans": [],
     "actionsDone": [
       "研發能力:arrow_up:",
       "潘陽物業租予寶馬"
@@ -113,7 +113,7 @@
         }
       ],
       "grossProfitMargin": null,
-      "actionsToBe": [],
+      "plans": [],
       "actionsDone": [
         "研發能力:arrow_up:",
         "潘陽物業租予寶馬"
@@ -138,10 +138,10 @@
         }
       ],
       "grossProfitMargin": 15.5,
-      "actionsToBe": [
+      "plans": [
         {
           "plan": "開發王子發動機",
-          "fullfilled": true
+          "executed": true
         }
       ],
       "actionsDone": [
@@ -328,7 +328,7 @@ Example request body:
       }
     ],
     "grossProfitMargin": null,
-    "actionsToBe": [],
+    "plans": [],
     "actionsDone": [
       "研發能力:arrow_up:",
       "潘陽物業租予寶馬"
@@ -340,7 +340,7 @@ Example request body:
 Authentication required, returns the [Record](#single-record)
 
 Required field: `year`
-Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `actionsToBe`, `actionsDone`
+Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
 ### Update Record
 
@@ -357,7 +357,7 @@ Example request body:
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `actionsToBe`, `actionsDone`
+Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
 ### Update Record.Businesses
 
@@ -407,9 +407,93 @@ Authentication required, returns `{}`
 
 ### Update ActionsToBe
 
-`PUT /api/companies/:symbol/records/:year/actionsToBe/:index/done`
+#### Add Plan
+
+`POST /api/companies/:symbol/records/:year/plans`
+
+Example request body:
+```JSON
+{
+  "newPlan": {
+    "plan": "開發王子發動機"
+  }
+}
+```
+
+Authentication required, returns the updated [Record](#single-record) with the new plan defaults to `"executed": false`.
+
+Required field: `plan`
+
+#### Update Plan
+
+`PUT /api/companies/:symbol/records/:year/plans/:index`
+
+Example request body:
+```JSON
+{
+  "prevPlan": {
+    "plan": "開發王子發動機II"
+  }
+}
+```
+
+Authentication required, returns the updated [Record](#single-record)
+
+Optional field: `plan`
+
+#### Check or uncheck Plan's execution state
+
+`PUT /api/companies/:symbol/records/:year/plans/:index/executed`
 
 Authentication required, returns updated [Record](#single-record)
+
+#### Delete Plan
+
+`DELETE /api/companies/:symbol/records/:year/plans/:index`
+
+Authentication required, returns `{}`
+
+### Update ActionsDone
+
+#### Add ActionDone
+
+`POST /api/companies/:symbol/records/:year/actions`
+
+Example request body:
+```JSON
+{
+  "actions": {
+    "done": "研發能力:arrow_up:"
+  }
+}
+```
+
+Authentication required, returns updated [Record](#single-record)
+
+Required field: `done`
+
+#### Update ActionDone
+
+`PUT /api/companies/:symbol/records/:year/actions/:index`
+
+Example request body:
+```JSON
+{
+  "action": {
+    "done": "研發能力:arrow_up::arrow_up:"
+  }
+}
+```
+
+Authentication required, returns updated [Record](#single-record)
+
+Optional field: `done`
+
+#### Remove ActionDone
+
+`DELETE /api/companies/:symbol/records/:year/actions/:index`
+
+Authentication required, returns `{}`
 
 ### Delete Record
 
