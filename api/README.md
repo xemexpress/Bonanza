@@ -64,12 +64,22 @@
   "record": {
     "year": "2014年",
     "key": "關注點",
-    "businesses": [
-      ["汽油機", null, 73.5],
-      ["柴油機", null, 16],
-      ["零件 服務", null, 10.5]
+    "businessSegments": [
+      {
+        "business": "汽油機",
+        "grossProfitMargin": null,
+        "share": 73.5
+      },{
+        "business": "柴油機",
+        "grossProfitMargin": null,
+        "share": 16
+      },{
+        "business": "零件 服務",
+        "grossProfitMargin": null,
+        "share": 10.5
+      }
     ],
-    "grossMargin": null,
+    "grossProfitMargin": null,
     "actionsToBe": [],
     "actionsDone": [
       "研發能力:arrow_up:",
@@ -87,12 +97,22 @@
     {
       "year": "2014年",
       "key": "關注點",
-      "businesses": [
-        ["汽油機", null, 73.5],
-        ["柴油機", null, 16],
-        ["零件 服務", null, 10.5]
+      "businessSegments": [
+        {
+          "business": "汽油機",
+          "grossProfitMargin": null,
+          "share": 73.5
+        },{
+          "business": "柴油機",
+          "grossProfitMargin": null,
+          "share": 16
+        },{
+          "business": "零件 服務",
+          "grossProfitMargin": null,
+          "share": 10.5
+        }
       ],
-      "grossMargin": null,
+      "grossProfitMargin": null,
       "actionsToBe": [],
       "actionsDone": [
         "研發能力:arrow_up:",
@@ -102,14 +122,27 @@
     {
       "year": "2015中",
       "key": "",
-      "businesses": [
-        ["汽油機", null, 79.9],
-        ["柴油機", null, 10.5],
-        ["零件 服務", null, 9.5]
+      "businessSegments": [
+        {
+          "business": "汽油機",
+          "grossProfitMargin": null,
+          "share": 79.9
+        },{
+          "business": "柴油機",
+          "grossProfitMargin": null,
+          "share": 10.5
+        },{
+          "business": "零件 服務",
+          "grossProfitMargin": null,
+          "share": 9.5
+        }
       ],
-      "grossMargin": 15.5,
+      "grossProfitMargin": 15.5,
       "actionsToBe": [
-        ["開發王子發動機", true]
+        {
+          "plan": "開發王子發動機",
+          "fullfilled": true
+        }
       ],
       "actionsDone": [
         "收購曲軸生產線，供寶馬"
@@ -279,12 +312,22 @@ Example request body:
   "record": {
     "year": "2014年",
     "key": "關注點",
-    "businesses": [
-      ["汽油機", null, 73.5],
-      ["柴油機", null, 16],
-      ["零件 服務", null, 10.5]
+    "businessSegments": [
+      {
+        "business": "汽油機",
+        "grossProfitMargin": null,
+        "share": 73.5
+      },{
+        "business": "柴油機",
+        "grossProfitMargin": null,
+        "share": 16
+      },{
+        "business": "零件 服務",
+        "grossProfitMargin": null,
+        "share": 10.5
+      }
     ],
-    "grossMargin": null,
+    "grossProfitMargin": null,
     "actionsToBe": [],
     "actionsDone": [
       "研發能力:arrow_up:",
@@ -297,7 +340,7 @@ Example request body:
 Authentication required, returns the [Record](#single-record)
 
 Required field: `year`
-Optional fields: `key`, `businesses`, `grossMargin`, `actionsToBe`, `actionsDone`
+Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `actionsToBe`, `actionsDone`
 
 ### Update Record
 
@@ -307,14 +350,66 @@ Example request body:
 ```JSON
 {
   "record": {
-    "grossMargin": 77.7
+    "grossProfitMargin": 77.7
   }
 }
 ```
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional fields: `key`, `businesses`, `grossMargin`, `actionsToBe`, `actionsDone`
+Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `actionsToBe`, `actionsDone`
+
+### Update Record.Businesses
+
+#### Add Business
+
+`POST /api/companies/:symbol/records/:year/segments`
+
+Example request body:
+```JSON
+{
+  "newBusiness": {
+    "business": "零件 服務",
+    "grossProfitMargin": null,
+    "share": 10.5
+  }
+}
+```
+
+Authentication required, returns the updated [Record](#single-record)
+
+Required field: `business`
+
+Optional fields: `grossProfitMargin`, `share`
+
+#### Update Business
+
+`PUT /api/companies/:symbol/records/:year/segments/:index`
+
+Example request body:
+```JSON
+{
+  "prevBusiness": {
+    "grossProfitMargin": 77.7    
+  }
+}
+```
+
+Authentication required, returns the updated [Record](#single-record)
+
+Optional fields: `business`, `grossProfitMargin`, `share`
+
+#### Remove Business
+
+`DELETE /api/companies/:symbol/records/:year/segments/:index`
+
+Authentication required, returns `{}`
+
+### Update ActionsToBe
+
+`PUT /api/companies/:symbol/records/:year/actionsToBe/:index/done`
+
+Authentication required, returns updated [Record](#single-record)
 
 ### Delete Record
 
