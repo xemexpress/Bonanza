@@ -28,6 +28,7 @@
     "abbr": "長和",
     "logo": "image.url", 
     "name": "長江和記實業有限公司",
+    "tagList": ["滂湃"],
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
   }
@@ -43,6 +44,7 @@
     "abbr": "新晨動力",
     "logo": "image.url",
     "name": "新晨中國動力控股有限公司",
+    "tagList": ["精煉", "持有"],
     "createdAt": "2017-08-14T00:10:59.720Z",
     "updatedAt": "2017-08-14T00:10:59.720Z"
   }, {
@@ -50,6 +52,7 @@
     "abbr": "長和",
     "logo": "image.url",
     "name": "長江和記實業有限公司",
+    "tagList": ["滂湃"],
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
   }],
@@ -241,6 +244,10 @@ Optional field: `proPic`
 
 Query Parameters:
 
+Filter by tag:
+
+`?tag=持有`
+
 Limit number of companies (default is 24):
 
 `?limit=24`
@@ -262,7 +269,8 @@ Example request body:
     "symbol": "1",
     "abbr": "長和",
     "logo": "image.url", 
-    "name": "長江和記實業有限公司"
+    "name": "長江和記實業有限公司",
+    "tagList": ["滂湃"]
   }
 }
 ```
@@ -271,7 +279,7 @@ Authentication required, returns the [Company](#single-company)
 
 Required fields: `symbol`, `name`
 
-Optional fields: `abbr`, `logo`
+Optional fields: `abbr`, `logo`, `tagList` as an array of Strings
 
 ### Update Company
 
@@ -288,7 +296,7 @@ Example request body:
 
 Authentication required, returns the updated [Company](#single-company)
 
-Optional fields: `symbol`, `name`, `abbr`, `logo`
+Optional fields: `symbol`, `name`, `abbr`, `logo`, `tagList` as an array of Strings
 
 ### Delete Company
 
