@@ -35,6 +35,13 @@ if(isProduction){
   mongoose.set('debug', true)
 }
 
+// Models
+require('./models/User')
+
+// Middlewares
+require('./config/passport')
+
+// Routes
 app.use(require('./routes'))
 
 // Catch 404 and forward to error handler
