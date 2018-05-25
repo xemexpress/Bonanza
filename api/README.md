@@ -19,18 +19,7 @@
 }
 ```
 
-### Profile
-
-```JSON
-{
-  "user": {
-    "username": "unimemo",
-    "proPic": "image.url"
-  }
-}
-```
-
-### Multiple Profiles
+### Multiple Profiles (for Admin use)
 
 ```JSON
 {
