@@ -12,9 +12,7 @@ router.post('/users', (req, res, next) => {
   user.setPassword(req.body.user.password)
 
   user.save().then(() => {
-    return res.json({
-      user: user.toAuthJSON()
-    })
+    return res.json({ user: user.toAuthJSON() })
   }).catch(next)
 })
 
@@ -32,7 +30,7 @@ router.post('/users/login', (req, res, next) => {
     if(err){ return next(err) }
 
     if(user){
-      return res.json({ user: user.toAuthJSON })
+      return res.json({ user: user.toAuthJSON() })
     }else{
       return res.status(422).json(info)
     }
@@ -53,7 +51,7 @@ router.put('/user', auth.required, (req, res, next) => {
   User.findById(req.payload.id).then((user) => {
     if(!user){ return res.sendStatus(401) }
 
-    if(typeof req.body.user.username !== 'undefined'){
+    if(typeof req.body.user.username !== 'undefined' && req.payload.username !== auth.admin){
       user.username = req.body.user.username
     }
 
