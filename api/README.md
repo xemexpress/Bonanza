@@ -542,7 +542,7 @@ Authentication required, returns `{}`
 
 `GET /api/admin/users`
 
-Admin Pass required, returns [multiple profile](#multiple-profile)
+Admin Pass required, returns [multiple profiles](#multiple-profiles)
 
 ### Delete Users
 
