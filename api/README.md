@@ -236,7 +236,7 @@ Example request body:
 
 Authentication required, returns the [User](#users-for-authentication)
 
-Optional field: `proPic`
+Optional fields: `username`, `password`, `proPic`
 
 ### List Companies
 
