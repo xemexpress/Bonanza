@@ -19,6 +19,32 @@
 }
 ```
 
+### Profile
+
+```JSON
+{
+  "user": {
+    "username": "unimemo",
+    "proPic": "image.url"
+  }
+}
+```
+
+### Multiple Profiles
+
+```JSON
+{
+  "users": [{
+    "username": "unimemo",
+    "proPic": "image.url"
+  }, {
+    "username": "testtest",
+    "proPic": "image.url"
+  }],
+  "usersCount": 2
+}
+```
+
 ### Single Company
 
 ```JSON
@@ -508,3 +534,27 @@ Authentication required, returns `{}`
 `DELETE /api/companies/:symbol/records/:year`
 
 Authentication required, returns `{}`
+
+
+## Endpoints (admin):
+
+### List Users
+
+`GET /api/admin/users`
+
+Admin Pass required, returns [multiple profile](#multiple-profile)
+
+### Delete Users
+
+`DELETE /api/admin/users`
+
+Example request body:
+```JSON
+{
+  "users": ["username1"]
+}
+```
+
+Admin Pass required, returns `{}`
+
+Optional field: `users` as an array of usernames
