@@ -13,9 +13,9 @@ router.get('/users', auth.required, (req, res, next) => {
         }),
         usersCount: users.length
       })
-    })
+    }).catch(next)
   }else{
-    return res.status(422).json({ errors: { 'admin': 'is invalid' } })
+    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
   }
 })
 
@@ -27,6 +27,8 @@ router.delete('/users', auth.required, (req, res, next) => {
     })
 
     return res.sendStatus(204)
+  }else{
+    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
   }
 })
 module.exports = router
