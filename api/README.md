@@ -19,21 +19,6 @@
 }
 ```
 
-### Multiple Profiles (for Admin use)
-
-```JSON
-{
-  "users": [{
-    "username": "unimemo",
-    "proPic": "image.url"
-  }, {
-    "username": "testtest",
-    "proPic": "image.url"
-  }],
-  "usersCount": 2
-}
-```
-
 ### Single Company
 
 ```JSON
@@ -531,7 +516,20 @@ Authentication required, returns `{}`
 
 `GET /api/admin/users`
 
-Admin Pass required, returns [multiple profiles](#multiple-profiles)
+Admin Pass required, returns multiple profiles
+
+```JSON
+{
+  "users": [{
+    "username": "unimemo",
+    "proPic": "image.url"
+  }, {
+    "username": "testtest",
+    "proPic": "image.url"
+  }],
+  "usersCount": 2
+}
+```
 
 ### Delete Users
 
