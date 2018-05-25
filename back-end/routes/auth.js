@@ -1,5 +1,5 @@
 var jwt = require('express-jwt')
-var secret = require('../config').secret
+const { secret, admin } = require('../config')
 
 function getTokenFromHeader(req){
   if(req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token'){
@@ -20,7 +20,8 @@ var auth = {
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader
-  })
+  }),
+  admin: admin
 }
 
 module.exports = auth
