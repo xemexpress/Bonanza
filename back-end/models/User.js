@@ -46,11 +46,9 @@ UserSchema.methods.generateJWT = () => {
 
 UserSchema.methods.toAuthJSON = () => {
   return {
-    user: {
-      username: this.username,
-      proPic: this.proPic,
-      token: this.generateJWT()
-    }
+    username: this.username,
+    proPic: this.proPic,
+    token: this.generateJWT()
   }
 }
 
