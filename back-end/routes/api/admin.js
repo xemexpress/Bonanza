@@ -22,9 +22,11 @@ router.get('/users', auth.required, (req, res, next) => {
 // Delete User
 router.delete('/users', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    req.body.users.forEach((username) => {
-      User.find({ username: username }).remove().exec()
-    })
+    if(Array.isArray(req.body.users)){
+      req.body.users.forEach((username) => {
+        User.find({ username: username }).remove().exec()
+      })
+    }
 
     return res.sendStatus(204)
   }else{
