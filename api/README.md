@@ -244,6 +244,10 @@ Optional fields: `username`, `password`, `proPic`
 
 Query Parameters:
 
+Filter by author:
+
+`?author=unimemo`
+
 Filter by tag:
 
 `?tag=持有`
