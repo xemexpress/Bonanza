@@ -10,13 +10,13 @@ router.get('/users', auth.required, (req, res, next) => {
     User.find({}).then((users) => {
       return res.json({
         users: users.map((user) => {
-          return user.toAdminJSON()
+          return user.toJSONForAdmin()
         }),
         usersCount: users.length
       })
     }).catch(next)
   }else{
-    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
+    return res.sendStatus(403)
   }
 })
 
@@ -31,7 +31,7 @@ router.delete('/users', auth.required, (req, res, next) => {
       return res.status(422).json({ errors: { 'users': 'should be an array' } })
     }
   }else{
-    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
+    return res.sendStatus(403)
   }
 })
 
@@ -39,17 +39,17 @@ router.delete('/users', auth.required, (req, res, next) => {
 router.get('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     Company.find({})
-      .populate('author', 'username')
+      .populate('author', 'username proPic')
       .then((companies) => {
         return res.json({
           companies: companies.map((company) => {
-            return company.toAdminJSON()
+            return company.toJSONForAdmin()
           }),
           companiesCount: companies.length
         })
       }).catch(next)
   }else{
-    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
+    return res.sendStatus(403)
   }
 })
 
@@ -71,7 +71,7 @@ router.delete('/companies', auth.required, (req, res, next) => {
       return res.status(422).json({ errors: { 'author': "can't be blank" } })
     }
   }else{
-    return res.status(403).json({ errors: { 'admin': 'is invalid' } })
+    return res.sendStatus(403)
   }
 })
 
