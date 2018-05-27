@@ -43,10 +43,13 @@ CompanySchema.methods.toJSONFor = function(){
   }
 }
 
-CompanySchema.methods.toAdminJSON = function(){
+CompanySchema.methods.toJSONForAdmin = function(){
   return {
     symbol: this.symbol,
-    author: this.author.username
+    author: {
+      username: this.author.username,
+      proPic: this.author.proPic || 'https://static.productionready.io/images/smiley-cyrus.jpg'
+    }
   }
 }
 

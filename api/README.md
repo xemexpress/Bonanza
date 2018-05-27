@@ -561,11 +561,16 @@ Admin pass required, returns multiple profiles
   "companies": [
     {
       "symbol": "1",
-      "author": "unimemo"
-    },
-    {
+      "author": {
+        "username": "unimemo",
+        "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
+      } 
+    },{
       "symbol": "1148",
-      "author": "testtest"
+      "author": {
+        "username": "testtest",
+        "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
+      } 
     }
   ],
   "companiesCount": 2
