@@ -39,7 +39,7 @@ router.delete('/users', auth.required, (req, res, next) => {
 router.get('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     Company.find({})
-      .populate('author')
+      .populate('author', 'username')
       .then((companies) => {
         return res.json({
           companies: companies.map((company) => {
