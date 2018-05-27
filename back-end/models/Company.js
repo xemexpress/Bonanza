@@ -25,7 +25,7 @@ CompanySchema.methods.setAbbr = function(){
 
 CompanySchema.pre('validate', function(next){
   if(!this.abbr){
-    setAbbr()
+    this.setAbbr()
   }
 
   next()
@@ -40,6 +40,13 @@ CompanySchema.methods.toJSONFor = function(){
     logo: this.logo || 'https://static.productionready.io/images/smiley-cyrus.jpg',
     name: this.name,
     tagList: this.tagList
+  }
+}
+
+CompanySchema.methods.toAdminJSON = function(){
+  return {
+    symbol: this.symbol,
+    author: this.author.username
   }
 }
 
