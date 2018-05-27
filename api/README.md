@@ -549,3 +549,47 @@ Example request body:
 Admin Pass required, returns `{}`
 
 Optional field: `users` as an array of usernames
+
+### List Companies
+
+`GET /api/admin/companies`
+
+Admin pass required, returns multiple profiles
+
+```JSON
+{
+  "companies": [
+    {
+      "symbol": "1",
+      "author": "unimemo"
+    },
+    {
+      "symbol": "1148",
+      "author": "testtest"
+    }
+  ],
+  "companiesCount": 2
+}
+```
+
+### Delete Companies
+
+`DELETE /api/admin/companies`
+
+Example request body:
+```JSON
+{
+  "companies": {
+    "author": "testtest",
+    "symbols": [
+      "1148"
+    ]
+  }
+}
+```
+
+Admin pass required, returns `{}`
+
+Required field: `author`
+
+Optional field: `symbols` as an array of symbols
