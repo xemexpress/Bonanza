@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     router = require('express').Router()
 var auth = require('../auth')
 var User = mongoose.model('User'),
-    Company = mongoose.model('Company')
+    Company = mongoose.model('Company'),
+    Record = mongoose.model('Record')
 
 // List Users
 router.get('/users', auth.required, (req, res, next) => {
@@ -72,6 +73,29 @@ router.delete('/companies', auth.required, (req, res, next) => {
     }
   }else{
     return res.sendStatus(403)
+  }
+})
+
+// List Records
+router.get('/records', auth.required, (req, res, next) => {
+  if(req.payload.username === auth.admin){
+    Record.find({})
+      .populate({
+        path: 'company',
+        select: 'symbol',
+        populate: {
+          path: 'author',
+          select: 'username proPic'
+        }
+      })
+      .then((records) => {
+        return res.json({
+          records: records.map((record) => {
+            return record.toJSONForAdmin()
+          }),
+          recordsCount: records.length
+        })
+      })
   }
 })
 

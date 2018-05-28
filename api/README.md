@@ -65,7 +65,7 @@
 ```JSON
 {
   "record": {
-    "year": "2014年",
+    "year": "2014y",
     "key": "關注點",
     "businessSegments": [
       {
@@ -98,7 +98,7 @@
 {
   "records": [
     {
-      "year": "2014年",
+      "year": "2014y",
       "key": "關注點",
       "businessSegments": [
         {
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "year": "2015中",
+      "year": "2015m",
       "key": "",
       "businessSegments": [
         {
@@ -316,13 +316,13 @@ Authentication required, returns [multiple records](#multiple-records), ordered 
 
 ### Add Record to a Company
 
-`POST /api/requests/:symbol/records`
+`POST /api/companies/:symbol/records`
 
 Example request body:
 ```JSON
 {
   "record": {
-    "year": "2014年",
+    "year": "2014y",
     "key": "關注點",
     "businessSegments": [
       {
@@ -352,6 +352,7 @@ Example request body:
 Authentication required, returns the [Record](#single-record)
 
 Required field: `year`
+
 Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
 ### Update Record
@@ -598,3 +599,32 @@ Admin pass required, returns `{}`
 Required field: `author`
 
 Optional field: `symbols` as an array of symbols
+
+### List Records
+
+`GET /api/admin/records`
+
+Admin pass required, return multiple profiles
+
+```JSON
+{
+  "records": [
+    {
+      "symbol": "1148",
+      "year": "2014m",
+      "author": {
+        "username": "testtest",
+        "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
+      } 
+    },{
+      "company": "1148",
+      "year": "2014y",
+      "author": {
+        "username": "testtest",
+        "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
+      } 
+    }
+  ],
+  "recordsCount": 2
+}
+```

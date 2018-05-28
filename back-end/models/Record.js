@@ -37,7 +37,8 @@ var RecordSchema = new mongoose.Schema({
   actionsDone: [String],
   company: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Company'
+    ref: 'Company',
+    alias: 'forCompany'
   }
 }, { timestamps: true })
 
@@ -49,6 +50,14 @@ RecordSchema.methods.toJSONFor = function(){
     grossProfitMargin: this.grossProfitMargin,
     plans: this.plans,
     actionsDone: this.actionsDone
+  }
+}
+
+RecordSchema.methods.toJSONForAdmin = function(){
+  return {
+    symbol: this.company.symbol,
+    year: this.year,
+    author: this.company.author.toJSONForAdmin()
   }
 }
 
