@@ -38,6 +38,7 @@ if(isProduction){
 // Models
 require('./models/User')
 require('./models/Company')
+require('./models/Record')
 
 // Middlewares
 require('./config/passport')
