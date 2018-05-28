@@ -62,4 +62,11 @@ router.put('/:symbol', auth.required, (req, res, next) => {
   }).catch(next)
 })
 
+// Delete Company
+router.delete('/:symbol', auth.required, (req, res, next) => {
+  Company.remove({ author: req.payload.id, symbol: req.symbol }).then((deleted, err, what) => {
+    return res.sendStatus(204)
+  })
+})
+
 module.exports = router
