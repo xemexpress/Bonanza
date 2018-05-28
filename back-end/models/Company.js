@@ -13,6 +13,10 @@ var CompanySchema = new mongoose.Schema({
   abbr: String,
   logo: String,
   tagList: [{ type: String }],
+  records: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Record'
+  }],
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
