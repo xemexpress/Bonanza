@@ -372,7 +372,7 @@ Authentication required, returns the updated [Record](#single-record)
 
 Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
-### Update Record.Businesses
+### Update Record.BusinessSegments
 
 #### Add Business
 
