@@ -444,15 +444,15 @@ Required field: `plan`
 Example request body:
 ```JSON
 {
-  "prevPlan": {
-    "plan": "開發王子發動機II"
+  "plan": {
+    "action": "開發王子發動機II"
   }
 }
 ```
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional field: `plan`
+Optional field: `action`
 
 #### Check or uncheck Plan's execution state
 
