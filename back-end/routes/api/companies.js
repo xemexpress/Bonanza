@@ -317,6 +317,59 @@ router.delete('/:symbol/records/:year/plans/:index', auth.required, (req, res, n
   }).catch(next)
 })
 
+// Update Record.ActionsDone
+
+// Add ActionDone
+router.post('/:symbol/records/:year/actions', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      record.actionsDone.push(req.body.action.done)
+        
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
+    }).catch(next)
+  }).catch(next)
+})
+
+// Update ActionDone
+router.put('/:symbol/records/:year/actions/:index', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      record.actionsDone.splice(req.index, 1, req.body.action.done)
+
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
+    }).catch(next)
+  }).catch(next)
+})
+
+// Remove ActionDone
+router.delete('/:symbol/records/:year/actions/:index', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      record.actionsDone.splice(req.index, 1)
+
+      return record.save().then(() => {
+        return res.sendStatus(204)
+      })
+    }).catch(next)
+  }).catch(next)
+})
+
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
   zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {

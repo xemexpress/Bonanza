@@ -40,7 +40,10 @@ var RecordSchema = new mongoose.Schema({
     default: 0
   },
   plans: [PlanSchema],
-  actionsDone: [String],
+  actionsDone: [{
+    type: String,
+    required: [true, "can't be blank"]
+  }],
   company: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company',
