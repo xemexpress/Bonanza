@@ -129,6 +129,44 @@ router.post('/:symbol/records', auth.required, (req, res, next) => {
     }).catch(next)
 })
 
+// Update Record
+router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
+  Company.findOne({ author: req.payload.id, symbol: req.symbol })
+    .populate('records', 'year')
+    .then((company) => {
+      if(!company){ return res.sendStatus(401) }
+
+      let recordId = company.records.find((record) => record.year === req.year)._id
+      Record.findById(recordId).then((record) => {
+        if(!record){ return res.sendStatus(401) }
+        
+        if(typeof req.body.record.key !== 'undefined'){
+          record.key = req.body.record.key
+        }
+
+        if(typeof req.body.record.businessSegments !== 'undefined'){
+          record.businessSegments = req.body.record.businessSegments
+        }
+
+        if(typeof req.body.record.grossProfitMargin !== 'undefined'){
+          record.grossProfitMargin = req.body.record.grossProfitMargin
+        }
+
+        if(typeof req.body.record.plans !== 'undefined'){
+          record.plans = req.body.record.plans
+        }
+
+        if(typeof req.body.record.actionsDone !== 'undefined'){
+          record.actionsDone = req.body.record.actionsDone
+        }
+
+        return record.save().then(() => {
+          return res.json({ record: record.toJSONFor() })
+        })
+      }).catch(next)
+    }).catch(next)
+})
+
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
   Company.findOne({ author: req.payload.id, symbol: req.symbol })
