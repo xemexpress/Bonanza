@@ -283,6 +283,23 @@ router.put('/:symbol/records/:year/plans/:index', auth.required, (req, res, next
   }).catch(next)
 })
 
+// Delete Plan
+router.delete('/:symbol/records/:year/plans/:index', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      record.plans.splice(req.index, 1)
+
+      return record.save().then(() => {
+        return res.sendStatus(204)
+      })
+    }).catch(next)
+  }).catch(next)
+})
+
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
   zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
