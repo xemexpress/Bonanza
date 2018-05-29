@@ -19,6 +19,24 @@ router.param('year', (req, res, next, year) => {
   next()
 })
 
+// Preload Segment's index
+router.param('index', (req, res, next, index) => {
+  req.index = index
+
+  next()
+})
+
+function zaCompanyByAuthorSymbol(userId, companySymbol){
+  return Company.findOne({ author: userId, symbol: companySymbol })
+                .populate('records', 'year')
+}
+
+function zaRecordFromCompanyByYear(company, year){
+  let recordId = company.records.find((record) => record.year === year)._id
+
+  return Record.findById(recordId)
+}
+
 // Create Company
 router.post('/', auth.required, (req, res, next) => {
   User.findById(req.payload.id).then((user) => {
@@ -107,104 +125,121 @@ router.get('/:symbol/records', auth.required, (req, res, next) => {
 
 // Add Record to a Company
 router.post('/:symbol/records', auth.required, (req, res, next) => {
-  Company.findOne({ author: req.payload.id, symbol: req.symbol })
-    .populate('records', 'year')
-    .then((company) => {
-      if(!company){ return res.sendStatus(401) }
-      console.log('records:',company.records)
-      if(company.records.every((record) => record.year !== req.body.record.year)){
-        var record = new Record(req.body.record)
-        record.forCompany = company
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+    console.log('records:',company.records)
+    if(company.records.every((record) => record.year !== req.body.record.year)){
+      var record = new Record(req.body.record)
+      record.forCompany = company
 
-        return record.save().then(() => {
-          company.records.push(record)
+      return record.save().then(() => {
+        company.records.push(record)
 
-          return company.save().then(() => {
-            return res.json({ record: record.toJSONFor() })
-          })
+        return company.save().then(() => {
+          return res.json({ record: record.toJSONFor() })
         })
-      }else{
-        return res.status(422).json({ errors: { 'year': "can't be repeated" } })
-      }
-    }).catch(next)
+      })
+    }else{
+      return res.status(422).json({ errors: { 'year': "can't be repeated" } })
+    }
+  }).catch(next)
 })
 
 // Update Record
 router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
-  Company.findOne({ author: req.payload.id, symbol: req.symbol })
-    .populate('records', 'year')
-    .then((company) => {
-      if(!company){ return res.sendStatus(401) }
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
 
-      let recordId = company.records.find((record) => record.year === req.year)._id
-      Record.findById(recordId).then((record) => {
-        if(!record){ return res.sendStatus(401) }
-        
-        if(typeof req.body.record.key !== 'undefined'){
-          record.key = req.body.record.key
-        }
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+      
+      if(typeof req.body.record.key !== 'undefined'){
+        record.key = req.body.record.key
+      }
 
-        if(typeof req.body.record.businessSegments !== 'undefined'){
-          record.businessSegments = req.body.record.businessSegments
-        }
+      if(typeof req.body.record.businessSegments !== 'undefined'){
+        record.businessSegments = req.body.record.businessSegments
+      }
 
-        if(typeof req.body.record.grossProfitMargin !== 'undefined'){
-          record.grossProfitMargin = req.body.record.grossProfitMargin
-        }
+      if(typeof req.body.record.grossProfitMargin !== 'undefined'){
+        record.grossProfitMargin = req.body.record.grossProfitMargin
+      }
 
-        if(typeof req.body.record.plans !== 'undefined'){
-          record.plans = req.body.record.plans
-        }
+      if(typeof req.body.record.plans !== 'undefined'){
+        record.plans = req.body.record.plans
+      }
 
-        if(typeof req.body.record.actionsDone !== 'undefined'){
-          record.actionsDone = req.body.record.actionsDone
-        }
+      if(typeof req.body.record.actionsDone !== 'undefined'){
+        record.actionsDone = req.body.record.actionsDone
+      }
 
-        return record.save().then(() => {
-          return res.json({ record: record.toJSONFor() })
-        })
-      }).catch(next)
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
     }).catch(next)
+  }).catch(next)
 })
 
 // Update Record.BusinessSegments
 
 // Add Bussiness
 router.post('/:symbol/records/:year/segments', auth.required, (req, res, next) => {
-  Company.findOne({ author: req.payload.id, symbol: req.symbol })
-    .populate('records', 'year')
-    .then((company) => {
-      if(!company){ return res.sendStatus(401) }
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
 
-      let recordId = company.records.find((record) => record.year === req.year)._id
-      Record.findById(recordId).then((record) => {
-        if(!record){ return res.sendStatus(401) }
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
 
-        if(req.body.newBusiness._id){ delete req.body.newBusiness._id }
-        record.businessSegments.push(req.body.newBusiness)
-        
-        return record.save().then(() => {
-          return res.json({ record: record.toJSONFor() })
-        })
-      }).catch(next)
+      if(req.body.newBusiness._id){ delete req.body.newBusiness._id }
+      record.businessSegments.push(req.body.newBusiness)
+
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
     }).catch(next)
+  }).catch(next)
+})
+
+// Update Business
+router.put('/:symbol/records/:year/segments/:index', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      if(typeof req.body.segment.business !== 'undefined'){
+        record.businessSegments[req.index].business = req.body.segment.business
+      }
+
+      if(typeof req.body.segment.grossProfitMargin !== 'undefined'){
+        record.businessSegments[req.index].grossProfitMargin = req.body.segment.grossProfitMargin
+      }
+
+      if(typeof req.body.segment.share !== 'undefined'){
+        record.businessSegments[req.index].share = req.body.segment.share
+      }
+
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
+    }).catch(next)
+  }).catch(next)
 })
 
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
-  Company.findOne({ author: req.payload.id, symbol: req.symbol })
-    .populate('records', 'year')
-    .then((company) => {
-      if(!company){ return res.sendStatus(401) }
-      
-      let recordId = company.records.find((record) => record.year === req.year)._id
-      company.records.remove(recordId)
-      company.save().then(() => {
-        Record.remove({ _id: recordId }).then(() => {
-          return res.sendStatus(204)
-        })
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+    
+    let recordId = company.records.find((record) => record.year === req.year)._id
+    company.records.remove(recordId)
+    company.save().then(() => {
+      Record.remove({ _id: recordId }).then(() => {
+        return res.sendStatus(204)
       })
-    }).catch(next)
+    })
+  }).catch(next)
 })
 
 module.exports = router
