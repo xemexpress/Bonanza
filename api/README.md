@@ -402,8 +402,8 @@ Optional fields: `grossProfitMargin`, `share`
 Example request body:
 ```JSON
 {
-  "prevBusiness": {
-    "grossProfitMargin": 77.7    
+  "segment": {
+    "grossProfitMargin": 77.7
   }
 }
 ```
