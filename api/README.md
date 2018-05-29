@@ -418,7 +418,7 @@ Optional fields: `business`, `grossProfitMargin`, `share`
 
 Authentication required, returns `{}`
 
-### Update ActionsToBe
+### Update Record.Plans
 
 #### Add Plan
 
@@ -466,7 +466,7 @@ Authentication required, returns updated [Record](#single-record)
 
 Authentication required, returns `{}`
 
-### Update ActionsDone
+### Update Record.ActionsDone
 
 #### Add ActionDone
 
@@ -475,7 +475,7 @@ Authentication required, returns `{}`
 Example request body:
 ```JSON
 {
-  "actions": {
+  "action": {
     "done": "研發能力:arrow_up:"
   }
 }
