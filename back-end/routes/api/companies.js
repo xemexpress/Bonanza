@@ -56,7 +56,7 @@ router.post('/', auth.required, (req, res, next) => {
       else{
         return res.status(422).json({ errors: { 'company with the same symbol': 'already exists' } })
       }
-    })
+    }).catch(next)
   }).catch(next)
 })
 
