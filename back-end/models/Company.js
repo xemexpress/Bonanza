@@ -50,10 +50,8 @@ CompanySchema.methods.toJSONFor = function(){
 CompanySchema.methods.toJSONForAdmin = function(){
   return {
     symbol: this.symbol,
-    author: {
-      username: this.author.username,
-      proPic: this.author.proPic || 'https://static.productionready.io/images/smiley-cyrus.jpg'
-    }
+    years: this.records.map((record) => record.year),
+    author: this.author.toJSONForAdmin()
   }
 }
 

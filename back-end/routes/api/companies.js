@@ -25,17 +25,20 @@ router.post('/', auth.required, (req, res, next) => {
     if(!user){ return res.sendStatus(401) }
 
     // Should check if user already has the symbol.
-    if(true){
-      var company = new Company(req.body.company)
-    
-      company.author = user
+    Company.findOne({ author: req.payload.id, symbol: req.body.company.symbol }).then((company) => {
+      if(!company){
+        var company = new Company(req.body.company)
+        
+        company.author = user
 
-      return company.save().then(() => {
-        return res.json({ company: company.toJSONFor() })
-      })
-    }else{
-      return res.status(422).json({ errors: { 'company with the same symbol': 'already exists' } })
-    }
+        return company.save().then(() => {
+          return res.json({ company: company.toJSONFor() })
+        })
+      }
+      else{
+        return res.status(422).json({ errors: { 'company with the same symbol': 'already exists' } })
+      }
+    })
   }).catch(next)
 })
 
@@ -72,8 +75,12 @@ router.put('/:symbol', auth.required, (req, res, next) => {
 
 // Delete Company
 router.delete('/:symbol', auth.required, (req, res, next) => {
-  Company.remove({ author: req.payload.id, symbol: req.symbol }).then((deleted, err, what) => {
-    return res.sendStatus(204)
+  Company.findOneAndRemove({ author: req.payload.id, symbol: req.symbol }).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+    
+    return Record.remove({ company: company._id }).then(() => {
+      return res.sendStatus(204)
+    })
   })
 })
 

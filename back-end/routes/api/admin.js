@@ -25,8 +25,18 @@ router.get('/users', auth.required, (req, res, next) => {
 router.delete('/users', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     if(Array.isArray(req.body.users)){
-      User.remove({ username: { $in: req.body.users } }).then(() => {
-        return res.sendStatus(204)
+      User.find({ username: { $in: req.body.users } }).then((users) => {
+        let targetUsers = users.map((user) => user._id)
+        Company.find({ author: { $in: targetUsers } }).then((companies) => {
+          let targetCompanies = companies.map((company) => company._id)
+          return Record.remove({ company: { $in: targetCompanies } }).then(() => {
+            return Company.remove({ _id: { $in: targetCompanies } }).then(() => {
+              return User.remove({ _id: { $in: targetUsers } }).then(() => {
+                return res.sendStatus(204)
+              })
+            })
+          })
+        })
       })
     }else{
       return res.status(422).json({ errors: { 'users': 'should be an array' } })
@@ -41,6 +51,15 @@ router.get('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     Company.find({})
       .populate('author', 'username proPic')
+      .populate({
+        path: 'records',
+        select: 'year',
+        options: {
+          sort: {
+            year: 1
+          }
+        }
+      })
       .then((companies) => {
         return res.json({
           companies: companies.map((company) => {
@@ -61,11 +80,16 @@ router.delete('/companies', auth.required, (req, res, next) => {
       User.findOne({ username: req.body.companies.author }).then((user) => {
         if(!user){ return res.sendStatus(401) }
         let targetId = user._id
-        Company.remove({
+        Company.find({
           author: targetId,
           symbol: { $in: req.body.companies.symbols }
-        }).then(() => {
-          return res.sendStatus(204)
+        }).then((companies) => {
+          let targetCompanies = companies.map((company) => company._id)
+          return Record.remove({ company: { $in: targetCompanies } }).then(() => {
+            return Company.remove({ _id: { $in: targetCompanies } }).then(() => {
+              return res.sendStatus(204)
+            })
+          })
         })
       }).catch(next)
     }else{

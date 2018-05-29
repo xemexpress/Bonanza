@@ -1,7 +1,10 @@
 var mongoose = require('mongoose')
 
 var SegmentSchema = new mongoose.Schema({
-  business: String,
+  business: {
+    type: String,
+    required: [true, "can't be blank"]
+  },
   grossProfitMargin: Number,
   share: {
     type: Number,
@@ -12,7 +15,10 @@ var SegmentSchema = new mongoose.Schema({
 })
 
 var PlanSchema = new mongoose.Schema({
-  plan: String,
+  plan: {
+    type: String,
+    required: [true, "can't be blank"]
+  },
   executed: {
     type: Boolean,
     default: false
