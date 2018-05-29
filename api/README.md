@@ -156,6 +156,16 @@
 }
 ```
 
+### List of Tags
+```JSON
+{
+  "tags": [
+    "滂湃",
+    "精煉"
+  ]
+}
+```
+
 ### Errors and Status Codes
 
 If a request fails any validations, expect a 422 and errors in the following format:
@@ -513,6 +523,12 @@ Authentication required, returns `{}`
 `DELETE /api/companies/:symbol/records/:year`
 
 Authentication required, returns `{}`
+
+### Get Tags
+
+`GET /api/tags`
+
+Authentication required, returns a [List of Tags](#list-of-tags)
 
 
 ## Endpoints (admin):
