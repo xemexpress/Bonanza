@@ -167,6 +167,29 @@ router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
     }).catch(next)
 })
 
+// Update Record.BusinessSegments
+
+// Add Bussiness
+router.post('/:symbol/records/:year/segments', auth.required, (req, res, next) => {
+  Company.findOne({ author: req.payload.id, symbol: req.symbol })
+    .populate('records', 'year')
+    .then((company) => {
+      if(!company){ return res.sendStatus(401) }
+
+      let recordId = company.records.find((record) => record.year === req.year)._id
+      Record.findById(recordId).then((record) => {
+        if(!record){ return res.sendStatus(401) }
+
+        if(req.body.newBusiness._id){ delete req.body.newBusiness._id }
+        record.businessSegments.push(req.body.newBusiness)
+        
+        return record.save().then(() => {
+          return res.json({ record: record.toJSONFor() })
+        })
+      }).catch(next)
+    }).catch(next)
+})
+
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
   Company.findOne({ author: req.payload.id, symbol: req.symbol })
