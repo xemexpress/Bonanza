@@ -454,7 +454,7 @@ Authentication required, returns the updated [Record](#single-record)
 
 Optional field: `action`
 
-#### Check or uncheck Plan's execution state
+#### Toggle Plan's execution state
 
 `PUT /api/companies/:symbol/records/:year/plans/:index/executed`
 

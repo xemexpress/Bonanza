@@ -283,6 +283,23 @@ router.put('/:symbol/records/:year/plans/:index', auth.required, (req, res, next
   }).catch(next)
 })
 
+// Toggle Plan's execution state
+router.put('/:symbol/records/:year/plans/:index/executed', auth.required, (req, res, next) => {
+  zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
+    if(!company){ return res.sendStatus(401) }
+
+    zaRecordFromCompanyByYear(company, req.year).then((record) => {
+      if(!record){ return res.sendStatus(401) }
+
+      record.plans[req.index].executed = !record.plans[req.index].executed
+
+      return record.save().then(() => {
+        return res.json({ record: record.toJSONFor() })
+      })
+    }).catch(next)
+  }).catch(next)
+})
+
 // Delete Plan
 router.delete('/:symbol/records/:year/plans/:index', auth.required, (req, res, next) => {
   zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
