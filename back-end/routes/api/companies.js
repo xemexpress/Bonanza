@@ -37,6 +37,38 @@ function zaRecordFromCompanyByYear(company, year){
   return Record.findById(recordId)
 }
 
+// List Companies
+router.get('/', auth.required, (req, res, next) => {
+  let query = { author: req.payload.id }
+  let limit = 24
+  let offset = 0
+
+  if(typeof req.query.limit !== 'undefined'){
+    limit = req.query.limit
+  }
+
+  if(typeof req.query.offset !== 'undefined'){
+    offset = req.query.offset
+  }
+
+  if(typeof req.query.tag !== 'undefined'){
+    query.tagList = { $in: [req.query.tag]}
+  }
+
+  Company.find(query)
+    .skip(Number(offset))
+    .limit(Number(limit))
+    .sort({ createdAt: -1 })
+    .then((companies) => {
+      return res.json({
+        companies: companies.map((company) => {
+          return company.toJSONFor()
+        }),
+        companiesCount: companies.length
+      })
+    }).catch(next)
+})
+
 // Create Company
 router.post('/', auth.required, (req, res, next) => {
   User.findById(req.payload.id).then((user) => {
