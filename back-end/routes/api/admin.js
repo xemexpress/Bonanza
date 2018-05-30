@@ -49,7 +49,35 @@ router.delete('/users', auth.required, (req, res, next) => {
 // List Companies
 router.get('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    Company.find({})
+    let query = {}
+    let limit = 24
+    let offset = 0
+
+    if(typeof req.query.tag !== 'undefined'){
+      query.tagList = { $in: [req.query.tag] }
+    }
+
+    if(typeof req.query.limit !== 'undefined'){
+      limit = req.query.limit
+    }
+
+    if(typeof req.query.offset !== 'undefined'){
+      offset = req.query.offset
+    }
+
+    Promise.all([
+      req.query.author ? User.findOne({ username: { $in: [req.query.author] } }) : null
+    ]).then((results) => {
+      
+      let user = results[0]
+      if(user){
+        query.author = user._id
+      }
+
+      Company.find(query)
+      .skip(Number(offset))
+      .limit(Number(limit))
+      .sort({ createdAt: -1 })
       .populate('author', 'username proPic')
       .populate({
         path: 'records',
@@ -68,6 +96,7 @@ router.get('/companies', auth.required, (req, res, next) => {
           companiesCount: companies.length
         })
       }).catch(next)
+    })
   }else{
     return res.sendStatus(403)
   }
