@@ -184,6 +184,8 @@ If a request fails any validations, expect a 422 and errors in the following for
 
 401 for Unauthorized requests, when a request requires authentication but it isn't provided
 
+403 for Prohibited requests, when a request requires admin pass but it isn't provided
+
 404 for Not found requests, when a resource can't be found to fulfill the request
 
 
@@ -254,10 +256,6 @@ Optional fields: `username`, `password`, `proPic`
 
 Query Parameters:
 
-Filter by author:
-
-`?author=unimemo`
-
 Filter by tag:
 
 `?tag=持有`
@@ -270,7 +268,7 @@ Offset number of companies (default is 0):
 
 `?offset=0`
 
-Authentication required, returns [multiple companies](#multiple-companies), ordered by most recent first
+Authentication required, returns the current User's own [multiple companies](#multiple-companies), ordered by most recent first
 
 ### Create Company
 
@@ -571,7 +569,25 @@ Optional field: `users` as an array of usernames
 
 `GET /api/admin/companies`
 
-Admin pass required, returns multiple profiles
+Query Parameters:
+
+Filter by author:
+
+`?author=unimemo`
+
+Filter by tag:
+
+`?tag=持有`
+
+Limit number of companies (default is 24):
+
+`?limit=24`
+
+Offset number of companies (default is 0):
+
+`?offset=0`
+
+Admin pass required, returns multiple profiles, ordered by most recent first
 
 ```JSON
 {
