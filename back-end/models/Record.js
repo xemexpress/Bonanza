@@ -19,10 +19,7 @@ var PlanSchema = new mongoose.Schema({
     type: String,
     required: [true, "can't be blank"]
   },
-  executed: {
-    type: Boolean,
-    default: false
-  }
+  executed: String
 })
 
 var RecordSchema = new mongoose.Schema({

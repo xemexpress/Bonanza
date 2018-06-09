@@ -143,8 +143,8 @@
       "grossProfitMargin": 15.5,
       "plans": [
         {
-          "plan": "開發王子發動機",
-          "executed": true
+          "plan": "生產王子發動機",
+          "executed": "2015"
         }
       ],
       "actionsDone": [
@@ -441,7 +441,7 @@ Example request body:
 }
 ```
 
-Authentication required, returns the updated [Record](#single-record) with the new plan defaults to `"executed": false`.
+Authentication required, returns the updated [Record](#single-record).
 
 Required field: `plan`
 
@@ -453,14 +453,15 @@ Example request body:
 ```JSON
 {
   "plan": {
-    "action": "開發王子發動機II"
+    "action": "生產王子發動機II",
+    "executed": "2017"
   }
 }
 ```
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional field: `action`
+Optional fields: `action`, `executed`
 
 #### Toggle Plan's execution state
 
