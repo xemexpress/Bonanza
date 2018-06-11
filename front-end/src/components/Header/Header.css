@@ -1,0 +1,19 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out;
+  background: red;
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.header.is-hidden.no-animation {
+  transition: none;
+  transform: translateY(-100%);
+}
