@@ -1,6 +1,7 @@
 var router = require('express').Router()
 
 router.use('/admin', require('./admin'))
+router.use('/articles', require('./articles'))
 router.use('/', require('./users'))
 router.use('/companies', require('./companies'))
 router.use('/tags', require('./tags'))

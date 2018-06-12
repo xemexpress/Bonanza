@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
 var auth = require('../auth')
 var User = mongoose.model('User'),
     Company = mongoose.model('Company'),
-    Record = mongoose.model('Record')
+    Record = mongoose.model('Record'),
+    Article = mongoose.model('Article')
 
 // List Users
 router.get('/users', auth.required, (req, res, next) => {
@@ -37,7 +38,7 @@ router.delete('/users', auth.required, (req, res, next) => {
             })
           })
         })
-      })
+      }).catch(next)
     }else{
       return res.status(422).json({ errors: { 'users': 'should be an array' } })
     }
@@ -148,7 +149,20 @@ router.get('/records', auth.required, (req, res, next) => {
           }),
           recordsCount: records.length
         })
-      })
+      }).catch(next)
+  }else{
+    return res.sendStatus(403)
+  }
+})
+
+// Delete Articles
+router.delete('/articles', auth.required, (req, res, next) => {
+  if(req.payload.username === auth.admin){
+    Article.remove({}).then(() => {
+      return res.sendStatus(204)
+    }).catch(next)
+  }else{
+    return res.sendStatus(403)
   }
 })
 
