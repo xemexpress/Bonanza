@@ -27,16 +27,21 @@ router.get('/', auth.optional, (req, res, next) => {
     offset = req.query.offset
   }
 
-  Article.find({})
-  .skip(Number(offset))
-  .limit(Number(limit))
-  .sort({ createdAt: -1 })
-  .then((articles) => {
+  Promise.all([
+    Article.find({})
+      .skip(Number(offset))
+      .limit(Number(limit))
+      .sort({ createdAt: -1 }),
+    Article.count({})
+  ]).then((results) => {
+    let articles = results[0]
+    let articlesCount = results[1]
+
     return res.json({
       articles: articles.map((article) => {
         return article.toJSONFor()
       }),
-      articlesCount: articles.length
+      articlesCount: articlesCount
     })
   }).catch(next)
 })
