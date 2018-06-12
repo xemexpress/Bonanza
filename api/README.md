@@ -600,7 +600,9 @@ Example request body:
 
 Admin Pass required, returns the [Article](#single-article)
 
-Required fields: `image`, `body`
+Required field: `body`
+
+Optional field: `image`
 
 ### Update Article
 
@@ -618,7 +620,7 @@ Example request body:
 
 Admin Pass required, returns the updated [Article](#single-article)
 
-Optional fields: `image`, `body`
+Optional fields: `body`, `image`
 
 ### Delete Article
 
