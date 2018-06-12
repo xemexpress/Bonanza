@@ -19,6 +19,41 @@
 }
 ```
 
+### Single Article
+
+```JSON
+{
+  "article": {
+    "id": 1,
+    "image": "image.link",
+    "body": "Its about a position.",
+    "createdAt": "2017-08-13T18:24:36.162Z",
+    "updatedAt": "2017-08-13T18:24:36.162Z"
+  }
+}
+```
+
+### Multiple Articles
+
+```JSON
+{
+  "articles": [{
+    "id": 2,
+    "image": "image.link",
+    "body": "Mark two points on a paper, and connect them.",
+    "createdAt": "2017-08-14T00:10:59.720Z",
+    "updatedAt": "2017-08-14T00:10:59.720Z"
+  }, {
+    "id": 1,
+    "image": "image.link",
+    "body": "Its about a position.",
+    "createdAt": "2017-08-13T18:24:36.162Z",
+    "updatedAt": "2017-08-13T18:24:36.162Z"
+  }],
+  "articlesCount": 2
+}
+```
+
 ### Single Company
 
 ```JSON
@@ -190,6 +225,22 @@ If a request fails any validations, expect a 422 and errors in the following for
 
 
 ## Endpoints:
+
+### List Articles
+
+`GET /api/articles`
+
+Query Parameters:
+
+Limit number of articles (default is 10):
+
+`?limit=10`
+
+Offset number of articles (default is 0):
+
+`?offset=0`
+
+Authentication optional, returns [multiple articles](#multiple-articles), ordered by most recent first
 
 ### Authentication:
 
@@ -531,6 +582,49 @@ Authentication required, returns a [List of Tags](#list-of-tags)
 
 
 ## Endpoints (admin):
+
+### Create Article
+
+`POST /api/articles`
+
+Example request body:
+
+```JSON
+{
+  "article": {
+    "image": "image.link",
+    "body": "Mark two points on a paper, and connect them."
+  }
+}
+```
+
+Admin Pass required, returns the [Article](#single-article)
+
+Required fields: `image`, `body`
+
+### Update Article
+
+`PUT /api/articles/:id`
+
+Example request body:
+
+```JSON
+{
+  "article": {
+    "body": "Link a point to another!"
+  }
+}
+```
+
+Admin Pass required, returns the updated [Article](#single-article)
+
+Optional fields: `image`, `body`
+
+### Delete Article
+
+`DELETE /api/articles/:id`
+
+Admin Pass required, returns {}
 
 ### List Users
 
