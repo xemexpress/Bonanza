@@ -1,25 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { HashRouter, Route } from 'react-router-dom'
 
 import App from './components/App'
+import store from './store'
 import registerServiceWorker from './registerServiceWorker';
-
-const defaultState = {
-  appName: 'Bonanza',
-  companies: null
-}
-
-const reducer = (state=defaultState, action) => {
-  return state
-}
-
-const store = createStore(reducer)
 
 ReactDOM.render((
   <Provider store={store}>
-    <App />
+    <HashRouter>
+      <Route path="/" component={App} />
+    </HashRouter>
   </Provider>
 ), document.getElementById('root'));
+
 registerServiceWorker();

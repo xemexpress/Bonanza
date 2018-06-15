@@ -1,8 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
+import LoggedOutView from './LoggedOutView'
+import LoggedInView from './LoggedInView'
 import './Header.css'
 
-const tolerance = 47
+const scrollTolerance = 47
+const mapStateToProps = state => ({
+  ...state.common,
+  company: state.recordList.company
+})
 
 class Header extends React.Component {
   constructor(){
@@ -10,7 +17,7 @@ class Header extends React.Component {
     this.state = {
       headerHeight: 0,
       lastScrollTop: 0,
-      className: 'header'
+      className: 'header interaction-card'
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -18,15 +25,15 @@ class Header extends React.Component {
   }
 
   instantHideHeader(){
-    this.setState({ className: 'header is-hidden no-animation'})
+    this.setState({ className: 'header interaction-card is-hidden no-animation'})
   }
 
   hideHeader(){
-    this.setState({ className: 'header is-hidden' })
+    this.setState({ className: 'header interaction-card is-hidden' })
   }
 
   showHeader(){
-    this.setState({ className: 'header' })
+    this.setState({ className: 'header interaction-card' })
   }
 
   hasScrolled(){
@@ -39,7 +46,7 @@ class Header extends React.Component {
 
     if(hasScrolledDown < 0){
       this.showHeader()
-    }else if(hasScrolledDown > tolerance){
+    }else if(hasScrolledDown > scrollTolerance){
       this.hideHeader()
     }else{
        return 
@@ -63,19 +70,20 @@ class Header extends React.Component {
   render(){
     return (
       <nav className={this.state.className}>
-        { this.props.appName.toLowerCase() }
+        <LoggedOutView currentUser={this.props.currentUser} appName={this.props.appName} />
+        <LoggedInView currentUser={this.props.currentUser} company={this.props.company} appName={this.props.appName} />
       </nav>
     )
   }
 }
 
-export default Header
+export default connect(mapStateToProps, ()=>({}))(Header)
 
 function debounce(func, wait) {
-  let timeout;
+  let timeout
   return function(...args) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
-  };
+    const context = this
+    clearTimeout(timeout)
+    timeout = setTimeout(() => func.apply(context, args), wait)
+  }
 }

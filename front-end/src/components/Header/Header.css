@@ -1,19 +1,40 @@
 .header {
+  z-index: 1;
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  padding: 0.5rem 1rem;
+  left: 5%;
+  top: 10.7px;
+  height: 3rem;
+  width: 90%;
+  transition: all 0.2s ease-in-out;
   transform: translateY(0);
-  transition: transform 0.2s ease-in-out;
-  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header.is-hidden {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  background: rgba(70,70,70,0.1);
 }
 
-.header.is-hidden.no-animation {
+.header.no-animation {
   transition: none;
-  transform: translateY(-100%);
+}
+
+.header .za-logo {
+  margin-bottom: -4.7px;
+}
+
+.nav-item {
+  color: #586069;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-item:hover, .nav-item.selected {
+  color: #24292e;
 }
