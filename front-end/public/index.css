@@ -1,3 +1,8 @@
+.testing {
+  background: red;
+  height: 100vh;
+}
+
 * { 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
@@ -7,6 +12,25 @@
 body {
   background-color: #F2EDE1;
   font-family: 'PT Sans', sans-serif;
+}
+
+.mainview {
+  -webkit-transform: translateY(67px);
+  -ms-transform: translateY(67px);
+  transform: translateY(67px) ;
+}
+
+.interaction-card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+     -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+          box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  background: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.infinite-scroll-component {
+  overflow: visible !important;
 }
 
 /* Grid System */
