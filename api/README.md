@@ -63,6 +63,7 @@
     "abbr": "長和",
     "logo": "image.url", 
     "name": "長江和記實業有限公司",
+    "link": "http://www.ckh.com.hk/tc/global/home.php",
     "tagList": ["滂湃"],
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
@@ -79,6 +80,7 @@
     "abbr": "新晨動力",
     "logo": "image.url",
     "name": "新晨中國動力控股有限公司",
+    "link": "http://www.xinchenpower.com/c/index.php",
     "tagList": ["精煉", "持有"],
     "createdAt": "2017-08-14T00:10:59.720Z",
     "updatedAt": "2017-08-14T00:10:59.720Z"
@@ -87,6 +89,7 @@
     "abbr": "長和",
     "logo": "image.url",
     "name": "長江和記實業有限公司",
+    "link": "http://www.ckh.com.hk/tc/global/home.php",
     "tagList": ["滂湃"],
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
@@ -342,7 +345,7 @@ Authentication required, returns the [Company](#single-company)
 
 Required fields: `symbol`, `name`
 
-Optional fields: `abbr`, `logo`, `tagList` as an array of Strings
+Optional fields: `abbr`, `logo`, `link`, `tagList` as an array of Strings
 
 ### Update Company
 
@@ -359,7 +362,7 @@ Example request body:
 
 Authentication required, returns the updated [Company](#single-company)
 
-Optional fields: `symbol`, `name`, `abbr`, `logo`, `tagList` as an array of Strings
+Optional fields: `symbol`, `name`, `abbr`, `logo`, `link`, `tagList` as an array of Strings
 
 ### Delete Company
 
@@ -727,7 +730,7 @@ Admin pass required, returns `{}`
 
 Required field: `author`
 
-Optional field: `symbols` as an array of symbols
+Optional field: `symbols` as an array of symbols. All the owner(as author)'s companies will be deleted if `symbols` is not provided.
 
 ### List Records
 
