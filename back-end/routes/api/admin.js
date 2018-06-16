@@ -114,11 +114,13 @@ router.delete('/companies', auth.required, (req, res, next) => {
     if(typeof req.body.companies.author !== 'undefined'){
       User.findOne({ username: req.body.companies.author }).then((user) => {
         if(!user){ return res.sendStatus(401) }
-        let targetId = user._id
-        Company.find({
-          author: targetId,
-          symbol: { $in: req.body.companies.symbols }
-        }).then((companies) => {
+        
+        let query = { author: user._id }
+        if(typeof req.body.companies.symbols !== 'undefined'){
+          query[symbol] = { $in: req.body.companies.symbols }
+        }
+
+        Company.find(query).then((companies) => {
           let targetCompanies = companies.map((company) => company._id)
           return Record.remove({ company: { $in: targetCompanies } }).then(() => {
             return Company.remove({ _id: { $in: targetCompanies } }).then(() => {
