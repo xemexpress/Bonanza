@@ -10,9 +10,8 @@
   list-style: none;
 }
 
-.error-card i {
+.error-card .fa-times {
   float: right;
-  margin-top: -6px;
-  font-size: 200%;
+  margin-top: 3px;
   cursor: pointer;
 }

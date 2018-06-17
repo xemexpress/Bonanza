@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 
 import LoggedOutView from './LoggedOutView'
 import LoggedInView from './LoggedInView'
+// Testing
+// import CompanyListView from './LoggedInView/CompanyListView'
+// import RecordsView from './LoggedInView/RecordsView'
 import './Header.css'
 
 const scrollTolerance = 47
@@ -14,6 +17,7 @@ const mapStateToProps = state => ({
 class Header extends React.Component {
   constructor(){
     super()
+
     this.state = {
       headerHeight: 0,
       lastScrollTop: 0,
@@ -70,8 +74,16 @@ class Header extends React.Component {
   render(){
     return (
       <nav className={this.state.className}>
+      {/* Original */}
         <LoggedOutView currentUser={this.props.currentUser} appName={this.props.appName} />
-        <LoggedInView currentUser={this.props.currentUser} company={this.props.company} appName={this.props.appName} />
+        <LoggedInView
+          currentUser={this.props.currentUser}
+          locationHash={this.props.locationHash}
+          company={this.props.company} appName={this.props.appName} />
+      
+      {/* Testing */}
+        {/* <CompanyListView /> */}
+        {/* <RecordsView /> */}
       </nav>
     )
   }

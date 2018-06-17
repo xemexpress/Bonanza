@@ -36,11 +36,11 @@ const ArticleList = props => {
         props.articles.map((article, index) => {
           let markedUp = { __html: marked(article.body) }
           return (
-            <div style={style}>
-              <div dangerouslySetInnerHTML={markedUp} key={index}></div>
+            <div style={style} key={index}>
+              <div dangerouslySetInnerHTML={markedUp}></div>
             {
               article.image ?
-              <img src={article.image} alt={`${article.body.slice(17)}...`} />
+              <img width="100%" src={article.image} alt={`${article.body.slice(17)}...`} />
               : null
             }
             </div>

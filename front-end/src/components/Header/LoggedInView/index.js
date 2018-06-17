@@ -7,7 +7,10 @@ const LoggedInView = props => {
   if(props.currentUser){
     return (
       <React.Fragment>
-        <CompanyListView selectedCompany={props.company} />
+        <CompanyListView
+          currentUser={props.currentUser}
+          locationHash={props.locationHash} 
+          selectedCompany={props.company} />
         <RecordsView selectedCompany={props.company} />
       </React.Fragment>
     )

@@ -1,8 +1,8 @@
 .testing {
   background: red;
-  height: 100vh;
 }
 
+/* Tag-related */
 * { 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
@@ -14,6 +14,53 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
+/* Element-specified */
+.btn {
+  border-radius: 0.25rem;
+  padding: 0.19rem;
+}
+
+.btn-outline-positive {
+  border-color: #5CB85C;
+  background-color: #FFF;
+  color: #5CB85C;
+}
+
+.btn-outline-positive:hover {
+  border-color: #FFF;
+  background-color: #5CB85C;
+  color: #FFF;
+}
+
+.btn-outline-info {
+  border-color: #5BC0DE;
+  background-color: #FFF;
+  color: #5BC0DE;
+}
+
+.btn-outline-info:hover {
+  border-color: #FFF;
+  background-color: #5BC0DE;
+  color: #FFF;
+}
+
+.btn-outline-danger {
+  border-color: #B85C5C;
+  background-color: #FFF;
+  color: #B85C5C;
+}
+
+.btn-outline-danger:hover {
+  border-color: #FFF;
+  background-color: #B85C5C;
+  color: #FFF;
+}
+
+/* Block-related */
 .mainview {
   -webkit-transform: translateY(67px);
   -ms-transform: translateY(67px);

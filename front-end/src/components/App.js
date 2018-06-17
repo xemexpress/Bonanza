@@ -7,6 +7,7 @@ import Header from './Header'
 import MainView from './MainView'
 import Home from './Home'
 import Login from './Login'
+import CompanyList from './CompanyList';
 import agent from '../agent';
 
 import {
@@ -49,12 +50,12 @@ class App extends React.Component {
   render(){
     return (
       <div className="container-fluid"> 
-        <Header />
+        <Header locationHash={window.location.hash} />
         <MainView>
           <Switch>
             <Route exact path='/login' component={Login} />
-            {/* <Route exact path='/companies' component={} />
-            <Route exact path='/companies/:symbol' component={} /> */}
+            <Route exact path='/companies' component={CompanyList} />
+            {/* <Route exact path='/companies/:symbol' component={} /> */}
             <Route path='/' component={Home} />
           </Switch>
         </MainView>

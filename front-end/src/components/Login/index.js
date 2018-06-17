@@ -8,6 +8,7 @@ import './Login.css'
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
+  AUTH_PAGE_LOADED,
   UNIMEMO_LOGO
 } from '../../constants'
 
@@ -21,9 +22,12 @@ const mapDispatchToProps = dispatch => ({
     key,
     value
   }),
-  onSubmitForm: (username, password) => dispatch({
+  onLogIn: (username, password) => dispatch({
     type: LOGIN,
     payload: agent.Auth.login(username, password)
+  }),
+  onUnload: () => dispatch({
+    type: AUTH_PAGE_LOADED
   })
 })
 
@@ -36,8 +40,12 @@ class Login extends React.Component {
     this.changePassword = updateFieldEvent('password')
     this.submitForm = (username, password) => ev => {
       ev.preventDefault()
-      this.props.onSubmitForm(username, password)
+      this.props.onLogIn(username, password)
     }
+  }
+
+  componentWillUnmount(){
+    this.props.onUnload()
   }
 
   render(){

@@ -10,8 +10,12 @@ const LoggedOutView = props => {
   
   return (
     <React.Fragment>
-      <Link className="za-logo" to="/"><img src={ZA_LOGO} height="20px" alt={props.appName} /></Link>
-      <Link className={ window.location.hash === '#/login' ? 'nav-item selected' : 'nav-item'} to="/login">Sign In</Link>
+      <Link className="left-layout" to="/">
+        <img src={ZA_LOGO} height="20px" alt={props.appName} />
+      </Link>
+      <Link className={ window.location.hash === '#/login' ? 'nav-item selected' : 'nav-item'} to="/login">
+        Sign In
+      </Link>
     </React.Fragment>
   )
 }

@@ -5,7 +5,7 @@ import auth from './reducers/auth'
 import articleList from './reducers/articleList'
 import companyList from './reducers/companyList'
 import recordList from './reducers/recordList'
-import { promiseMiddleware } from './middleware'
+import { localStorageMiddleware, promiseMiddleware } from './middleware'
 
 const reducer = combineReducers({
   common,
@@ -15,7 +15,7 @@ const reducer = combineReducers({
   recordList
 })
 
-const middleware = applyMiddleware(promiseMiddleware)
+const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware)
 
 const store = createStore(reducer, middleware)
 

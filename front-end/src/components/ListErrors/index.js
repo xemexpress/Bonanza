@@ -23,7 +23,7 @@ const ListErrors = props => {
             if(index === 0){
               return (
                 <li key={key}>
-                  {key} { errors[key] } <i className="icon ion-ios-close" onClick={()=>props.onClearErrors()}></i>
+                  {key} { errors[key] } <i className="fas fa-times fa-md" onClick={()=>props.onClearErrors()}></i>
                 </li>
               )
             }

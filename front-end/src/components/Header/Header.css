@@ -1,3 +1,4 @@
+/* General */
 .header {
   z-index: 1;
   position: fixed;
@@ -24,17 +25,121 @@
   transition: none;
 }
 
-.header .za-logo {
-  margin-bottom: -4.7px;
-}
-
 .nav-item {
+  display: block;
   color: #586069;
   cursor: pointer;
   text-decoration: none !important;
   transition: color 0.3s ease-in-out;
 }
 
-.nav-item:hover, .nav-item.selected {
-  color: #24292e;
+.nav-item:hover, .nav-item.selected, .nav-item:focus {
+  color: #24292E !important;
+}
+
+/* Left section - Logo as default */
+.left-layout {
+  margin-bottom: -4.7px;
+}
+
+/* Middle section - Main function as default*/
+.middle-layout {
+  width: 50%;
+}
+@media (max-width: 667px) {
+  .middle-layout {
+    width: 60%;
+  }
+}
+@media (min-width: 769px) {
+  .middle-layout {
+    width: 400px;
+  }
+}
+
+/* Middle Section - CompanyListView Customization*/
+.header-search {
+  position: relative;
+  top: -2px;
+  cursor: default;
+  opacity: 0.3;
+  transition: all 0.3s ease-in-out;
+}
+
+.header-search:focus-within {
+  opacity: 1;
+}
+
+.header-search:hover {
+  opacity: 1;
+}
+
+.header-search .fa-search {
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  color: #24292E;
+}
+
+.header-search input {
+  width: 100%;
+  border-color: #24292E;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  outline: 0;
+  padding: 7px 4px 7px 27px;
+  color: #24292E;
+}
+
+::placeholder {
+  color: lightgrey;
+}
+
+/* Middle Section - RecordsView Customization */
+.company-name a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* Right Section - Supplementary functions as default */
+.right-layout {
+  position: relative;
+  top: 1px;
+}
+
+.right-layout button {
+  opacity: 0.444;
+  transition: all 0.3s ease-in-out;
+}
+
+.right-layout button:hover {
+  opacity: 1;
+}
+
+.operations {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+/* Right Section - CompanyListView Customization */
+.overlay {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  /* Testing */
+  opacity: 0;
+  background-color: #FFF;
+  transition: all 0.3s ease-in-out;
+}
+
+.username:hover .overlay {
+  z-index: 1;
+  opacity: 1;
 }

@@ -1,6 +1,7 @@
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
+  AUTH_PAGE_LOADED,
   ASYNC_START,
   CLEAN_ERROR
 } from '../constants'
@@ -36,6 +37,8 @@ export default (state=defaultState, action) => {
         ...state,
         errors: null
       }
+    case AUTH_PAGE_LOADED:
+      return defaultState
     default:
   }
   return state
