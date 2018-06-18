@@ -55,6 +55,13 @@ router.get('/', auth.required, (req, res, next) => {
     query.tagList = { $in: [req.query.tag]}
   }
 
+  if(typeof req.query.companyName !== 'undefined'){
+    query.name = {
+      $regex: req.query.companyName,
+      $options: "i"
+    }
+  }
+
   Company.find(query)
     .skip(Number(offset))
     .limit(Number(limit))

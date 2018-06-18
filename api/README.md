@@ -310,6 +310,10 @@ Optional fields: `username`, `password`, `proPic`
 
 Query Parameters:
 
+Filter by companyName:
+
+`?companyName=anyPartOfTheCompanyName`
+
 Filter by tag:
 
 `?tag=持有`
@@ -322,7 +326,7 @@ Offset number of companies (default is 0):
 
 `?offset=0`
 
-Authentication required, returns the current User's own [multiple companies](#multiple-companies), ordered by most recent first
+Authentication required, returns corresponding [multiple companies](#multiple-companies) of the current User's own, ordered by most recent first
 
 ### Create Company
 
