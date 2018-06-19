@@ -49,7 +49,7 @@ UserSchema.methods.toAuthJSON = function(){
   }
 }
 
-UserSchema.methods.toJSONForAdmin = function(){
+UserSchema.methods.toJSONFor = function(){
   return {
     username: this.username,
     proPic: this.proPic || 'https://static.productionready.io/images/smiley-cyrus.jpg'

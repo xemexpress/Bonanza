@@ -25,8 +25,9 @@
 {
   "article": {
     "id": 1,
-    "image": "image.link",
+    "title": "A Title",
     "body": "Its about a position.",
+    "image": "image.link",
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
   }
@@ -39,14 +40,16 @@
 {
   "articles": [{
     "id": 2,
-    "image": "image.link",
+    "title": "Another Title",
     "body": "Mark two points on a paper, and connect them.",
+    "image": "image.link",
     "createdAt": "2017-08-14T00:10:59.720Z",
     "updatedAt": "2017-08-14T00:10:59.720Z"
   }, {
     "id": 1,
-    "image": "image.link",
+    "title": "A Title",
     "body": "Its about a position.",
+    "image": "image.link",
     "createdAt": "2017-08-13T18:24:36.162Z",
     "updatedAt": "2017-08-13T18:24:36.162Z"
   }],
@@ -599,15 +602,16 @@ Example request body:
 ```JSON
 {
   "article": {
-    "image": "image.link",
-    "body": "Mark two points on a paper, and connect them."
+    "title": "A Title",
+    "body": "Mark two points on a paper, and connect them.",
+    "image": "image.link"
   }
 }
 ```
 
 Admin Pass required, returns the [Article](#single-article)
 
-Required field: `body`
+Required field: `title`, `body`
 
 Optional field: `image`
 
@@ -627,7 +631,7 @@ Example request body:
 
 Admin Pass required, returns the updated [Article](#single-article)
 
-Optional fields: `body`, `image`
+Optional fields: `title`, `body`, `image`
 
 ### Delete Article
 
@@ -764,3 +768,24 @@ Admin pass required, return multiple profiles
   "recordsCount": 2
 }
 ```
+
+### Customized Model-wise Update
+
+#### Modify Shallow (first-layer) Property
+
+`PUT /api/admin/shallowproperty`
+
+Example request body:
+```JSON
+{
+  "newProperty": {
+    "name": "propertyName",
+    "default": "defaultValue",
+    "forModel": "ModelName"
+  }
+}
+```
+
+Admin pass required, return the last modified sample.
+
+Required fields: `name`, `default` (if `default` equals `'index'`, `index` would be assigned accordingly), `forModel`

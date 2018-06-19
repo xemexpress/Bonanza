@@ -1,6 +1,10 @@
 var mongoose = require('mongoose')
 
 var ArticleSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, 'would help better understanding :)']
+  },
   body: {
     type: String,
     required: [true, 'would make it clearer :)']
@@ -11,6 +15,7 @@ var ArticleSchema = new mongoose.Schema({
 ArticleSchema.methods.toJSONFor = function(){
   return {
     id: this._id,
+    title: this.title,
     body: this.body,
     image: this.image,
     createdAt: this.createdAt,

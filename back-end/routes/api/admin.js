@@ -12,7 +12,7 @@ router.get('/users', auth.required, (req, res, next) => {
     User.find({}).then((users) => {
       return res.json({
         users: users.map((user) => {
-          return user.toJSONForAdmin()
+          return user.toJSONFor()
         }),
         usersCount: users.length
       })
@@ -173,4 +173,40 @@ router.delete('/articles', auth.required, (req, res, next) => {
   }
 })
 
+// Customized Update Request for model modifications
+let globalReq, globalRes
+router.put('/shallowproperty', auth.required, (req, res, next) => {
+  if(req.payload.username === auth.admin){
+    if(req.body.newProperty && req.body.newProperty.name && req.body.newProperty.default && req.body.newProperty.forModel){
+      globalReq = req
+      globalRes = res
+      if(req.body.newProperty.forModel === 'User'){
+        User.find({}).then(applyChange).catch(next)
+      }else if(req.body.newProperty.forModel === 'Article'){
+        Article.find({}).then(applyChange).catch(next)
+      }else if(req.body.newProperty.forModel === 'Company'){
+        Company.find({}).then(applyChange).catch(next)
+      }else if(req.body.newProperty.forModel === 'Record'){
+        Record.find({}).then(applyChange).catch(next)
+      }else{ return res.status(422).json({ errors: { 'Model': 'is not found' } }) }
+    }else{
+      return res.status(422).json({ errors: { 'details about newProperty (i.e. name, default, forModel)': "should be complete" } })
+    }
+  }else{
+    return res.sendStatus(403)
+  }
+})
+
 module.exports = router
+
+function applyChange(units){
+  units.forEach((unit, index, units) => {
+    unit[globalReq.body.newProperty.name] = globalReq.body.newProperty.default === 'index' ? index : globalReq.body.newProperty.default
+    return unit.save(() => {
+      if(index === units.length - 1){
+        return globalRes.json({ "modified": unit.toJSONFor() })  
+      }
+      return
+    })
+  })
+}

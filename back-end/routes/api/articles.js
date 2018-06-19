@@ -62,12 +62,16 @@ router.post('/', auth.required, (req, res, next) => {
 // Update Article (Admin pass required)
 router.put('/:article', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    if(typeof req.body.article.image !== 'undefined'){
-      req.article.image = req.body.article.image
+    if(typeof req.body.article.title !== 'undefined'){
+      req.article.title = req.body.article.title
     }
 
     if(typeof req.body.article.body !== 'undefined'){
       req.article.body = req.body.article.body
+    }
+    
+    if(typeof req.body.article.image !== 'undefined'){
+      req.article.image = req.body.article.image
     }
 
     req.article.save().then(() => {
