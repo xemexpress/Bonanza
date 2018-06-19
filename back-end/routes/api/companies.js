@@ -26,17 +26,6 @@ router.param('index', (req, res, next, index) => {
   next()
 })
 
-function zaCompanyByAuthorSymbol(userId, companySymbol){
-  return Company.findOne({ author: userId, symbol: companySymbol })
-                .populate('records', 'year')
-}
-
-function zaRecordFromCompanyByYear(company, year){
-  let recordId = company.records.find((record) => record.year === year)._id
-
-  return Record.findById(recordId)
-}
-
 // List Companies
 router.get('/', auth.required, (req, res, next) => {
   let query = { author: req.payload.id }
@@ -412,3 +401,14 @@ router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
 })
 
 module.exports = router
+
+function zaCompanyByAuthorSymbol(userId, companySymbol){
+  return Company.findOne({ author: userId, symbol: companySymbol })
+                .populate('records', 'year')
+}
+
+function zaRecordFromCompanyByYear(company, year){
+  let recordId = company.records.find((record) => record.year === year)._id
+
+  return Record.findById(recordId)
+}
