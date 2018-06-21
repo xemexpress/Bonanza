@@ -1,31 +1,42 @@
 import {
-  UPDATE_FIELD_AUTH,
-  LOGIN,
-  AUTH_PAGE_UNLOADED,
+  UPDATE_FIELD_ARTICLE_EDITOR,
+  SUBMIT_ARTICLE,
   ASYNC_START,
-  CLEAN_ERROR
+  CLEAN_ERROR,
+  ARTICLE_EDITOR_PAGE_UNLOADED,
+  ARTICLE_EDITOR_PAGE_LOADED
 } from '../constants'
 
 const defaultState = {
-  username: '',
-  password: ''
+  id: null,
+  title: '',
+  body: '',
+  image: ''
 }
 
 export default (state=defaultState, action) => {
   switch(action.type){
-    case UPDATE_FIELD_AUTH:
+    case ARTICLE_EDITOR_PAGE_LOADED:
+      return {
+        ...state,
+        id: action.article.id,
+        title: action.article.title,
+        body: action.article.body,
+        image: action.article.image
+      }
+    case UPDATE_FIELD_ARTICLE_EDITOR:
       return {
         ...state,
         [action.key]: action.value
       }
-    case LOGIN:
+    case SUBMIT_ARTICLE:
       return {
         ...state,
         inProgress: false,
         errors: action.error ? action.payload.errors : null
       }
     case ASYNC_START:
-      if(action.subtype === LOGIN){
+      if(action.subtype === SUBMIT_ARTICLE){
         return {
           ...state,
           inProgress: true
@@ -37,7 +48,7 @@ export default (state=defaultState, action) => {
         ...state,
         errors: null
       }
-    case AUTH_PAGE_UNLOADED:
+    case ARTICLE_EDITOR_PAGE_UNLOADED:
       return defaultState
     default:
   }

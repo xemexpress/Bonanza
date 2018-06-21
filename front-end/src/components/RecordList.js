@@ -6,14 +6,14 @@ const mapStateToProps = state => ({
   currentUser: state.common.currentUser
 })
 
-class CompanyList extends React.Component {
+class RecordList extends React.Component {
   render(){
     if(!this.props.currentUser){ return <Redirect to='/' /> }
     
     return (
-      <div>This is CompanyList</div>
+      <div>This is RecordList</div>
     )
   }
 }
 
-export default connect(mapStateToProps, ()=>({}))(CompanyList)
+export default connect(mapStateToProps, ()=>({}))(RecordList)

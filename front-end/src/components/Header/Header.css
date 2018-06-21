@@ -40,6 +40,7 @@
 /* Left section - Logo as default */
 .left-layout {
   margin-bottom: -4.7px;
+  color: initial;
 }
 
 /* Middle section - Main function as default*/
@@ -81,13 +82,25 @@
   color: #24292E;
 }
 
+.header-search .fa-times-circle {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  color: lightgrey;
+  transition: all 0.1s ease-in-out;
+}
+
+.header-search .fa-times-circle:hover {
+  color: darkgrey;
+}
+
 .header-search input {
   width: 100%;
   border-color: #24292E;
   border-width: 0 0 1px;
   border-radius: 0;
   outline: 0;
-  padding: 7px 4px 7px 27px;
+  padding: 7px 24px 7px 27px;
   color: #24292E;
 }
 
@@ -109,7 +122,6 @@
 
 .right-layout button {
   opacity: 0.444;
-  transition: all 0.3s ease-in-out;
 }
 
 .right-layout button:hover {

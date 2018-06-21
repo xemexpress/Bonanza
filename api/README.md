@@ -637,7 +637,7 @@ Optional fields: `title`, `body`, `image`
 
 `DELETE /api/articles/:id`
 
-Admin Pass required, returns {}
+Admin Pass required, returns `{}`
 
 ### List Users
 

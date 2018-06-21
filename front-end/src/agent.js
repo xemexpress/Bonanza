@@ -2,7 +2,8 @@ import superagentPromise from 'superagent-promise'
 import _superagent from 'superagent'
 
 import {
-  API_ROOT
+  API_ROOT,
+  PER_PAGE
 } from './constants'
 
 const superagent = superagentPromise(_superagent, global.Promise)
@@ -23,13 +24,21 @@ const requests = {
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   put: (url, body) =>
     superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
-  delete: url =>
-    superagent.delete(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)
+  del: url =>
+    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)
 }
 
+const limit = (count, deleted=0, page=0) => `limit=${count}&offset=${count * page - deleted}`
+const omitId = article => Object.assign(article, { id: undefined })
 const Articles =  {
-  all: (page) => 
-    requests.get(`/articles`)
+  all: (deleted, page) => 
+    requests.get(`/articles?${limit(PER_PAGE, deleted, page)}`),
+  create: article =>
+    requests.post('/articles', { article }),
+  update: article =>
+    requests.put(`/articles/${article.id}`, { article: omitId(article) }),
+  delete: articleId =>
+    requests.del(`/articles/${articleId}`)
 }
 
 const Auth = {

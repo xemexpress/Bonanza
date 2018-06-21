@@ -3,7 +3,9 @@ import {
   APP_LOADED,
   LOGIN,
   LOGOUT,
-  REDIRECT
+  REDIRECT,
+  JUMPSTART,
+  SUBMIT_ARTICLE
 } from '../constants'
 
 const defaultState = {
@@ -35,6 +37,19 @@ export default (state=defaultState, action) => {
         redirectTo: '/',
         token: null,
         currentUser: null
+      }
+    case JUMPSTART:
+      return {
+        ...state,
+        redirectTo: action.pathname
+      }
+    case SUBMIT_ARTICLE:
+      if(action.error){
+        return state
+      }
+      return {
+        ...state,
+        redirectTo: '/'
       }
     default:
   }

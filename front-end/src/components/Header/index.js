@@ -10,7 +10,6 @@ import './Header.css'
 
 const scrollTolerance = 47
 const mapStateToProps = state => ({
-  ...state.common,
   company: state.recordList.company
 })
 

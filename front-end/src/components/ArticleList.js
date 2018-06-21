@@ -1,54 +1,101 @@
 import React from 'react'
-import marked from 'marked'
-// Testing Purpose
-// const ArticleList = props => {
-//   return <div>No articles are here...yet.</div>
-// }
-
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { connect } from 'react-redux'
 
+import Article from './Article'
+import agent from '../agent'
 
-const style = {
-  height: "100%",
-  border: "1px solid green",
-  margin: 6,
-  padding: 8
-};
+import {
+  HOME_PAGE_LOADED,
+  PER_PAGE
+} from '../constants';
 
-const ArticleList = props => {
-  if(!props.articles){
-    return <div>Loading...</div>
-  }
+const mapDispatchToProps = dispatch => ({
+  onLoadMoreArticles: (articlesDeleted, page) => dispatch({
+    type: HOME_PAGE_LOADED,
+    payload: agent.Articles.all(articlesDeleted, page)
+  })
+})
 
-  if(props.articles.length === 0){
-    return <div>No articles are here...yet.</div>
-  }
+var timeout
 
-  return (
-    <InfiniteScroll
-      dataLength={props.articlesCount}
-      hasMore={false}
-      // As Pagination
-      // next={this.fetchMoreArticles}
-      // loader={<h4>Loading...</h4>}
-      >
-      {
-        props.articles.map((article, index) => {
-          let markedUp = { __html: marked(article.body) }
-          return (
-            <div style={style} key={index}>
-              <div dangerouslySetInnerHTML={markedUp}></div>
-            {
-              article.image ?
-              <img width="100%" src={article.image} alt={`${article.body.slice(17)}...`} />
-              : null
-            }
-            </div>
-          )
-        })
+class ArticleList extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      page: 0,
+      hasMore: true
+    }
+
+    this.fetchMoreArticles = () => {
+      let articlesRemained = this.props.articlesCount - this.props.articles.length
+      if(articlesRemained === 0){
+        this.setState({ hasMore: false })
       }
-    </InfiniteScroll>
-  )
+      
+      timeout = setTimeout(() => {
+        this.setState({ page: this.state.page + 1 })
+        this.props.onLoadMoreArticles(this.props.articlesDeleted, this.state.page)
+
+        if(articlesRemained <= PER_PAGE){
+          this.setState({ hasMore: false })
+        }
+      }, 700);
+    }
+  }
+  
+  componentWillUnmount(){
+    clearTimeout(timeout)
+  }
+
+  render(){
+    console.log(this.props.articlesDeleted)
+    let loaderStyle = {
+      textAlign: 'center',
+      color: 'grey',
+      animation: 'twinkle 1s ease-in-out infinite alternate'
+    }
+
+    if(!this.props.articles){
+      return (
+        <h4 style={loaderStyle}>
+          <i className="fab fa-earlybirds"></i><br/>
+          Loading...
+        </h4>
+      )
+    }
+  
+    if(this.props.articles.length === 0){
+      return <div>No articles are here...yet.</div>
+    }
+
+    let endMessageStyle = {
+      textAlign: 'center',
+      color: 'lightgrey'
+    }
+
+    return (
+      <InfiniteScroll
+        dataLength={this.props.articles.length}
+        hasMore={this.state.hasMore}
+        next={this.fetchMoreArticles}
+        loader={
+          <h4 style={loaderStyle}>
+            <i className="fas fa-kiwi-bird"></i><br/>
+            Loading...
+          </h4>
+        }
+        endMessage={
+          <h4 style={endMessageStyle}>
+            <i className="fas fa-kiwi-bird"></i>
+          </h4>
+        }>
+        {
+          this.props.articles.map(article => <Article article={article} key={article.id} />)
+        }
+      </InfiniteScroll>
+    )
+  }
 }
 
-export default ArticleList
+export default connect(()=>({}), mapDispatchToProps)(ArticleList)

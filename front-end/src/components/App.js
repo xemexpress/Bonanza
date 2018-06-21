@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Header from './Header'
 import MainView from './MainView'
 import Home from './Home'
 import Login from './Login'
+import ArticleEditor from './ArticleEditor';
 import CompanyList from './CompanyList';
+import CompanyEditor from './CompanyEditor';
+import RecordList from './RecordList';
+import RecordEditor from './RecordEditor';
 import agent from '../agent';
 
 import {
@@ -50,13 +54,19 @@ class App extends React.Component {
   render(){
     return (
       <div className="container-fluid"> 
-        <Header locationHash={window.location.hash} />
+        <Header
+          locationHash={window.location.hash}
+          currentUser={this.props.currentUser} />
         <MainView>
           <Switch>
+            <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/articleEditor' component={ArticleEditor} />
             <Route exact path='/companies' component={CompanyList} />
-            {/* <Route exact path='/companies/:symbol' component={} /> */}
-            <Route path='/' component={Home} />
+            <Route exact path='/companyEditor' component={CompanyEditor} />
+            <Route exact path='/companies/:symbol' component={RecordList} />
+            <Route exact path='/recordEditor' component={RecordEditor} />
+            <Redirect to='/' />
           </Switch>
         </MainView>
       </div>
