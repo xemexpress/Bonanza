@@ -8,7 +8,7 @@ var CompanySchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    require: [true, "can't be blank"]
+    required: [true, "can't be blank"]
   },
   abbr: String,
   logo: String,
