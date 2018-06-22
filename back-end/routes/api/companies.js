@@ -51,18 +51,23 @@ router.get('/', auth.required, (req, res, next) => {
     }
   }
 
-  Company.find(query)
-    .skip(Number(offset))
-    .limit(Number(limit))
-    .sort({ createdAt: -1 })
-    .then((companies) => {
-      return res.json({
-        companies: companies.map((company) => {
-          return company.toJSONFor()
-        }),
-        companiesCount: companies.length
-      })
-    }).catch(next)
+  Promise.all([
+    Company.find(query)
+      .skip(Number(offset))
+      .limit(Number(limit))
+      .sort({ createdAt: -1 }),
+    Company.count(query)
+  ]).then((results) => {
+    let companies = results[0]
+    let companiesCount = results[1]
+
+    return res.json({
+      companies: companies.map((company) => {
+        return company.toJSONFor()
+      }),
+      companiesCount: companiesCount
+    })
+  }).catch(next)
 })
 
 // Create Company
