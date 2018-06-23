@@ -43,25 +43,20 @@ class ArticlesView extends React.Component {
 
     let { title, body, image } = this.props
 
-    return (
-      <React.Fragment>
-        {/* Left Section */}
-        <Link className="left-layout" to={this.props.locationHash === '#/articleEditor' ? '/' : "/companies"}>
-          <i className="far fa-arrow-alt-circle-left fa-lg"></i>
-        </Link>
-  
-        {/* Middle Section */}
-        <div className="nav-item middle-layout header-search">
-        { null }
-        </div>
-  
-        {/* Right Section */}
-        {
-          this.props.locationHash === '#/articleEditor' ?
-          <div className="nav-item right-layout">
-            <SaveButton onSave={this.submitForm(title, body, image)} />
+    if(this.props.locationHash === '#/'){
+      return (
+        <React.Fragment>
+          {/* Left Section */}
+          <Link className="left-layout" to='/companies'>
+            <i className="far fa-arrow-alt-circle-left fa-lg"></i>
+          </Link>
+    
+          {/* Middle Section */}
+          <div className="nav-item">
+          { null }
           </div>
-          : this.props.locationHash === '#/' ?
+    
+          {/* Right Section */}
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
             <div className="overlay" style={this.props.allowEdit ? { opacity: '1', zIndex: '1' } : null}>
@@ -69,10 +64,30 @@ class ArticlesView extends React.Component {
                 addNew='articleEditor' />
             </div>
           </div>
-          : null
-        }
-      </React.Fragment>
-    )
+        </React.Fragment>
+      )
+    }
+
+    if(this.props.locationHash === '#/articleEditor'){
+      return (
+        <React.Fragment>
+          {/* Left Section */}
+          <Link className="left-layout" to='/'>
+            <i className="far fa-arrow-alt-circle-left fa-lg"></i>
+          </Link>
+    
+          {/* Middle Section */}
+          <div className="nav-item">
+            New Article
+          </div>
+    
+          {/* Right Section */}
+          <div className="nav-item right-layout">
+            <SaveButton inProgress={this.props.inProgress} onSave={this.submitForm(title, body, image)} />
+          </div>
+        </React.Fragment>
+      )
+    }
   }
 }
 

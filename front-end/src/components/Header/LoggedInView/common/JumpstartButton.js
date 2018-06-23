@@ -28,8 +28,8 @@ class JumpstartButton extends React.Component {
 
     this.jumpstart = () => {
       if(this.state.jumpstartConfirm){
-        if(this.props.jumpstartTo){
-          this.props.onJumpstart(this.props.jumpstartTo)
+        if(this.props.to){
+          this.props.onJumpstart(this.props.to)
         }else{
           this.props.onLogOut()
         }

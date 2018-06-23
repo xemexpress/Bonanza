@@ -1,7 +1,7 @@
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
-  ALLOW_EDIT_ARTICLE,
+  ALLOW_EDIT_ARTICLES,
   DELETE_ARTICLE
 } from '../constants'
 
@@ -19,7 +19,7 @@ export default (state=defaultState, action) => {
       }
     case HOME_PAGE_UNLOADED:
       return defaultState
-    case ALLOW_EDIT_ARTICLE:
+    case ALLOW_EDIT_ARTICLES:
       return {
         ...state,
         canEdit: !state.canEdit

@@ -1,0 +1,20 @@
+.tag-list {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: inherit;
+  border-radius: 10rem;
+  border: 1px solid #ddd;
+  padding: .1rem .6rem;
+  margin-left: .2rem;
+  color: #aaa;
+  font-size: 0.7rem;
+}
+
+.tag i {
+  cursor: pointer;
+}

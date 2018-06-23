@@ -22,18 +22,12 @@ export default (state=defaultState, action) => {
         id: action.article.id,
         title: action.article.title,
         body: action.article.body,
-        image: action.article.image
+        image: action.article.image || ''
       }
     case UPDATE_FIELD_ARTICLE_EDITOR:
       return {
         ...state,
         [action.key]: action.value
-      }
-    case SUBMIT_ARTICLE:
-      return {
-        ...state,
-        inProgress: false,
-        errors: action.error ? action.payload.errors : null
       }
     case ASYNC_START:
       if(action.subtype === SUBMIT_ARTICLE){
@@ -42,7 +36,13 @@ export default (state=defaultState, action) => {
           inProgress: true
         }
       }
-      break;
+      break
+    case SUBMIT_ARTICLE:
+      return {
+        ...state,
+        inProgress: false,
+        errors: action.error ? action.payload.errors : null
+      }
     case CLEAN_ERROR:
       return {
         ...state,

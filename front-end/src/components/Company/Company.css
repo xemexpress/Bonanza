@@ -1,0 +1,38 @@
+.company {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.company-name-abbr {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Specifics - xs - iphone6s portrait */
+@media (max-width: 375px) {
+  .company {
+    width: 27%;
+  }
+}
+
+/* Specifics - sm - iphone6s landscape */
+@media (min-width: 376px) and (max-width: 667px) {
+  .company {
+    width: 30%;
+  }
+}
+
+/* Specifics - md - ipadII portrait */
+@media (min-width: 668px) and (max-width: 768px) {
+  .company {
+    width: 27%;
+  }
+}
+
+/* Specifics - lg - ipadII landscape */
+@media (min-width: 769px) {
+  .company {
+    width: 30%;
+  }  
+}

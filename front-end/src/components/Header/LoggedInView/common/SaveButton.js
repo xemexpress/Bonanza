@@ -5,6 +5,7 @@ const SaveButton = props => {
     <button
       className="btn btn-outline-info"
       type="submit"
+      disabled={props.inProgress}
       onClick={(ev)=>props.onSave(ev)}>
       Save
     </button>

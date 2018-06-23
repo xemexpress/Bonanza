@@ -7,12 +7,12 @@ import Header from './Header'
 import MainView from './MainView'
 import Home from './Home'
 import Login from './Login'
-import ArticleEditor from './ArticleEditor';
-import CompanyList from './CompanyList';
-import CompanyEditor from './CompanyEditor';
-import RecordList from './RecordList';
-import RecordEditor from './RecordEditor';
-import agent from '../agent';
+import ArticleEditor from './ArticleEditor'
+import Companies from './Companies'
+import CompanyEditor from './CompanyEditor'
+import Records from './Records'
+import RecordEditor from './RecordEditor'
+import agent from '../agent'
 
 import {
   APP_LOADED,
@@ -59,12 +59,15 @@ class App extends React.Component {
           currentUser={this.props.currentUser} />
         <MainView>
           <Switch>
+            {/* Testing Purpose */}
+            {/* <Route path='/' component={Companies} /> */}
+
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/articleEditor' component={ArticleEditor} />
-            <Route exact path='/companies' component={CompanyList} />
+            <Route exact path='/companies' component={Companies} />
             <Route exact path='/companyEditor' component={CompanyEditor} />
-            <Route exact path='/companies/:symbol' component={RecordList} />
+            <Route exact path='/companies/:symbol' component={Records} />
             <Route exact path='/recordEditor' component={RecordEditor} />
             <Redirect to='/' />
           </Switch>

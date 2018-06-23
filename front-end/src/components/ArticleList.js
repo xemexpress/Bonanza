@@ -7,7 +7,7 @@ import agent from '../agent'
 
 import {
   HOME_PAGE_LOADED,
-  PER_PAGE
+  ARTICLES_PER_PAGE
 } from '../constants';
 
 const mapDispatchToProps = dispatch => ({
@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => ({
 var timeout
 
 class ArticleList extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
       page: 0,
       hasMore: true
@@ -37,7 +37,7 @@ class ArticleList extends React.Component {
         this.setState({ page: this.state.page + 1 })
         this.props.onLoadMoreArticles(this.props.articlesDeleted, this.state.page)
 
-        if(articlesRemained <= PER_PAGE){
+        if(articlesRemained <= ARTICLES_PER_PAGE){
           this.setState({ hasMore: false })
         }
       }, 700);
@@ -49,16 +49,9 @@ class ArticleList extends React.Component {
   }
 
   render(){
-    console.log(this.props.articlesDeleted)
-    let loaderStyle = {
-      textAlign: 'center',
-      color: 'grey',
-      animation: 'twinkle 1s ease-in-out infinite alternate'
-    }
-
     if(!this.props.articles){
       return (
-        <h4 style={loaderStyle}>
+        <h4 className="loader">
           <i className="fab fa-earlybirds"></i><br/>
           Loading...
         </h4>
@@ -69,24 +62,19 @@ class ArticleList extends React.Component {
       return <div>No articles are here...yet.</div>
     }
 
-    let endMessageStyle = {
-      textAlign: 'center',
-      color: 'lightgrey'
-    }
-
     return (
       <InfiniteScroll
         dataLength={this.props.articles.length}
         hasMore={this.state.hasMore}
         next={this.fetchMoreArticles}
         loader={
-          <h4 style={loaderStyle}>
+          <h4 className="loader">
             <i className="fas fa-kiwi-bird"></i><br/>
             Loading...
           </h4>
         }
         endMessage={
-          <h4 style={endMessageStyle}>
+          <h4 className="end-message">
             <i className="fas fa-kiwi-bird"></i>
           </h4>
         }>

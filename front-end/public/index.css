@@ -16,6 +16,7 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 button {
@@ -26,6 +27,10 @@ button {
 @keyframes twinkle {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+.invisible {
+  visibility: none;
 }
 
 /* Functional */
@@ -141,14 +146,17 @@ button {
   align-items: center;
 }
 
-.badage-list {
+.functional-badage-list {
   /* Its parent should be positioned relative */
   position: absolute;
   right: 0;
-  height: 190%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.functional-badage-list button {
+  margin-bottom: 4px;
 }
 
 .center-image {
@@ -156,6 +164,19 @@ button {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.loader {
+  width: 100%;
+  text-align: center;
+  color: grey;
+  animation: twinkle 1s ease-in-out infinite alternate;
+}
+
+.end-message {
+  width: 100%;
+  text-align: center;
+  color: lightgrey;
 }
 
 /* Layouts */
@@ -668,3 +689,25 @@ button {
     margin-left: 100%;
   }  
 }
+
+/* CSS of each screen.
+
+Specifics - xs - iphone6s portrait
+@media (max-width: 375px) {
+  
+}
+
+Specifics - sm - iphone6s landscape
+@media (min-width: 376px) and (max-width: 667px) {
+  
+}
+
+Specifics - md - ipadII portrait
+@media (min-width: 668px) and (max-width: 768px) {
+  
+}
+
+Specifics - lg - ipadII landscape
+@media (min-width: 769px) {
+  
+} */

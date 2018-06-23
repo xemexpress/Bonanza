@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: payload =>dispatch({
+  onLoad: payload => dispatch({
     type: HOME_PAGE_LOADED,
     payload
   }),
@@ -37,7 +37,7 @@ class Home extends React.Component {
   render(){
     return (
       <div className="row">
-        <div className="offset-lg-1 col-lg-10 col-xs-12 col-sm-12 col-md-12">
+        <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
           <ArticleList
             articles={this.props.articles}
             articlesCount={this.props.articlesCount}

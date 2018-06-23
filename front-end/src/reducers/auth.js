@@ -18,12 +18,6 @@ export default (state=defaultState, action) => {
         ...state,
         [action.key]: action.value
       }
-    case LOGIN:
-      return {
-        ...state,
-        inProgress: false,
-        errors: action.error ? action.payload.errors : null
-      }
     case ASYNC_START:
       if(action.subtype === LOGIN){
         return {
@@ -32,6 +26,12 @@ export default (state=defaultState, action) => {
         }
       }
       break;
+    case LOGIN:
+      return {
+        ...state,
+        inProgress: false,
+        errors: action.error ? action.payload.errors : null
+      }
     case CLEAN_ERROR:
       return {
         ...state,

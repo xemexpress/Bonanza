@@ -3,7 +3,8 @@ import _superagent from 'superagent'
 
 import {
   API_ROOT,
-  PER_PAGE
+  ARTICLES_PER_PAGE,
+  COMPANIES_PER_PAGE
 } from './constants'
 
 const superagent = superagentPromise(_superagent, global.Promise)
@@ -32,13 +33,30 @@ const limit = (count, deleted=0, page=0) => `limit=${count}&offset=${count * pag
 const omitId = article => Object.assign(article, { id: undefined })
 const Articles =  {
   all: (deleted, page) => 
-    requests.get(`/articles?${limit(PER_PAGE, deleted, page)}`),
+    requests.get(`/articles?${limit(ARTICLES_PER_PAGE, deleted, page)}`),
   create: article =>
     requests.post('/articles', { article }),
   update: article =>
     requests.put(`/articles/${article.id}`, { article: omitId(article) }),
   delete: articleId =>
     requests.del(`/articles/${articleId}`)
+}
+
+const omitSymbols = company => Object.assign(company, { symbol: company.originalSymbol === company.symbol ? undefined : company.symbol, originalSymbol: undefined })
+const Companies = {
+  all: (deleted, page) =>
+    requests.get(`/companies?${limit(COMPANIES_PER_PAGE, deleted, page)}`),
+  create: company =>
+    requests.post('/companies', { company }),
+  update: company =>
+    requests.put(`/companies/${company.originalSymbol}`, { company: omitSymbols(company) } ),
+  delete: symbol =>
+    requests.del(`/companies/${symbol}`)
+}
+
+const Records = {
+  all: symbol =>
+    requests.get(`/companies/${symbol}/records`)
 }
 
 const Auth = {
@@ -50,6 +68,8 @@ const Auth = {
 
 export default {
   Articles,
+  Companies,
+  Records,
   Auth,
   setToken: _token => { token = _token }
 }

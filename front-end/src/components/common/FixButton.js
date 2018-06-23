@@ -3,36 +3,43 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import {
-  ARTICLE_EDITOR_PAGE_LOADED
+  ARTICLE_EDITOR_PAGE_LOADED,
+  COMPANY_EDITOR_PAGE_LOADED
 } from '../../constants'
 
 const mapDispatchToProps = dispatch => ({
-  onLoadEditor: article => dispatch({
+  onLoadArticleEditor: article => dispatch({
     type: ARTICLE_EDITOR_PAGE_LOADED,
     article
+  }),
+  onLoadCompanyEditor: company => dispatch({
+    type: COMPANY_EDITOR_PAGE_LOADED,
+    company
   })
 })
 
-class FixButton extends React.Component {
-  constructor(){
-    super()
-    
-    this.fix = ev => {
-      ev.preventDefault()
-
-      this.props.onLoadEditor(this.props.article)
-    }
+const FixButton = props => {
+  let onLoadEditor, onLoad, editor
+  if(window.location.hash === '#/companies'){
+    onLoadEditor = () => props.onLoadCompanyEditor(props.company)
+    editor = '/companyEditor'
+  }else if(window.location.hash === '#/'){
+    onLoadEditor = () => props.onLoadArticleEditor(props.article)
+    editor = '/articleEditor'
   }
 
-  render(){
-    return (
-      <button className='btn btn-outline-info' onClick={this.fix}>
-        <Link to="/articleEditor">
-          <i className="fas fa-pencil-alt"></i>
-        </Link>
-      </button>
-    )
+  onLoad = ev => {
+    ev.preventDefault()
+    onLoadEditor()
   }
+
+  return (
+    <button className='btn btn-outline-info' onClick={onLoad}>
+      <Link to={editor}>
+        <i className="fas fa-pencil-alt"></i>
+      </Link>
+    </button>
+  )
 }
 
 export default connect(()=>({}), mapDispatchToProps)(FixButton)

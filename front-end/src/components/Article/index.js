@@ -20,7 +20,7 @@ const Article = props => {
           <u>{props.article.title}</u>
           {
             props.canEdit ?
-            <span className="badage-list">
+            <span className="functional-badage-list">
               <FixButton article={props.article} />
               <DeleteButton articleId={props.article.id} />
             </span>
