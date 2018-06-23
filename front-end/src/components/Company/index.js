@@ -28,13 +28,13 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const Company = props => {
-  let className = 'company interaction-card'
-  className += props.isSetDummy ? 'invisible' : ''
+  let className = 'company'
+  className += props.isSetDummy ? ' dummy' : ' interaction-card'
   
   let select = company => ev => {
     ev.preventDefault()
     
-    if(!props.canEdit){
+    if(!props.canEdit && !props.isSetDummy){
       props.onSelect(company)
       props.onJumpStart(`/companies/${props.company.symbol}`)
     }

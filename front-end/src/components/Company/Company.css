@@ -9,6 +9,11 @@
   font-size: 0.9rem;
 }
 
+.dummy {
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Specifics - xs - iphone6s portrait */
 @media (max-width: 375px) {
   .company {
