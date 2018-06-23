@@ -51,8 +51,8 @@ CompanySchema.methods.toJSONFor = function(){
 CompanySchema.methods.toJSONForAdmin = function(){
   return {
     symbol: this.symbol,
-    years: this.records.map((record) => record.year),
-    author: this.author.toJSONForAdmin()
+    years: this.records.map(record => record.year),
+    author: this.author.toJSONFor()
   }
 }
 

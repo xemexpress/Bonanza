@@ -95,10 +95,18 @@ router.post('/', auth.required, (req, res, next) => {
 
 // Update Company
 router.put('/:symbol', auth.required, (req, res, next) => {
-  Company.findOne({ author: req.payload.id, symbol: req.symbol }).then((company) => {
-    if(!company){ return res.sendStatus(401) }
+  Promise.all([
+    Company.findOne({ author: req.payload.id, symbol: req.symbol }),
+    req.body.company.symbol ? Company.findOne({ author: req.payload.id, symbol: req.body.company.symbol }) : null
+  ]).then(results => {
+    let company = results[0]
+    let symbolAlreadyExists = results[1]
 
+    if(!company){ return res.sendStatus(401) }
+    
     if(typeof req.body.company.symbol !== 'undefined'){
+      if(symbolAlreadyExists){ return res.status(422).json({ errors: { 'company with the same symbol': 'already exists' } }) }
+
       company.symbol = req.body.company.symbol
     }
 
@@ -132,7 +140,7 @@ router.delete('/:symbol', auth.required, (req, res, next) => {
     return Record.remove({ company: company._id }).then(() => {
       return res.sendStatus(204)
     })
-  })
+  }).catch(next)
 })
 
 // Get Records from a Company

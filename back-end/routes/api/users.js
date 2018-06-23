@@ -39,7 +39,7 @@ router.post('/users/login', (req, res, next) => {
 
 // Get Current User
 router.get('/user', auth.required, (req, res, next) => {
-  User.findById(req.payload.id).then((user) => {
+  User.findById(req.payload.id).then(user => {
     if(!user){ return res.sendStatus(401) }
 
     return res.json({ user: user.toAuthJSON() })
@@ -48,7 +48,7 @@ router.get('/user', auth.required, (req, res, next) => {
 
 // Update User
 router.put('/user', auth.required, (req, res, next) => {
-  User.findById(req.payload.id).then((user) => {
+  User.findById(req.payload.id).then(user => {
     if(!user){ return res.sendStatus(401) }
 
     if(typeof req.body.user.username !== 'undefined' && req.payload.username !== auth.admin){
@@ -63,9 +63,9 @@ router.put('/user', auth.required, (req, res, next) => {
       user.setPassword(req.body.user.password)
     }
 
-    return user.save().then((() => {
+    return user.save().then(() => {
       res.json({ user: user.toAuthJSON() })
-    }))
+    })
   }).catch(next)
 })
 

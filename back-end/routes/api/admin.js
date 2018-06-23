@@ -9,9 +9,9 @@ var User = mongoose.model('User'),
 // List Users
 router.get('/users', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    User.find({}).then((users) => {
+    User.find({}).then(users => {
       return res.json({
-        users: users.map((user) => {
+        users: users.map(user => {
           return user.toJSONFor()
         }),
         usersCount: users.length
@@ -26,10 +26,10 @@ router.get('/users', auth.required, (req, res, next) => {
 router.delete('/users', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     if(Array.isArray(req.body.users)){
-      User.find({ username: { $in: req.body.users } }).then((users) => {
-        let targetUsers = users.map((user) => user._id)
-        Company.find({ author: { $in: targetUsers } }).then((companies) => {
-          let targetCompanies = companies.map((company) => company._id)
+      User.find({ username: { $in: req.body.users } }).then(users => {
+        let targetUsers = users.map(user => user._id)
+        Company.find({ author: { $in: targetUsers } }).then(companies => {
+          let targetCompanies = companies.map(company => company._id)
           return Record.remove({ company: { $in: targetCompanies } }).then(() => {
             return Company.remove({ _id: { $in: targetCompanies } }).then(() => {
               return User.remove({ _id: { $in: targetUsers } }).then(() => {
@@ -68,7 +68,7 @@ router.get('/companies', auth.required, (req, res, next) => {
 
     Promise.all([
       req.query.author ? User.findOne({ username: { $in: [req.query.author] } }) : null
-    ]).then((results) => {
+    ]).then(results => {
       
       let user = results[0]
       if(user){
@@ -91,12 +91,12 @@ router.get('/companies', auth.required, (req, res, next) => {
             }
           }),
         Company.count(query)
-      ]).then((results) => {
+      ]).then(results => {
         let companies = results[0]
         let companiesCount = results[1]
 
         return res.json({
-          companies: companies.map((company) => {
+          companies: companies.map(company => {
             return company.toJSONForAdmin()
           }),
           companiesCount: companiesCount
@@ -112,7 +112,7 @@ router.get('/companies', auth.required, (req, res, next) => {
 router.delete('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     if(typeof req.body.companies.author !== 'undefined'){
-      User.findOne({ username: req.body.companies.author }).then((user) => {
+      User.findOne({ username: req.body.companies.author }).then(user => {
         if(!user){ return res.sendStatus(401) }
         
         let query = { author: user._id }
@@ -120,8 +120,8 @@ router.delete('/companies', auth.required, (req, res, next) => {
           query[symbol] = { $in: req.body.companies.symbols }
         }
 
-        Company.find(query).then((companies) => {
-          let targetCompanies = companies.map((company) => company._id)
+        Company.find(query).then(companies => {
+          let targetCompanies = companies.map(company => company._id)
           return Record.remove({ company: { $in: targetCompanies } }).then(() => {
             return Company.remove({ _id: { $in: targetCompanies } }).then(() => {
               return res.sendStatus(204)
@@ -149,9 +149,9 @@ router.get('/records', auth.required, (req, res, next) => {
           select: 'username proPic'
         }
       })
-      .then((records) => {
+      .then(records => {
         return res.json({
-          records: records.map((record) => {
+          records: records.map(record => {
             return record.toJSONForAdmin()
           }),
           recordsCount: records.length

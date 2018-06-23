@@ -5,7 +5,7 @@ var Article = mongoose.model('Article')
 
 // Preload Article
 router.param('article', (req, res, next, id) => {
-  Article.findById(id).then((article) => {
+  Article.findById(id).then(article => {
     if(!article){ return res.sendStatus(404) }
 
     req.article = article
@@ -33,12 +33,12 @@ router.get('/', auth.optional, (req, res, next) => {
       .limit(Number(limit))
       .sort({ createdAt: -1 }),
     Article.count({})
-  ]).then((results) => {
+  ]).then(results => {
     let articles = results[0]
     let articlesCount = results[1]
 
     return res.json({
-      articles: articles.map((article) => {
+      articles: articles.map(article => {
         return article.toJSONFor()
       }),
       articlesCount: articlesCount
