@@ -26,7 +26,7 @@ var RecordSchema = new mongoose.Schema({
   year: {
     type: String,
     required: [true, "can't be blank"],
-    match: [/\d{4}[my]/, 'is invalid']
+    match: [/\d{4}[MY]/, 'is invalid']
   },
   keyList: [{ type: String }],
   businessSegments: [SegmentSchema],
@@ -63,7 +63,7 @@ RecordSchema.methods.toJSONForAdmin = function(){
   return {
     symbol: this.company.symbol,
     year: this.year,
-    author: this.company.author.toJSONForAdmin()
+    author: this.company.author.toJSONFor()
   }
 }
 

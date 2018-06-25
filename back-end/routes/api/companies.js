@@ -403,7 +403,10 @@ router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
   zaCompanyByAuthorSymbol(req.payload.id, req.symbol).then((company) => {
     if(!company){ return res.sendStatus(401) }
     
-    let recordId = company.records.find((record) => record.year === req.year)._id
+    let targetRecord = company.records.find((record) => record.year === req.year)
+    if(!targetRecord){ return res.sendStatus(401) }
+
+    let recordId = targetRecord._id
     company.records.remove(recordId)
     company.save().then(() => {
       Record.remove({ _id: recordId }).then(() => {
