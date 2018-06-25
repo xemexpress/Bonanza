@@ -107,7 +107,7 @@
 {
   "record": {
     "year": "2014y",
-    "key": "關注點",
+    "keyList": ["關注點"],
     "businessSegments": [
       {
         "business": "汽油機",
@@ -140,7 +140,7 @@
   "records": [
     {
       "year": "2014y",
-      "key": "關注點",
+      "keyList": ["關注點"],
       "businessSegments": [
         {
           "business": "汽油機",
@@ -165,7 +165,7 @@
     },
     {
       "year": "2015m",
-      "key": "",
+      "keyList": [],
       "businessSegments": [
         {
           "business": "汽油機",
@@ -392,7 +392,7 @@ Example request body:
 {
   "record": {
     "year": "2014y",
-    "key": "關注點",
+    "keyList": ["關注點"],
     "businessSegments": [
       {
         "business": "汽油機",
@@ -422,7 +422,7 @@ Authentication required, returns the [Record](#single-record)
 
 Required field: `year`
 
-Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
+Optional fields: `keyList` as an array of Strings, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
 ### Update Record
 
@@ -439,7 +439,7 @@ Example request body:
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional fields: `key`, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
+Optional fields: `keyList` as an array of Strings, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
 
 ### Update Record.BusinessSegments
 

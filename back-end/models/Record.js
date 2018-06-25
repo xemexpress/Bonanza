@@ -28,7 +28,7 @@ var RecordSchema = new mongoose.Schema({
     required: [true, "can't be blank"],
     match: [/\d{4}[my]/, 'is invalid']
   },
-  key: String,
+  keyList: [{ type: String }],
   businessSegments: [SegmentSchema],
   grossProfitMargin: {
     type: Number,

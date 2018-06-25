@@ -194,8 +194,8 @@ router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
     zaRecordFromCompanyByYear(company, req.year).then((record) => {
       if(!record){ return res.sendStatus(401) }
       
-      if(typeof req.body.record.key !== 'undefined'){
-        record.key = req.body.record.key
+      if(typeof req.body.record.keyList !== 'undefined'){
+        record.keyList = req.body.record.keyList
       }
 
       if(typeof req.body.record.businessSegments !== 'undefined'){
