@@ -46,17 +46,26 @@ const omitSymbols = company => Object.assign(company, { symbol: company.original
 const Companies = {
   all: (deleted, page) =>
     requests.get(`/companies?${limit(COMPANIES_PER_PAGE, deleted, page)}`),
+  get: symbol =>
+    requests.get(`/companies/${symbol}`),
   create: company =>
     requests.post('/companies', { company }),
   update: company =>
-    requests.put(`/companies/${company.originalSymbol}`, { company: omitSymbols(company) } ),
+    requests.put(`/companies/${company.originalSymbol}`, { company: omitSymbols(company) }),
   delete: symbol =>
     requests.del(`/companies/${symbol}`)
 }
 
+const omitYears = record => Object.assign(record, { year: record.originalYear === record.year ? undefined : record.year, originalYear: undefined })
 const Records = {
   all: symbol =>
-    requests.get(`/companies/${symbol}/records`)
+    requests.get(`/companies/${symbol}/records`),
+  create: (symbol, record) =>
+    requests.post(`/companies/${symbol}/records`, { record }),
+  update: (symbol, record) =>
+    requests.put(`/companies/${symbol}/records/${record.originalYear}`, { record: omitYears(record) }),
+  delete: (symbol, year) =>
+    requests.del(`/companies/${symbol}/records/${year}`)
 }
 
 const Auth = {

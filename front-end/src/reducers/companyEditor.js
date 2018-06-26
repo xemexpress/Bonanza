@@ -52,9 +52,11 @@ export default (state=defaultState, action) => {
         tagInput: ''
       }
     case REMOVE_TAG:
+      let tags = state.tagList.slice()
+      tags.splice(action.index, 1)
       return {
         ...state,
-        tagList: state.tagList.filter(tag => tag !== action.tag)
+        tagList: tags
       }
     case SUBMIT_COMPANY:
       return {

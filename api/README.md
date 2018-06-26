@@ -62,14 +62,13 @@
 ```JSON
 {
   "company": {
+    "updatedAt": "2017-08-13T18:24:36.162Z",
     "symbol": "1",
     "abbr": "長和",
     "logo": "image.url", 
     "name": "長江和記實業有限公司",
     "link": "http://www.ckh.com.hk/tc/global/home.php",
-    "tagList": ["滂湃"],
-    "createdAt": "2017-08-13T18:24:36.162Z",
-    "updatedAt": "2017-08-13T18:24:36.162Z"
+    "tagList": ["滂湃"]
   }
 }
 ```
@@ -79,23 +78,21 @@
 ```JSON
 {
   "companies": [{
+    "updatedAt": "2017-08-14T00:10:59.720Z",
     "symbol": "1148",
     "abbr": "新晨動力",
     "logo": "image.url",
     "name": "新晨中國動力控股有限公司",
     "link": "http://www.xinchenpower.com/c/index.php",
-    "tagList": ["精煉", "持有"],
-    "createdAt": "2017-08-14T00:10:59.720Z",
-    "updatedAt": "2017-08-14T00:10:59.720Z"
+    "tagList": ["精煉", "持有"]
   }, {
+    "updatedAt": "2017-08-13T18:24:36.162Z",
     "symbol": "1",
     "abbr": "長和",
     "logo": "image.url",
     "name": "長江和記實業有限公司",
     "link": "http://www.ckh.com.hk/tc/global/home.php",
-    "tagList": ["滂湃"],
-    "createdAt": "2017-08-13T18:24:36.162Z",
-    "updatedAt": "2017-08-13T18:24:36.162Z"
+    "tagList": ["滂湃"]
   }],
   "companiesCount": 2
 }
@@ -354,6 +351,12 @@ Required fields: `symbol`, `name`
 
 Optional fields: `abbr`, `logo`, `link`, `tagList` as an array of Strings
 
+### Retrieve Company
+
+`GET /api/companies/:symbol`
+
+Authentication required, returns the [Company](#single-company)
+
 ### Update Company
 
 `PUT /api/companies/:symbol`
@@ -439,7 +442,7 @@ Example request body:
 
 Authentication required, returns the updated [Record](#single-record)
 
-Optional fields: `keyList` as an array of Strings, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`
+Optional fields: `keyList` as an array of Strings, `businessSegments`, `grossProfitMargin`, `plans`, `actionsDone`, `year`
 
 ### Update Record.BusinessSegments
 

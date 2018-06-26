@@ -5,24 +5,24 @@ import CompanyListView from './CompanyListView'
 import RecordsView from './RecordsView'
 
 const LoggedInView = props => {
-  if(props.currentUser){
-    let selected = props.company !== null
-    return (
-      <React.Fragment>
-        <ArticlesView
-          currentUser={props.currentUser}
-          locationHash={props.locationHash} 
-          selectedCompany={selected} />
-        <CompanyListView
-          currentUser={props.currentUser}
-          locationHash={props.locationHash} 
-          selectedCompany={selected} />
-        <RecordsView company={props.company} />
-      </React.Fragment>
-    )
-  }
-
-  return null
+  if(!props.currentUser){ return null }
+  
+  let selected = props.company !== null
+  return (
+    <React.Fragment>
+      <ArticlesView
+        selectedCompany={selected}
+        locationHash={props.locationHash}
+        currentUser={props.currentUser} />
+      <CompanyListView
+        selectedCompany={selected}
+        locationHash={props.locationHash}
+        currentUser={props.currentUser} />
+      <RecordsView
+        company={props.company}
+        locationHash={props.locationHash} />
+    </React.Fragment>
+  )
 }
 
 export default LoggedInView

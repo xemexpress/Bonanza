@@ -5,7 +5,8 @@ import agent from '../../agent'
 
 import {
   DELETE_ARTICLE,
-  DELETE_COMPANY
+  DELETE_COMPANY,
+  DELETE_RECORD
 } from '../../constants'
 
 const mapDispatchToProps = dispatch => ({
@@ -18,6 +19,11 @@ const mapDispatchToProps = dispatch => ({
     type: DELETE_COMPANY,
     payload: agent.Companies.delete(companySymbol),
     companySymbol
+  }),
+  onDeleteRecord: (companySymbol, recordYear) => dispatch({
+    type: DELETE_RECORD,
+    payload: agent.Records.delete(companySymbol, recordYear),
+    recordYear
   })
 })
 
@@ -28,6 +34,8 @@ const DeleteButton = props => {
     onLoadDelete = () => props.onDeleteCompany(props.companySymbol)
   }else if(window.location.hash === '#/'){
     onLoadDelete = () => props.onDeleteArticle(props.articleId)
+  }else if(window.location.hash.match(/#\/companies\/[0-9]+/g)){
+    onLoadDelete = () => props.onDeleteRecord(props.companySymbol, props.recordYear)
   }
 
   onLoad = ev => {

@@ -1,5 +1,5 @@
 .testing {
-  background: red;
+  background: tomato;
 }
 
 /* Tag-related */
@@ -24,14 +24,20 @@ button {
   cursor: pointer;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 /* Effects */
 @keyframes twinkle {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
-.invisible {
-  visibility: none;
+.border-none {
+  border: none !important;
 }
 
 /* Functional */
@@ -194,6 +200,7 @@ button {
           box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   background: #fff;
   padding: 0.5rem 1rem;
+  margin-bottom: 10px;
 }
 
 .infinite-scroll-component {

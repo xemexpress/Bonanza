@@ -1,0 +1,173 @@
+/* General Overwrite */
+.record-editor input {
+  font-size: 0.9rem;
+  margin-bottom: unset;
+  min-height: unset;
+  padding: 0px 4px;
+  border: none;
+  border-radius: 0;
+  box-shadow: unset;
+  border-bottom: 1px solid #F2EDE1;
+  transition: border-bottom 0.1s ease-in-out;
+}
+
+.record-editor input:focus {
+  border-color: unset;
+  box-shadow: unset;
+}
+
+/* General */
+.record-section {
+  margin-bottom: 27px;
+}
+
+.record-filled {
+  border: transparent !important;
+  opacity: 1 !important;
+}
+
+.m-y-tabs {
+  display: flex;
+  cursor: pointer;
+}
+
+.m, .y {
+  width: 50%;
+  text-align: center;
+  padding: 1px 5px;
+  color: #d1d5da;
+  transition: color 0.1s ease-in-out;
+}
+
+.m-y-tabs .selected {
+  background: #ffffff;
+  color: #24292e;
+}
+
+/* TimeBrief */
+.time-gpm-brief {
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-gpm-brief input.year {
+  width: 44px;
+  text-align: center;
+}
+
+.time-gpm-brief input.gpm-brief {
+  width: 40px;
+  text-align: center;
+  color: red;
+  transition: border-bottom 0.1s ease-in-out;
+}
+
+.time-gpm-brief input.gpm-brief:focus {
+  border-bottom: 1px solid #24292e;
+}
+
+.time-brief {
+  display: flex;
+  align-items: center;
+}
+
+/* Deeds  */
+.deeds {
+  min-height: 47vh;
+}
+
+.deeds-detail .badage-attachment:last-child, .deeds-detail input:last-child {
+  opacity: 0.1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.deeds-detail .badage-attachment:last-child:hover, .deeds-detail .badage-attachment:last-child:focus, .deeds-detail input:last-child:hover, .deeds-detail input:last-child:focus {
+  opacity: 1;
+}
+
+.completion-badage {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  color: #F2ede1;
+}
+
+.completion-badage span {
+  border: 1px solid #F2ede1;
+  border-radius: 3px;
+}
+
+.completion-badage input {
+  width: 57px;
+  float: right;
+}
+
+/* BusinessSegs */
+.business {
+  height: 17vh;
+}
+
+.business .col-xs-6:last-child {
+  opacity: 0.1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.business .col-xs-6:last-child:hover, .business .col-xs-6:last-child:focus {
+  opacity: 1;
+}
+
+.business .col-xs-6:not(:last-child) .parameter-badage-list [class^="param-"] {
+  opacity: 0.1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.business .col-xs-6:not(:last-child) .parameter-badage-list [class^="param-"]:hover, .business .col-xs-6:not(:last-child) .parameter-badage-list [class^="param-"]:focus {
+  opacity: 1;
+}
+
+.business input {
+  background: transparent;
+}
+
+.business .parameter-badage-list input {
+  width: 34px;
+  border-radius: 3px;
+  padding: 0;
+  text-align: center;
+}
+
+.business .param-share input {
+  border: 1px solid #2188ff;
+}
+
+.business .param-gpm input {
+  border: 1px solid tomato;
+}
+
+.parameter-badage-list {
+  position: absolute;
+  right: -10px;
+  bottom: -7px;
+}
+
+[class^="param-"] {  
+  border-radius: 3px;
+  border: 1px solid #F2ede1;
+  padding: 0.1px;
+}
+
+.param-share {
+  color: #2188ff;
+}
+
+.param-gpm {
+  color: red;
+  margin-left: 4px;
+}
+
+/* Tags */
+.keys .fa-tags {
+  margin-left: 6px;
+  vertical-align: bottom;
+}

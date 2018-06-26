@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 
 import {
   ALLOW_EDIT_ARTICLES,
-  ALLOW_EDIT_COMPANIES
+  ALLOW_EDIT_COMPANIES,
+  ALLOW_EDIT_RECORDS
 } from '../../../../constants'
 
 const mapStateToProps = state => ({
-  canEdit: state.articleList.canEdit || state.companyList.canEdit
+  canEdit: state.articleList.canEdit || state.companyList.canEdit || state.recordList.canEdit
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +17,9 @@ const mapDispatchToProps = dispatch => ({
   }),
   onAllowEditCompanies: () => dispatch({
     type: ALLOW_EDIT_COMPANIES
+  }),
+  onAllowEditRecords: () => dispatch({
+    type: ALLOW_EDIT_RECORDS
   })
 })
 
@@ -30,6 +34,10 @@ class EditButton extends React.Component {
 
       if(this.props.onHash === '#/companies'){
         this.props.onAllowEditCompanies()
+      }
+
+      if(this.props.onHash.match(/#\/companies\/[0-9]+/g)){
+        this.props.onAllowEditRecords()
       }
     }
   }

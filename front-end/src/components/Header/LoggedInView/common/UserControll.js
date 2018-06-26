@@ -10,7 +10,7 @@ const UserControll = props => {
       <EditButton onHash={ window.location.hash } />
       &nbsp;
       <button className="btn btn-outline-positive">
-        <Link to={`/${props.addNew}`}>
+        <Link to={props.addNewTo}>
           <i className="far fa-plus-square fa-lg"></i>
         </Link>
       </button>

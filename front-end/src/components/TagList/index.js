@@ -13,7 +13,7 @@ const TagList = ({ tagList, removeTag }) => {
             <li className="tag" key={i}>
               <i
                 className="fas fa-times fa-xs"
-                onClick={removeTag(tag)}></i>&nbsp;
+                onClick={removeTag(i)}></i>&nbsp;
               {tag}
             </li>
           )

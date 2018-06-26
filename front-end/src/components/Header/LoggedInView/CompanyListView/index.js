@@ -43,9 +43,7 @@ class CompanyListView extends React.Component {
   }
 
   render(){
-    if(this.props.selectedCompany || (this.props.locationHash !== '#/companies' && this.props.locationHash !== '#/companyEditor')){ return null }
-
-    let { symbol, name, abbr, logo, link, tagList } = this.props
+    if(this.props.selectedCompany || ((this.props.locationHash !== '#/companies' && !this.props.locationHash.startsWith('#/companyEditor')) || !this.props.currentUser)){ return null }
 
     if(this.props.locationHash === '#/companies'){
       return (
@@ -65,14 +63,16 @@ class CompanyListView extends React.Component {
             <UsernameSpan username={this.props.currentUser.username} />
             <div className="overlay" style={this.props.allowEdit ? { opacity: '1', zIndex: '1' } : null}>
               <UserControll
-                addNew="companyEditor" />
+                addNewTo="/companyEditor" />
             </div>
           </div>
         </React.Fragment>
       )
     }
 
-    if(this.props.locationHash === '#/companyEditor'){
+    if(this.props.locationHash.startsWith('#/companyEditor')){
+      let { symbol, name, abbr, logo, link, tagList } = this.props
+      
       return (
         <React.Fragment>
           {/* Left Section */}

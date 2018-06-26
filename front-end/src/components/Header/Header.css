@@ -110,6 +110,7 @@
 
 /* Middle Section - RecordsView Customization */
 .company-name a {
+  font-size: 1rem;
   color: inherit;
   text-decoration: inherit;
 }

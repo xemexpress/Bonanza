@@ -1,5 +1,5 @@
 .article {
-  padding-bottom: 30px;
-  border-bottom: 1px solid lightgrey;
   cursor: default;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 30px;
 }

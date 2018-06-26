@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => ({
   onAddTag: () => dispatch({
     type: ADD_TAG
   }),
-  onRemoveTag: tag => dispatch({
+  onRemoveTag: index => dispatch({
     type: REMOVE_TAG,
-    tag
+    index
   }),
   onUnload: () => dispatch({
     type: COMPANY_EDITOR_PAGE_UNLOADED
@@ -58,12 +58,12 @@ class CompanyEditor extends React.Component {
 
     this.watchForEnter = ev => {
       ev.preventDefault()
-      if(ev.keyCode === 13){ this.props.onAddTag() }
+      if(ev.keyCode === 13 && ev.target.value !== ''){ this.props.onAddTag() }
     }
 
-    this.removeTag = tag => ev => {
+    this.removeTag = index => ev => {
       ev.preventDefault()
-      this.props.onRemoveTag(tag)
+      this.props.onRemoveTag(index)
     }
   }
 

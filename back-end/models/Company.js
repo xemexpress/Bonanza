@@ -44,6 +44,7 @@ CompanySchema.methods.toJSONFor = function(){
     abbr: this.abbr,
     logo: this.logo || 'https://static.productionready.io/images/smiley-cyrus.jpg',
     name: this.name,
+    link: this.link,
     tagList: this.tagList
   }
 }

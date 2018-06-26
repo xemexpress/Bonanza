@@ -39,9 +39,7 @@ class ArticlesView extends React.Component {
   }
 
   render(){
-    if(this.props.selectedCompany || (this.props.locationHash !== '#/' && this.props.locationHash !== '#/articleEditor')){ return null }
-
-    let { title, body, image } = this.props
+    if(this.props.selectedCompany || ((this.props.locationHash !== '#/' && !this.props.locationHash.startsWith('#/articleEditor')) || !this.props.currentUser)){ return null }
 
     if(this.props.locationHash === '#/'){
       return (
@@ -61,14 +59,16 @@ class ArticlesView extends React.Component {
             <UsernameSpan username={this.props.currentUser.username} />
             <div className="overlay" style={this.props.allowEdit ? { opacity: '1', zIndex: '1' } : null}>
               <UserControll
-                addNew='articleEditor' />
+                addNewTo='/articleEditor' />
             </div>
           </div>
         </React.Fragment>
       )
     }
 
-    if(this.props.locationHash === '#/articleEditor'){
+    if(this.props.locationHash.startsWith('#/articleEditor')){
+      let { title, body, image } = this.props
+
       return (
         <React.Fragment>
           {/* Left Section */}

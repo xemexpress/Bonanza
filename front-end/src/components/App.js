@@ -54,21 +54,19 @@ class App extends React.Component {
   render(){
     return (
       <div className="container-fluid"> 
-        <Header
-          locationHash={window.location.hash}
-          currentUser={this.props.currentUser} />
+        <Header locationHash={window.location.hash} currentUser={this.props.currentUser} appName={this.props.appName} />
         <MainView>
           <Switch>
             {/* Testing Purpose */}
-            {/* <Route path='/' component={Companies} /> */}
+            {/* <Route path='/' component={Records} /> */}
 
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
-            <Route exact path='/articleEditor' component={ArticleEditor} />
+            <Route path='/articleEditor/:id?' component={ArticleEditor} />
             <Route exact path='/companies' component={Companies} />
-            <Route exact path='/companyEditor' component={CompanyEditor} />
+            <Route path='/companyEditor/:symbol?' component={CompanyEditor} />
             <Route exact path='/companies/:symbol' component={Records} />
-            <Route exact path='/recordEditor' component={RecordEditor} />
+            <Route path='/recordEditor/:symbol?/:year?' component={RecordEditor} />
             <Redirect to='/' />
           </Switch>
         </MainView>

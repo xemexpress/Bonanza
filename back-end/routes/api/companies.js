@@ -93,6 +93,15 @@ router.post('/', auth.required, (req, res, next) => {
   }).catch(next)
 })
 
+// Retrieve Company
+router.get('/:symbol', auth.required, (req, res, next) => {
+  Company.findOne({ author: req.payload.id, symbol: req.symbol }).then(company => {
+    if(!company){ return res.sendStatus(401) }
+
+    return res.json({ company: company.toJSONFor() })
+  }).catch(next)
+})
+
 // Update Company
 router.put('/:symbol', auth.required, (req, res, next) => {
   Promise.all([
@@ -120,6 +129,10 @@ router.put('/:symbol', auth.required, (req, res, next) => {
 
     if(typeof req.body.company.logo !== 'undefined'){
       company.logo = req.body.company.logo
+    }
+
+    if(typeof req.body.company.link !== 'undefined'){
+      company.link = req.body.company.link
     }
 
     if(typeof req.body.company.tagList !== 'undefined'){
@@ -194,6 +207,10 @@ router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
     zaRecordFromCompanyByYear(company, req.year).then((record) => {
       if(!record){ return res.sendStatus(401) }
       
+      if(typeof req.body.record.year !== 'undefined'){
+        record.year = req.body.record.year
+      }
+
       if(typeof req.body.record.keyList !== 'undefined'){
         record.keyList = req.body.record.keyList
       }

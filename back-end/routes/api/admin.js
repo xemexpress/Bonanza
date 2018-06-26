@@ -197,6 +197,15 @@ router.put('/shallowproperty', auth.required, (req, res, next) => {
   }
 })
 
+// Testing Purpose
+router.get('/test', auth.required, (req, res, next) => {
+  if(req.payload.username === auth.admin){
+    
+  }else{
+    return res.sendStatus(403)
+  }
+})
+
 module.exports = router
 
 function applyChange(units){

@@ -1,0 +1,85 @@
+/* General Properties except specific positionings */
+.record {
+  cursor: default;
+  border-bottom: 1px solid lightgrey;
+  padding: 5px 0 30px;
+}
+
+.t-col {
+  color: #586069;
+}
+
+.r-col .param-share {
+  border: 2px solid #2188ff !important;
+  border-radius: 40%;
+}
+
+.t-col .param-gpm, .r-col .param-gpm {
+  border: 2px solid tomato !important;
+  border-radius: 40%;
+}
+
+.ep-col {
+  text-align: justify;
+}
+
+.ep-col .pale {
+  opacity: 0.05;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.ep-col .pale:hover, .ep-col .pale:focus {
+  opacity: 1;
+}
+
+.ep-col .plans .badage-attachment {
+  top: 5px;
+}
+
+.ep-col .completion-badage {
+  color: lightgrey;
+}
+
+/* Specifics - xs - iphone6s portrait */
+@media (max-width: 375px) {
+  .record {
+    font-size: 0.85rem;
+  }
+
+  .r-col {
+    margin-left: -10.7px;
+  }
+
+  .t-col, .r-col, .ep-col {
+    padding-right: 0;
+  }
+
+  .r-col .badage-attachment {
+    margin-bottom: 19px;
+  }
+
+  .r-col .parameter-badage-list {
+    right: 5px;
+    bottom: -14px;
+  }
+
+  .t-col .parameter-badage-list {
+    right: 0;
+    bottom: -14px;
+  }
+}
+
+/* Specifics - sm - iphone6s landscape */
+@media (min-width: 376px) and (max-width: 667px) {
+  
+}
+
+/* Specifics - md - ipadII portrait */
+@media (min-width: 668px) and (max-width: 768px) {
+  
+}
+
+/* Specifics - lg - ipadII landscape */
+@media (min-width: 769px) {
+  
+}

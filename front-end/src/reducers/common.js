@@ -6,7 +6,8 @@ import {
   REDIRECT,
   JUMPSTART,
   SUBMIT_ARTICLE,
-  SUBMIT_COMPANY
+  SUBMIT_COMPANY,
+  SUBMIT_RECORD
 } from '../constants'
 
 const defaultState = {
@@ -59,6 +60,14 @@ export default (state=defaultState, action) => {
       return {
         ...state,
         redirectTo: '/companies'
+      }
+    case SUBMIT_RECORD:
+      if(action.error){
+        return state
+      }
+      return {
+        ...state,
+        redirectTo: `/companies/${action.symbol}`
       }
     default:
   }
