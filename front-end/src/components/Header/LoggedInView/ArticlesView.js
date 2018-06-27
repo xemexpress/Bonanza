@@ -78,7 +78,7 @@ class ArticlesView extends React.Component {
     
           {/* Middle Section */}
           <div className="nav-item">
-            New Article
+            {this.props.id ? null : 'New Article'}
           </div>
     
           {/* Right Section */}

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import MyTabs from './common/MyTabs'
+
 import {
   UPDATE_FIELD_RECORD_EDITOR
 } from '../../constants'

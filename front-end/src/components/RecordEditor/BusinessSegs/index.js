@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import BusinessSeg from './BusinessSeg'
+
 import {
   UPDATE_FIELD_RECORD_EDITOR
 } from '../../../constants'
