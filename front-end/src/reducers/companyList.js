@@ -2,10 +2,12 @@ import {
   COMPANIES_PAGE_LOADED,
   COMPANIES_PAGE_UNLOADED,
   ALLOW_EDIT_COMPANIES,
-  DELETE_COMPANY
+  DELETE_COMPANY,
+  COMPANIES_PAGE_SEARCH_LOADED
 } from "../constants"
 
 const defaultState = {
+  search: '',
   canEdit: false
 }
 
@@ -16,6 +18,13 @@ export default (state=defaultState, action) => {
         ...state,
         companies: (state.companies || []).concat(action.payload.companies),
         companiesCount: action.payload.companiesCount
+      }
+    case COMPANIES_PAGE_SEARCH_LOADED:
+      return {
+        ...state,
+        companies: action.payload.companies,
+        companiesCount: action.payload.companiesCount,
+        search: action.companyName
       }
     case COMPANIES_PAGE_UNLOADED:
       return defaultState

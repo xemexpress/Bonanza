@@ -6,7 +6,8 @@ import CompanyList from './CompanyList'
 import agent from '../agent'
 
 import {
-  COMPANIES_PAGE_LOADED, COMPANIES_PAGE_UNLOADED
+  COMPANIES_PAGE_LOADED,
+  COMPANIES_PAGE_UNLOADED
 } from '../constants'
 
 const mapStateToProps = state => ({
@@ -42,6 +43,7 @@ class Companies extends React.Component {
       <div className="row">
         <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
           <CompanyList
+            search={this.props.search}
             companies={this.props.companies}
             companiesCount={this.props.companiesCount}
             companiesDeleted={this.props.companiesDeleted} />
