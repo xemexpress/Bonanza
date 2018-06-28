@@ -15,14 +15,14 @@ const Record = props => {
   return (
     <div className="record">
       <div className="row">
-        <div className="col-xs-2 t-col">
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 t-col">
         {/* TIme Ref */}
           <span className="badage-attachment">
           { props.record.year.slice(0,4).concat(props.record.year.endsWith('M') ? '中' : '') }
             <span className="parameter-badage-list">
               {
                 props.record.grossProfitMargin ?
-                <span className="param-gpm">{props.record.grossProfitMargin}</span>
+                <span className="param-gpm">{props.record.grossProfitMargin.toFixed(1)}</span>
                 : null
               }
             </span>
@@ -36,7 +36,7 @@ const Record = props => {
             }
           </span>
         </div>
-        <div className="col-xs-4 r-col">
+        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 r-col">
         {/* Business Segments */}
         {
           props.record.businessSegments.length !== 0 ?
@@ -46,13 +46,13 @@ const Record = props => {
               <span className="parameter-badage-list">
                 {
                   segment.share ?
-                  <span className="param-share">{segment.share}</span>
+                  <span className="param-share">{segment.share.toFixed(1)}</span>
                   : null 
                 }
                 { 
                   segment.grossProfitMargin ?
                   <span className="param-gpm">
-                  { segment.grossProfitMargin }
+                  { segment.grossProfitMargin.toFixed(1) }
                   </span>
                   : null
                 }
@@ -62,7 +62,7 @@ const Record = props => {
           : null
         }
         </div>
-        <div className="col-xs-6 ep-col">
+        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 ep-col">
         {/* ActionsDone */}
         {
           props.record.actionsDone.length !== 0 ?

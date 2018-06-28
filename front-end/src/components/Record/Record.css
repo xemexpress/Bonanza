@@ -46,12 +46,17 @@
     font-size: 0.85rem;
   }
 
-  .r-col {
-    margin-left: -10.7px;
-  }
-
   .t-col, .r-col, .ep-col {
     padding-right: 0;
+  }
+
+  .t-col .parameter-badage-list {
+    right: 0;
+    bottom: -14px;
+  }
+
+  .r-col {
+    margin-left: -10.7px;
   }
 
   .r-col .badage-attachment {
@@ -62,24 +67,103 @@
     right: 5px;
     bottom: -14px;
   }
-
-  .t-col .parameter-badage-list {
-    right: 0;
-    bottom: -14px;
-  }
 }
 
 /* Specifics - sm - iphone6s landscape */
 @media (min-width: 376px) and (max-width: 667px) {
-  
+  .record {
+    font-size: 0.85rem;
+  }
+
+  .t-col {
+    padding-left: 35px;
+  }
+
+  .t-col .functional-badage-list {
+    right: 77px;
+  }
+
+  .t-col .parameter-badage-list {
+    right: 13px;
+    bottom: -14px;
+  }
+
+  .r-col {
+    padding-left: 17px;
+  }
+
+  .r-col .badage-attachment {
+    margin-bottom: 19px;
+  }
+
+  .r-col .parameter-badage-list {
+    right: 30%;
+    bottom: -17px;
+  }
 }
 
 /* Specifics - md - ipadII portrait */
 @media (min-width: 668px) and (max-width: 768px) {
-  
+  .record {
+    font-size: 0.95rem;
+  }
+
+  .t-col {
+    padding-left: 39px;
+  }
+
+  .t-col .functional-badage-list {
+    right: 89px;
+  }
+
+  .t-col .parameter-badage-list {
+    right: 22px;
+    bottom: -17px;
+  }
+
+  .r-col {
+    padding-left: 57px;
+  }
+
+  .r-col .badage-attachment {
+    margin-bottom: 22px;
+  }
+
+  .r-col .parameter-badage-list {
+    right: 40%;
+    bottom: -19px;
+  }
 }
 
 /* Specifics - lg - ipadII landscape */
 @media (min-width: 769px) {
-  
+  .record {
+    font-size: 0.95rem;
+  }
+
+  .t-col .functional-badage-list {
+    right: 135px;
+  }
+
+  .t-col .parameter-badage-list {
+    right: 64px;
+    bottom: -17px;
+  }
+
+  .r-col {
+    padding-left: 51px;
+  }
+
+  .r-col .badage-attachment {
+    margin-bottom: 22px;
+  }
+
+  .r-col .parameter-badage-list {
+    right: 40%;
+    bottom: -19px;
+  }
+
+  .ep-col {
+    padding-left: 0px;
+  }
 }
