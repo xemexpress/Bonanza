@@ -13,7 +13,10 @@ var CompanySchema = new mongoose.Schema({
   abbr: String,
   logo: String,
   link: String,
-  tagList: [{ type: String }],
+  tagList: {
+    type: [{ type: String }],
+    validate: [tagListLimit, '{PATH} exceeds the limit of 2']
+  },
   records: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Record'
@@ -38,7 +41,6 @@ CompanySchema.pre('validate', function(next){
 
 CompanySchema.methods.toJSONFor = function(){
   return {
-    // Testing whether updatedAt would change when records change
     updatedAt: this.updatedAt,
     symbol: this.symbol,
     abbr: this.abbr,
@@ -55,6 +57,10 @@ CompanySchema.methods.toJSONForAdmin = function(){
     years: this.records.map(record => record.year),
     author: this.author.toJSONFor()
   }
+}
+
+function tagListLimit(val){
+  return val.length <= 2
 }
 
 mongoose.model('Company', CompanySchema)

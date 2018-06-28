@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import UserControll from './common/UserControll'
 import SaveButton from './common/SaveButton'
+import TagList from '../../TagList'
 import agent from '../../../agent'
 
 import {
@@ -44,7 +45,7 @@ class RecordsView extends React.Component {
       const record = { year, keyList, businessSegments, grossProfitMargin, plans, actionsDone }
       const originalYear = { originalYear: this.props.originalYear }
 
-      const payload = this.props.locationHash.match(/#\/recordEditor\/[0-9]+\/\d{4}[MY]/g) ?
+      const payload = this.props.originalYear ?
                       agent.Records.update(this.props.company.symbol, Object.assign(record, originalYear))
                       : agent.Records.create(this.props.company.symbol, record)
       this.props.onSubmit(this.props.company.symbol, payload)
@@ -75,7 +76,12 @@ class RecordsView extends React.Component {
   
           {/* Middle Section */}
           <div className="nav-item middle-layout company-name">
+          {
+            this.props.company.link ?
             <a href={this.props.company.link} target="_blank" rel="noopener noreferrer">{this.props.company.name}</a>
+            : this.props.company.name
+          }
+            <TagList tagList={this.props.company.tagList} />
           </div>
   
           {/* Right Section */}
@@ -100,7 +106,7 @@ class RecordsView extends React.Component {
     
           {/* Middle Section */}
           <div className="nav-item">
-            New Record
+            { this.props.originalYear ? null : 'New Record' }
           </div>
     
           {/* Right Section */}

@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import BusinessSeg from './BusinessSeg'
+import MyTabs from '../common/MyTabs'
 
 import {
   UPDATE_FIELD_RECORD_EDITOR
 } from '../../../constants'
-import MyTabs from '../common/MyTabs';
 
 const mapStateToProps = state => ({
   businessSegments: state.recordEditor.businessSegments

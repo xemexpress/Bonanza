@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 
 import LoggedOutView from './LoggedOutView'
 import LoggedInView from './LoggedInView'
-// Testing
-// import CompanyListView from './LoggedInView/CompanyListView'
-// import RecordsView from './LoggedInView/RecordsView'
 import './Header.css'
 
 const scrollTolerance = 47

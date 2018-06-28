@@ -25,7 +25,7 @@ export default (state=defaultState, action) => {
           inProgress: true
         }
       }
-      break;
+      break
     case LOGIN:
       return {
         ...state,

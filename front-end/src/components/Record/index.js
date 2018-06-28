@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import FixButton from '../common/FixButton'
 import DeleteButton from '../common/DeleteButton'
+import TagList from '../TagList'
 import './Record.css'
 
 const mapStateToProps = state => ({
@@ -91,6 +92,7 @@ const Record = props => {
         }
         </div>
       </div>
+      <TagList tagList={props.record.keyList} />
     </div>
   )
 }

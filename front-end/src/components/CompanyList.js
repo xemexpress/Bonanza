@@ -3,6 +3,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { connect } from 'react-redux'
 
 import Company from './Company'
+import Loader from './common/Loader'
+import EndMessage from './common/EndMessage'
 import agent from '../agent'
 
 import {
@@ -40,7 +42,7 @@ class CompanyList extends React.Component {
         if(companiesRemained <= COMPANIES_PER_PAGE){
           this.setState({ hasMore: false })
         }
-      }, 700);
+      }, 700)
     }
   }
 
@@ -56,12 +58,7 @@ class CompanyList extends React.Component {
 
   render(){
     if(!this.props.companies){
-      return (
-        <h4 className="loader">
-          <i className="fab fa-earlybirds"></i><br/>
-          Loading...
-        </h4>
-      )
+      return <Loader icon="fab fa-earlybirds" />
     }
 
     if(this.props.companies.length === 0){
@@ -76,17 +73,8 @@ class CompanyList extends React.Component {
         dataLength={length}
         hasMore={this.state.hasMore}
         next={this.fetchMoreCompanies}
-        loader={
-          <h4 className="loader">
-            <i className="fas fa-kiwi-bird"></i><br/>
-            Loading...
-          </h4>
-        }
-        endMessage={
-          <h4 className="end-message">
-            <i className="fas fa-kiwi-bird"></i>
-          </h4>
-        }>
+        loader={<Loader icon="fas fa-kiwi-bird" />}
+        endMessage={<EndMessage />}>
       {
         pack.map((company, i) => {
           if(i === length){

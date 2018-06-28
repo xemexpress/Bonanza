@@ -16,12 +16,9 @@ function makeUp10(string){
   let arr = string.split('')
   while(arr.length < 10){
     if(arr.length % 2 === 0){
-      // arr.unshift(' ')
       arr.unshift('&nbsp;')
     }else{
-      // arr.push(' ')
       arr.push('&nbsp;')
-      // arr.push('&nbsp;')
     }
   }
   return arr.join('')

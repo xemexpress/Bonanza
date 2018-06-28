@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import UsernameSpan from './common/UsernameSpan'
-import SaveButton from './common/SaveButton';
+import SaveButton from './common/SaveButton'
+import Overlay from './common/Overlay'
 import UserControll from './common/UserControll'
 import agent from '../../../agent'
 
 import {
   SUBMIT_ARTICLE
-} from '../../../constants';
+} from '../../../constants'
 
 const mapStateToProps = state => ({
   ...state.articleEditor,   // For saving an article
@@ -57,10 +58,10 @@ class ArticlesView extends React.Component {
           {/* Right Section */}
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
-            <div className="overlay" style={this.props.allowEdit ? { opacity: '1', zIndex: '1' } : null}>
+            <Overlay allowEdit={this.props.allowEdit}>
               <UserControll
                 addNewTo='/articleEditor' />
-            </div>
+            </Overlay>
           </div>
         </React.Fragment>
       )
@@ -78,7 +79,7 @@ class ArticlesView extends React.Component {
     
           {/* Middle Section */}
           <div className="nav-item">
-            {this.props.id ? null : 'New Article'}
+            { this.props.id ? null : 'New Article' }
           </div>
     
           {/* Right Section */}

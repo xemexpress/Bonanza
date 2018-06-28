@@ -54,7 +54,7 @@ var RecordSchema = new mongoose.Schema({
 RecordSchema.methods.toJSONFor = function(){
   return {
     year: this.year,
-    key: this.key,
+    keyList: this.keyList,
     businessSegments: this.businessSegments,
     grossProfitMargin: this.grossProfitMargin,
     plans: this.plans,

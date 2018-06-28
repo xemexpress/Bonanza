@@ -1,15 +1,11 @@
 import React from 'react'
 
 import Record from './Record'
+import Loader from './common/Loader'
 
 const RecordList = props => {
   if(!props.records){
-    return (
-      <h4 className="loader">
-        <i className="fab fa-earlybirds"></i><br/>
-        Loading...
-      </h4>
-    )
+    return <Loader icon="fab fa-earlybirds" />
   }
 
   if(props.records.length === 0){

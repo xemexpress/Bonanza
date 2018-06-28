@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import HeaderSearch from './HeaderSearch'
 import UsernameSpan from '../common/UsernameSpan'
 import SaveButton from '../common/SaveButton'
+import Overlay from '../common/Overlay'
 import UserControll from '../common/UserControll'
 import agent from '../../../../agent'
 
@@ -35,7 +36,7 @@ class CompanyListView extends React.Component {
       const company = { symbol, name, abbr, logo, link, tagList }
       const originalSymbol = { originalSymbol: this.props.originalSymbol }
 
-      let payload = this.props.updatedAt ?
+      let payload = this.props.originalSymbol ?
                     agent.Companies.update(Object.assign(company, originalSymbol))
                     : agent.Companies.create(company)
       this.props.onSubmit(payload)
@@ -61,10 +62,10 @@ class CompanyListView extends React.Component {
           {/* Right Section */}
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
-            <div className="overlay" style={this.props.allowEdit ? { opacity: '1', zIndex: '1' } : null}>
+            <Overlay allowEdit={this.props.allowEdit}>
               <UserControll
                 addNewTo="/companyEditor" />
-            </div>
+            </Overlay>
           </div>
         </React.Fragment>
       )
@@ -82,7 +83,7 @@ class CompanyListView extends React.Component {
   
           {/* Middle Section */}
           <div className="nav-item">
-            New Company
+            { this.props.originalSymbol ? null : 'New Company' }
           </div>
   
           {/* Right Section */}

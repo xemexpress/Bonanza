@@ -44,14 +44,10 @@ const Company = props => {
     <div className={className} onClick={select(props.company)}>
       <span className="badage-attachment">
         <img className="center-image" src={props.company.logo} alt={props.company.abbr} />
-        {
-          props.canEdit && !props.isSetDummy ?
-          <span className="functional-badage-list">
-            <FixButton company={props.company} />
-            <DeleteButton companySymbol={props.company.symbol} />
-          </span>
-          : null
-        }
+        <span className={'functional-badage-list'.concat(props.canEdit && !props.isSetDummy ? '' : ' invisible')}>
+          <FixButton company={props.company} />
+          <DeleteButton companySymbol={props.company.symbol} />
+        </span>
       </span>
       <div className="company-name-abbr">{props.company.abbr}</div>
     </div>

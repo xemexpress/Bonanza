@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import EditButton from './EditButton';
+import EditButton from './EditButton'
 import JumpstartButton from './JumpstartButton'
 
 const UserControll = props => {

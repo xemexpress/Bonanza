@@ -18,14 +18,10 @@ const Article = props => {
       <h3>
         <span className="badage-attachment">
           <u>{props.article.title}</u>
-          {
-            props.canEdit ?
-            <span className="functional-badage-list">
-              <FixButton article={props.article} />
-              <DeleteButton articleId={props.article.id} />
-            </span>
-            : null
-          }
+          <span className={'functional-badage-list'.concat(props.canEdit ? '' : ' invisible')}>
+            <FixButton article={props.article} />
+            <DeleteButton articleId={props.article.id} />
+          </span>
         </span>
       </h3>
 

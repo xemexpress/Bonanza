@@ -28,17 +28,14 @@ class EditButton extends React.Component {
     super()
 
     this.edit = () => {
-      if(this.props.onHash === '#/'){
-        this.props.onAllowEditArticles()
-      }
-
-      if(this.props.onHash === '#/companies'){
-        this.props.onAllowEditCompanies()
-      }
-
-      if(this.props.onHash.match(/#\/companies\/[0-9]+/g)){
-        this.props.onAllowEditRecords()
-      }
+      var toggle = this.props.onHash === '#/' ?
+                  this.props.onAllowEditArticles
+                  : this.props.onHash === '#/companies' ?
+                  this.props.onAllowEditCompanies
+                  : this.props.onHash.match(/#\/companies\/[0-9]+/g) ?
+                  this.props.onAllowEditRecords
+                  : null
+      toggle()
     }
   }
 

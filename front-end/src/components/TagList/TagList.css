@@ -8,10 +8,10 @@
 .tag {
   display: inherit;
   border-radius: 10rem;
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
   padding: .1rem .6rem;
   margin-left: .2rem;
-  color: #aaa;
+  color: #AAA;
   font-size: 0.7rem;
 }
 

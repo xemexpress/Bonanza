@@ -67,10 +67,10 @@ router.get('/companies', auth.required, (req, res, next) => {
     }
 
     Promise.all([
-      req.query.author ? User.findOne({ username: { $in: [req.query.author] } }) : null
+      req.query.author ? User.find({ username: { $in: [req.query.author] } }).limit(1) : null
     ]).then(results => {
       
-      let user = results[0]
+      let user = results[0] ? results[0][0] : null
       if(user){
         query.author = user._id
       }
@@ -112,7 +112,8 @@ router.get('/companies', auth.required, (req, res, next) => {
 router.delete('/companies', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     if(typeof req.body.companies.author !== 'undefined'){
-      User.findOne({ username: req.body.companies.author }).then(user => {
+      User.find({ username: req.body.companies.author }).limit(1).then(userResult => {
+        let user = userResult[0]
         if(!user){ return res.sendStatus(401) }
         
         let query = { author: user._id }

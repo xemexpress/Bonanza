@@ -11,9 +11,15 @@ const TagList = ({ tagList, removeTag }) => {
         tagList.map((tag, i) => {
           return (
             <li className="tag" key={i}>
-              <i
+            {
+              removeTag ?
+              <React.Fragment>
+                <i
                 className="fas fa-times fa-xs"
-                onClick={removeTag(i)}></i>&nbsp;
+                onClick={removeTag(i)}></i>&nbsp;  
+              </React.Fragment>
+              : null
+            }
               {tag}
             </li>
           )
