@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
+import GitLink from './GitLink'
 import Header from './Header'
 import MainView from './MainView'
 import Home from './Home'
@@ -53,7 +54,12 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="container-fluid"> 
+      <div className="container-fluid">
+      {
+        this.props.currentUser ?
+        null:
+        <GitLink />
+      }
         <Header locationHash={window.location.hash} currentUser={this.props.currentUser} appName={this.props.appName} />
         <MainView>
           <Switch>
