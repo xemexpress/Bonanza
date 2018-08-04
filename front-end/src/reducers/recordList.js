@@ -40,7 +40,8 @@ export default (state=defaultState, action) => {
     case DELETE_RECORD:
       return {
         ...state,
-        records: state.records.filter(record => record.year !== action.recordYear)
+        records: state.records.filter(record => record.year !== action.recordYear),
+        canEdit: false
       }
     case RECORDS_PAGE_UNLOADED:
       return defaultState

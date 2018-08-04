@@ -38,7 +38,8 @@ export default (state=defaultState, action) => {
       return {
         ...state,
         companiesDeleted: (state.companiesDeleted || 0) + 1,
-        companies: state.companies.filter(company => company.symbol !== companySymbol)
+        companies: state.companies.filter(company => company.symbol !== companySymbol),
+        canEdit: false
       }
     default:
   }

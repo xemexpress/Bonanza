@@ -29,7 +29,8 @@ export default (state=defaultState, action) => {
       return {
         ...state,
         articlesDeleted: (state.articlesDeleted || 0) + 1,       
-        articles: state.articles.filter(article => article.id !== articleId)
+        articles: state.articles.filter(article => article.id !== articleId),
+        canEdit: false
       }
     default:
   }

@@ -58,7 +58,7 @@ class Login extends React.Component {
       <div className="auth-page row">
         <div className="offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8 offset-xs-1 col-xs-10">
           <ListErrors errors={this.props.errors} />
-          
+
           <div className="interaction-card form-control">
             <form onSubmit={this.submitForm(username, password)}>
               <fieldset>
