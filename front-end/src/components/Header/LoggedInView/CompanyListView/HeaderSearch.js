@@ -26,9 +26,15 @@ class HeaderSearch extends React.Component {
 
     this.watchForEnter = ev => {
       ev.preventDefault()
-      if(ev.keyCode === 13 && this.state.search !== ''){
+      if(ev.keyCode === 13){
         this.props.onLoadSearch(this.state.search)
       }
+    }
+
+    this.clearSearch = ev => {
+      ev.preventDefault()
+      this.setState({ search: '' })
+      this.props.onLoadSearch('')
     }
   }
 
@@ -46,7 +52,7 @@ class HeaderSearch extends React.Component {
         {
           this.state.search !== '' ?
           <i className="fas fa-times-circle"
-              onClick={()=>this.setState({ search: '' })}></i>
+              onClick={this.clearSearch}></i>
           : null
         }
       </form>
