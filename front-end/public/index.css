@@ -165,7 +165,7 @@ input[type=number]::-webkit-outer-spin-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .functional-badage-list button {

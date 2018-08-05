@@ -27,14 +27,10 @@ const Record = props => {
                 : null
               }
             </span>
-            {
-              props.canEdit ?
-              <span className="functional-badage-list">
-                <FixButton company={props.company} record={props.record} />
-                <DeleteButton companySymbol={props.company.symbol} recordYear={props.record.year} />
-              </span>
-              : null
-            }
+            <span className={'functional-badage-list'.concat(props.canEdit ? '' : ' invisible')}>
+              <FixButton company={props.company} record={props.record} />
+              <DeleteButton companySymbol={props.company.symbol} recordYear={props.record.year} />
+            </span>
           </span>
         </div>
         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 r-col">
