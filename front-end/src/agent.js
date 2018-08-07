@@ -43,9 +43,11 @@ const Articles =  {
 }
 
 const omitSymbols = company => Object.assign(company, { symbol: company.originalSymbol === company.symbol ? undefined : company.symbol, originalSymbol: undefined })
+const containsName = companyName => companyName === '' ? '' : `companyName=${companyName}&`
+const hasTag = tag => tag === '' ? '' : `tag=${tag}&`
 const Companies = {
-  all: (deleted, page, companyName='') =>
-    requests.get(`/companies?${companyName === '' ? '' : `companyName=${companyName}&`}${limit(COMPANIES_PER_PAGE, deleted, page)}`),
+  all: (deleted, page, companyName='', tag='') =>
+    requests.get(`/companies?${containsName(companyName)}${hasTag(tag)}${limit(COMPANIES_PER_PAGE, deleted, page)}`),
   get: symbol =>
     requests.get(`/companies/${symbol}`),
   create: company =>

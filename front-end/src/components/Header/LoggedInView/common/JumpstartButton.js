@@ -1,12 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import agent from '../../../../agent'
+
 import {
+  COMPANIES_PAGE_TAG_LOADED,
   LOGOUT,
   JUMPSTART
 } from '../../../../constants'
 
+const mapStateToProps = state => ({
+  search: state.companyList.search,
+  tag: state.companyList.tag
+})
+
 const mapDispatchToProps = dispatch => ({
+  onSwitchTag: (companyName, tag) => dispatch({
+    type: COMPANIES_PAGE_TAG_LOADED,
+    payload: agent.Companies.all(0, 0, companyName, tag),
+    tag
+  }),
   onLogOut: () => dispatch({
     type: LOGOUT
   }),
@@ -38,6 +51,11 @@ class JumpstartButton extends React.Component {
           jumpstartConfirm: true,
           iconClassName: 'fas fa-sign-out-alt fa-lg'
         })
+
+        if(this.props.switchTag){
+          this.props.onSwitchTag(this.props.search, this.props.tag === this.props.switchTag ? '' : this.props.switchTag)
+        }
+
         this.resetRocket()
       }
     }
@@ -65,4 +83,4 @@ class JumpstartButton extends React.Component {
   }
 }
 
-export default connect(()=>({}), mapDispatchToProps)(JumpstartButton)
+export default connect(mapStateToProps, mapDispatchToProps)(JumpstartButton)

@@ -44,6 +44,7 @@ class Companies extends React.Component {
         <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
           <CompanyList
             search={this.props.search}
+            tag={this.props.tag}
             companies={this.props.companies}
             companiesCount={this.props.companiesCount}
             companiesDeleted={this.props.companiesDeleted} />

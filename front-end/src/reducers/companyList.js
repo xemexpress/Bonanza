@@ -3,11 +3,13 @@ import {
   COMPANIES_PAGE_UNLOADED,
   ALLOW_EDIT_COMPANIES,
   DELETE_COMPANY,
-  COMPANIES_PAGE_SEARCH_LOADED
+  COMPANIES_PAGE_SEARCH_LOADED,
+  COMPANIES_PAGE_TAG_LOADED
 } from "../constants"
 
 const defaultState = {
   search: '',
+  tag: '',
   canEdit: false
 }
 
@@ -25,6 +27,13 @@ export default (state=defaultState, action) => {
         companies: action.payload.companies,
         companiesCount: action.payload.companiesCount,
         search: action.companyName
+      }
+    case COMPANIES_PAGE_TAG_LOADED:
+      return {
+        ...state,
+        companies: action.payload.companies,
+        companiesCount: action.payload.companiesCount,
+        tag: action.tag
       }
     case COMPANIES_PAGE_UNLOADED:
       return defaultState

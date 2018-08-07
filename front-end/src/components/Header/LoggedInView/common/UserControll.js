@@ -15,7 +15,9 @@ const UserControll = props => {
         </Link>
       </button>
       &nbsp;
-      <JumpstartButton to={props.jumpstartTo} />
+      <JumpstartButton
+        to={props.jumpstartTo}
+        switchTag={props.switchTag} />
     </div>
   )
 }

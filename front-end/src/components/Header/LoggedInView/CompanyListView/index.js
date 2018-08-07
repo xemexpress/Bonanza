@@ -11,7 +11,8 @@ import agent from '../../../../agent'
 
 import {
   ZA_LOGO,
-  SUBMIT_COMPANY
+  SUBMIT_COMPANY,
+  THE_TAG
 } from '../../../../constants'
 
 const mapStateToProps = state => ({
@@ -64,7 +65,8 @@ class CompanyListView extends React.Component {
             <UsernameSpan username={this.props.currentUser.username} />
             <Overlay allowEdit={this.props.allowEdit}>
               <UserControll
-                addNewTo="/companyEditor" />
+                addNewTo="/companyEditor"
+                switchTag={THE_TAG} />
             </Overlay>
           </div>
         </React.Fragment>

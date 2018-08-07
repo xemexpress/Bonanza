@@ -37,7 +37,7 @@ class CompanyList extends React.Component {
       
       timeout = setTimeout(() => {
         this.setState({ page: this.state.page + 1 })
-        this.props.onLoadMoreCompanies(this.props.companiesDeleted, this.state.page, this.props.search)
+        this.props.onLoadMoreCompanies(this.props.companiesDeleted, this.state.page, this.props.search, this.props.tag)
 
         if(companiesRemained <= COMPANIES_PER_PAGE){
           this.setState({ hasMore: false })

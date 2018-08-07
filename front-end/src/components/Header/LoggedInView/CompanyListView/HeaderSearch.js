@@ -7,10 +7,14 @@ import {
   COMPANIES_PAGE_SEARCH_LOADED
 } from '../../../../constants'
 
+const mapStateToProps = state => ({
+  tag: state.companyList.tag
+})
+
 const mapDispatchToProps = dispatch => ({
-  onLoadSearch: companyName => dispatch({
+  onLoadSearch: (companyName, tag) => dispatch({
     type: COMPANIES_PAGE_SEARCH_LOADED,
-    payload: agent.Companies.all(0, 0, companyName),
+    payload: agent.Companies.all(0, 0, companyName, tag),
     companyName
   })
 })
@@ -27,7 +31,7 @@ class HeaderSearch extends React.Component {
     this.watchForEnter = ev => {
       ev.preventDefault()
       if(ev.keyCode === 13){
-        this.props.onLoadSearch(this.state.search)
+        this.props.onLoadSearch(this.state.search, this.props.tag)
       }
     }
 
@@ -60,4 +64,4 @@ class HeaderSearch extends React.Component {
   }
 }
 
-export default connect(()=>({}), mapDispatchToProps)(HeaderSearch)
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderSearch)
