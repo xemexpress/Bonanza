@@ -15,7 +15,7 @@ export default UsernameSpan
 function makeUp10(string){
   let arr = string.split('')
   while(arr.length < 10){
-    if(arr.length % 2 === 0){
+    if(arr.length % 2 === 1){
       arr.unshift('&nbsp;')
     }else{
       arr.push('&nbsp;')
