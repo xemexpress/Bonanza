@@ -44,7 +44,7 @@ class HeaderSearch extends React.Component {
 
   render(){
     return (
-      <form>
+      <span>
         <i className="fas fa-search"></i>
         <input
           className="search-company"
@@ -59,7 +59,7 @@ class HeaderSearch extends React.Component {
               onClick={this.clearSearch}></i>
           : null
         }
-      </form>
+      </span>
     )
   }
 }
