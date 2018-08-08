@@ -26,8 +26,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class ArticleEditor extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
     this.changeTitle = updateFieldEvent('title')

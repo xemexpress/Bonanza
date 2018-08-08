@@ -33,8 +33,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Login extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     
     const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
     this.changeUsername = updateFieldEvent('username')

@@ -30,8 +30,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class CompanyListView extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.submitForm = (symbol, name, abbr, logo, link, tagList) => ev => {
       ev.preventDefault()

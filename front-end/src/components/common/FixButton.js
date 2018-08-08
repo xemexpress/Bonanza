@@ -26,16 +26,18 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const FixButton = props => {
+  let { company, article, record } = props
+
   let onLoadEditor, onLoad, editor
   if(window.location.hash === '#/companies'){
-    onLoadEditor = () => props.onLoadCompanyEditor(props.company)
-    editor = `/companyEditor/${props.company.symbol}`
+    onLoadEditor = () => props.onLoadCompanyEditor(company)
+    editor = `/companyEditor/${company.symbol}`
   }else if(window.location.hash === '#/'){
-    onLoadEditor = () => props.onLoadArticleEditor(props.article)
-    editor = `/articleEditor/${props.article.id}`
+    onLoadEditor = () => props.onLoadArticleEditor(article)
+    editor = `/articleEditor/${article.id}`
   }else if(window.location.hash.match(/#\/companies\/[0-9]+/g)){
-    onLoadEditor = () => props.onLoadRecordEditor(props.record)
-    editor = `/recordEditor/${props.company.symbol}/${props.record.year}`
+    onLoadEditor = () => props.onLoadRecordEditor(record)
+    editor = `/recordEditor/${company.symbol}/${record.year}`
   }
 
   onLoad = ev => {

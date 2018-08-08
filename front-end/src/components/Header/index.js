@@ -11,8 +11,8 @@ const mapStateToProps = state => ({
 })
 
 class Header extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       headerHeight: 0,

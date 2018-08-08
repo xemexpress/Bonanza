@@ -28,28 +28,30 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const Company = props => {
+  let { company, canEdit, isSetDummy } = props
+
   let className = 'company'
-  className += props.isSetDummy ? ' dummy' : ' interaction-card'
+  className += isSetDummy ? ' dummy' : ' interaction-card'
   
   let select = company => ev => {
     ev.preventDefault()
     
-    if(!props.canEdit && !props.isSetDummy){
+    if(!canEdit && !isSetDummy){
       props.onSelect(company)
-      props.onJumpStart(`/companies/${props.company.symbol}`)
+      props.onJumpStart(`/companies/${company.symbol}`)
     }
   }
 
   return (
-    <div className={className} onClick={select(props.company)}>
+    <div className={className} onClick={select(company)}>
       <span className="badage-attachment">
-        <img className="center-image" src={props.company.logo} alt={props.company.abbr} />
-        <span className={'functional-badage-list'.concat(props.canEdit && !props.isSetDummy ? '' : ' invisible')}>
-          <FixButton company={props.company} />
-          <DeleteButton companySymbol={props.company.symbol} />
+        <img className="center-image" src={company.logo} alt={company.abbr} />
+        <span className={'functional-badage-list'.concat(canEdit && !isSetDummy ? '' : ' invisible')}>
+          <FixButton company={company} />
+          <DeleteButton companySymbol={company.symbol} />
         </span>
       </span>
-      <div className="company-name-abbr">{props.company.abbr}</div>
+      <div className="company-name-abbr">{company.abbr}</div>
     </div>
   )
 }

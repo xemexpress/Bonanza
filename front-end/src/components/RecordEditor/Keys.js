@@ -27,8 +27,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Keys extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = { keyInput: '' }
 
     this.changeKeyInput = ev => this.setState({ keyInput: ev.target.value })
@@ -60,7 +60,7 @@ class Keys extends React.Component {
             <TagList tagList={this.props.keyList} removeTag={this.removeKey} />
           </div>
         </div>
-        <input type='text' value={this.state.keyInput} onChange={this.changeKeyInput} onKeyUp={this.watchForEnter} />
+        <input type="text" value={this.state.keyInput} onChange={this.changeKeyInput} onKeyUp={this.watchForEnter} />
       </div>
     )
   }

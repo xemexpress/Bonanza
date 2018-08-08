@@ -13,31 +13,33 @@ const mapStateToProps = state => ({
 })
 
 const Record = props => {
+  let { company, record, canEdit, showPlans } = props
+
   return (
     <div className="record">
       <div className="row">
         <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 t-col">
         {/* TIme Ref */}
           <span className="badage-attachment">
-          { props.record.year.slice(0,4).concat(props.record.year.endsWith('M') ? '中' : '') }
+          { record.year.slice(0,4).concat(record.year.endsWith('M') ? '中' : '') }
             <span className="parameter-badage-list">
               {
-                props.record.grossProfitMargin ?
-                <span className="param-gpm">{props.record.grossProfitMargin.toFixed(1)}</span>
+                record.grossProfitMargin ?
+                <span className="param-gpm">{record.grossProfitMargin.toFixed(1)}</span>
                 : null
               }
             </span>
-            <span className={'functional-badage-list'.concat(props.canEdit ? '' : ' invisible')}>
-              <FixButton company={props.company} record={props.record} />
-              <DeleteButton companySymbol={props.company.symbol} recordYear={props.record.year} />
+            <span className={'functional-badage-list'.concat(canEdit ? '' : ' invisible')}>
+              <FixButton company={company} record={record} />
+              <DeleteButton companySymbol={company.symbol} recordYear={record.year} />
             </span>
           </span>
         </div>
         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 r-col">
         {/* Business Segments */}
         {
-          props.record.businessSegments.length !== 0 ?
-          props.record.businessSegments.map((segment, i) => (
+          record.businessSegments.length !== 0 ?
+          record.businessSegments.map((segment, i) => (
             <span className="badage-attachment" key={i}>
               <span>{segment.business}</span>
               <span className="parameter-badage-list">
@@ -62,19 +64,19 @@ const Record = props => {
         <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 ep-col">
         {/* ActionsDone */}
         {
-          props.record.actionsDone.length !== 0 ?
-          <div className={props.showPlans ? 'pale' : ''}>
-            { props.record.actionsDone.map((actionDone, i) => <div key={i}>· {actionDone}</div>) }
+          record.actionsDone.length !== 0 ?
+          <div className={showPlans ? 'pale' : ''}>
+            { record.actionsDone.map((actionDone, i) => <div key={i}>· {actionDone}</div>) }
           </div>
           : null
         }
 
         {/* Plans */}
         {
-          props.record.plans.length !== 0 ?
-          <div className={props.showPlans ? '' : 'pale'}>
+          record.plans.length !== 0 ?
+          <div className={showPlans ? '' : 'pale'}>
           {
-            props.record.plans.map((unit, i) => (
+            record.plans.map((unit, i) => (
               <span className="badage-attachment" key={i}>
                 <span>· {unit.plan}</span>
                 <span className="completion-badage">
@@ -88,7 +90,7 @@ const Record = props => {
         }
         </div>
       </div>
-      <TagList tagList={props.record.keyList} />
+      <TagList tagList={record.keyList} />
     </div>
   )
 }

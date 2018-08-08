@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => ({
 var timeout
 
 class CompanyList extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       page: 0,
       hasMore: true

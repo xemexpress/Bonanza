@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Plans extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       newPlan: '',
       newExecuted: '',

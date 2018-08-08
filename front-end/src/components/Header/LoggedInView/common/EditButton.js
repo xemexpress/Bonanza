@@ -26,8 +26,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class EditButton extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.edit = () => {
       var toggle = this.props.onHash === '#/' ?

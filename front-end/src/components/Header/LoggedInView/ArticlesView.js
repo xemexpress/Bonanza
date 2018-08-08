@@ -27,8 +27,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class ArticlesView extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+    
     this.submitForm = (title, body, image) => ev => {
       ev.preventDefault()
 

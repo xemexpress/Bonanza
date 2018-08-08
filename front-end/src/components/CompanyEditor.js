@@ -38,8 +38,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class CompanyEditor extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       checked: false
     }

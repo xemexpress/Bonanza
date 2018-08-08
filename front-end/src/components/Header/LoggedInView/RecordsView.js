@@ -35,8 +35,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class RecordsView extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.submitForm = (year, keyList, businessSegments, grossProfitMargin, plans, actionsDone) => ev => {
       ev.preventDefault()
@@ -66,44 +66,45 @@ class RecordsView extends React.Component {
   }
 
   render(){
-    if(!this.props.company || (!this.props.locationHash.match(/#\/companies\/[0-9]+/g) && !this.props.locationHash.startsWith('#/recordEditor'))){ return null }
+    let { company, locationHash } = this.props
+    if(!company || (!locationHash.match(/#\/companies\/[0-9]+/g) && !locationHash.startsWith('#/recordEditor'))){ return null }
     
-    if(this.props.locationHash.match(/#\/companies\/[0-9]+/g)){
+    if(locationHash.match(/#\/companies\/[0-9]+/g)){
       return (
         <React.Fragment>
           {/* Left Section */}
           <a className="left-layout" onClick={this.togglePlan}>
-            <img src={this.props.company.logo} height="20px" style={{ borderRadius: "50%", border: "1px solid #586069" }} alt={this.props.company.abbr} />
+            <img src={company.logo} height="20px" style={{ borderRadius: "50%", border: "1px solid #586069" }} alt={company.abbr} />
           </a>
   
           {/* Middle Section */}
           <div className="nav-item middle-layout company-name">
           {
-            this.props.company.link ?
-            <a href={this.props.company.link} target="_blank" rel="noopener noreferrer">{this.props.company.name}</a>
-            : this.props.company.name
+            company.link ?
+            <a href={company.link} target="_blank" rel="noopener noreferrer">{company.name}</a>
+            : company.name
           }
-            <TagList tagList={this.props.company.tagList} />
+            <TagList tagList={company.tagList} />
           </div>
   
           {/* Right Section */}
           <div className="nav-item right-layout">
             <UserControll
-              addNewTo={`/recordEditor/${this.props.company.symbol}`}
+              addNewTo={`/recordEditor/${company.symbol}`}
               jumpstartTo="/companies" />
           </div>
         </React.Fragment>
       )
     }
     
-    if(this.props.locationHash.startsWith('#/recordEditor')){
+    if(locationHash.startsWith('#/recordEditor')){
       const { year, keyList, businessSegments, grossProfitMargin, plans, actionsDone } = this.props
       
       return (
         <React.Fragment>
           {/* Left Section */}
-          <Link className="left-layout" to={`/companies/${this.props.company.symbol}`}>
-            <i className="far fa-arrow-alt-circle-left fa-lg"></i>
+          <Link className="left-layout" to={`/companies/${company.symbol}`}>
+            <FontAwesomeIcon icon={['far', 'arrow-alt-circle-left']} size="lg" />
           </Link>
     
           {/* Middle Section */}

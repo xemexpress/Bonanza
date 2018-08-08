@@ -21,8 +21,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class BusinessSegs extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       newBusiness: '',
       newShare: '',
