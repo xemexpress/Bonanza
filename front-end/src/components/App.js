@@ -15,6 +15,32 @@ import Records from './Records'
 import RecordEditor from './RecordEditor'
 import agent from '../agent'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faKiwiBird,
+  faPencilAlt,
+  faAngleDown,
+  faAngleRight,
+  faRocket,
+  faSignOutAlt,
+  faSearch,
+  faTimesCircle,
+  faChartPie,
+  faTags,
+  faTimes
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  faTrashAlt,
+  faArrowAltCircleLeft,
+  faEdit,
+  faPlusSquare,
+  faHandshake
+} from '@fortawesome/free-regular-svg-icons'
+import {
+  faEarlybirds,
+  faFulcrum
+} from '@fortawesome/free-brands-svg-icons'
+
 import {
   APP_LOADED,
   REDIRECT
@@ -43,6 +69,27 @@ class App extends React.Component {
     }
 
     this.props.onLoad(token ? agent.Auth.current() : null, token)
+
+    library.add(
+      faKiwiBird,
+      faPencilAlt,
+      faAngleDown,
+      faAngleRight,
+      faRocket,
+      faSignOutAlt,
+      faSearch,
+      faTimesCircle,
+      faChartPie,
+      faTags,
+      faTimes,
+      faTrashAlt,
+      faArrowAltCircleLeft,
+      faEdit,
+      faPlusSquare,
+      faHandshake,
+      faEarlybirds,
+      faFulcrum
+    )
   }
 
   componentWillReceiveProps(nextProps){

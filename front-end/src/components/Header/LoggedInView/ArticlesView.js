@@ -8,6 +8,8 @@ import Overlay from './common/Overlay'
 import UserControll from './common/UserControll'
 import agent from '../../../agent'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   SUBMIT_ARTICLE
 } from '../../../constants'
@@ -47,7 +49,7 @@ class ArticlesView extends React.Component {
         <React.Fragment>
           {/* Left Section */}
           <Link className="left-layout" to='/companies'>
-            <i className="far fa-arrow-alt-circle-left fa-lg"></i>
+            <FontAwesomeIcon icon={['far', 'arrow-alt-circle-left']} size="lg" />
           </Link>
     
           {/* Middle Section */}
@@ -74,7 +76,7 @@ class ArticlesView extends React.Component {
         <React.Fragment>
           {/* Left Section */}
           <Link className="left-layout" to='/'>
-            <i className="far fa-arrow-alt-circle-left fa-lg"></i>
+            <FontAwesomeIcon icon={['far', 'arrow-alt-circle-left']} size="lg" />
           </Link>
     
           {/* Middle Section */}

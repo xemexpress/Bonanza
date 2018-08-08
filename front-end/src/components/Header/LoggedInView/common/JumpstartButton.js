@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import agent from '../../../../agent'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   COMPANIES_PAGE_TAG_LOADED,
   LOGOUT,
@@ -36,7 +38,7 @@ class JumpstartButton extends React.Component {
     super(props)
     this.state = {
       jumpstartConfirm: false,
-      iconClassName: 'fas fa-rocket fa-lg'
+      iconName: 'rocket'
     }
 
     this.jumpstart = () => {
@@ -49,7 +51,7 @@ class JumpstartButton extends React.Component {
       }else{
         this.setState({
           jumpstartConfirm: true,
-          iconClassName: 'fas fa-sign-out-alt fa-lg'
+          iconName: 'sign-out-alt'
         })
 
         if(this.props.switchTag){
@@ -65,7 +67,7 @@ class JumpstartButton extends React.Component {
     timeout = setTimeout(()=>{
       this.setState({
         jumpstartConfirm: false,
-        iconClassName: 'fas fa-rocket fa-lg'
+        iconName: 'rocket'
       })
     }, 1000)
   }
@@ -77,7 +79,7 @@ class JumpstartButton extends React.Component {
   render(){
     return (
       <button className="btn btn-outline-danger" onClick={this.jumpstart}>
-        <i className={this.state.iconClassName}></i>
+        <FontAwesomeIcon icon={['fas', this.state.iconName]} size="lg" />
       </button>
     )
   }

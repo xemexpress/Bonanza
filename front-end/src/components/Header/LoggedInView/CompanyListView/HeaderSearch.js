@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import agent from '../../../../agent'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   COMPANIES_PAGE_SEARCH_LOADED
 } from '../../../../constants'
@@ -45,7 +47,7 @@ class HeaderSearch extends React.Component {
   render(){
     return (
       <span>
-        <i className="fas fa-search"></i>
+        <FontAwesomeIcon icon="search" />
         <input
           className="search-company"
           type="text"
@@ -55,8 +57,9 @@ class HeaderSearch extends React.Component {
           onKeyUp={this.watchForEnter} />
         {
           this.state.search !== '' ?
-          <i className="fas fa-times-circle"
-              onClick={this.clearSearch}></i>
+          <FontAwesomeIcon
+            icon="times-circle"
+            onClick={this.clearSearch} />
           : null
         }
       </span>

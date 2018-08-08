@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   ALLOW_EDIT_ARTICLES,
   ALLOW_EDIT_COMPANIES,
@@ -44,7 +46,7 @@ class EditButton extends React.Component {
     className += this.props.canEdit ? ' selected' : ''
     return (
       <button className={className} onClick={this.edit}>
-        <i className="far fa-edit fa-lg"></i>
+        <FontAwesomeIcon icon={['far', 'edit']} size="lg" />
       </button>
     )
   }

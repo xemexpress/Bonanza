@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const Loader = props => {
   return (
     <h4 className="loader">
-      <i className={props.icon}></i><br/>
+      <FontAwesomeIcon icon={props.icon} /><br/>
       Loading...
     </h4>
   )

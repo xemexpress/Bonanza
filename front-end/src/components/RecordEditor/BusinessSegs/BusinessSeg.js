@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const BusinessSeg = ({
   unit, index, canEditBadages, onSwitch, changeAt,
   isNew, changeNewBusiness, changeNewShare, changeNewGrossProfitMargin, watchForEnter
@@ -19,7 +21,7 @@ const BusinessSeg = ({
               onKeyUp={ev => ev.keyCode === 13 ? onSwitch('off') : null} />
             : unit.newShare || unit.share ?
             isNew ? unit.newShare : unit.share
-            : <i className="fas fa-chart-pie"></i>
+            : <FontAwesomeIcon icon="chart-pie" />
           }
           </span>
           <span className={'param-gpm'.concat(unit.newGrossProfitMargin || unit.grossProfitMargin ? ' record-filled' : '').concat(canEditBadages === index ? ' border-none' : '')}>
@@ -32,7 +34,7 @@ const BusinessSeg = ({
               onKeyUp={ev => ev.keyCode === 13 ? onSwitch('off') : null} />
             : unit.newGrossProfitMargin || unit.grossProfitMargin ?
             isNew ? unit.newGrossProfitMargin : unit.grossProfitMargin
-            : <i className="far fa-handshake"></i>
+            : <FontAwesomeIcon icon={['far', 'handshake']} />
           }
           </span>
         </span>

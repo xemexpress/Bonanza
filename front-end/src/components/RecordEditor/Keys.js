@@ -2,6 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import TagList from '../TagList'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   UPDATE_FIELD_RECORD_EDITOR,
   REMOVE_KEY
@@ -51,7 +54,7 @@ class Keys extends React.Component {
       <div className="record-section keys">
         <div className="row">
           <div className="col-xs-1">
-            <i className="fas fa-tags"></i>
+            <FontAwesomeIcon icon="tags" />
           </div>
           <div className="col-xs-11">
             <TagList tagList={this.props.keyList} removeTag={this.removeKey} />

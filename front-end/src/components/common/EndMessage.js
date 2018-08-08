@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const EndMessage = props => {
   return (
     <h4 className="end-message">
-      <i className="fas fa-kiwi-bird"></i>
+      <FontAwesomeIcon icon="kiwi-bird" />
     </h4>
   )
 }

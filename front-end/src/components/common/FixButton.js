@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   ARTICLE_EDITOR_PAGE_LOADED,
   COMPANY_EDITOR_PAGE_LOADED,
@@ -44,7 +46,7 @@ const FixButton = props => {
   return (
     <button className='btn btn-outline-info' onClick={onLoad}>
       <Link to={editor}>
-        <i className="fas fa-pencil-alt"></i>
+        <FontAwesomeIcon icon="pencil-alt" />
       </Link>
     </button>
   )

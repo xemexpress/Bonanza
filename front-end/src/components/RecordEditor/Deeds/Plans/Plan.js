@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const Plan = ({
   unit, index, canEditBadage, onSwitch, changeAt,
   isNew, changeNewPlan, changeNewExecuted, watchForEnter
@@ -19,7 +21,7 @@ const Plan = ({
         <span>
           { isNew ? unit.newExecuted : unit.executed }
         </span>
-        : <i className="fab fa-fulcrum"></i>
+        : <FontAwesomeIcon icon={['fab', 'fulcrum']} />
       }
       </span>
     </span>

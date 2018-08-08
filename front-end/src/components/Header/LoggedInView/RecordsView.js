@@ -7,6 +7,8 @@ import SaveButton from './common/SaveButton'
 import TagList from '../../TagList'
 import agent from '../../../agent'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   SUBMIT_RECORD,
   RECORDS_PAGE_UNLOADED,

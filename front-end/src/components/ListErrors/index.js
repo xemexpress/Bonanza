@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import './ListErrors.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   CLEAN_ERROR
 } from '../../constants'
@@ -23,7 +25,7 @@ const ListErrors = props => {
             if(index === 0){
               return (
                 <li key={key}>
-                  {key} { errors[key] } <i className="fas fa-times fa-md" onClick={()=>props.onClearErrors()}></i>
+                  {key} { errors[key] } <FontAwesomeIcon icon="times" onClick={()=>props.onClearErrors()} />
                 </li>
               )
             }

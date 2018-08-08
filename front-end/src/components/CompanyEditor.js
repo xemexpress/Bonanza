@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom'
 import ListErrors from './ListErrors'
 import TagList from './TagList'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   UPDATE_FIELD_COMPANY_EDITOR,
   COMPANY_EDITOR_PAGE_UNLOADED,
@@ -105,8 +107,8 @@ class CompanyEditor extends React.Component {
                 <label onClick={this.expand}>
                   {
                     this.state.checked ?
-                    <i className="fas fa-angle-down"></i>
-                    : <i className="fas fa-angle-right"></i>
+                    <FontAwesomeIcon icon="angle-down" />
+                    : <FontAwesomeIcon icon="angle-right" />
                   }
                 </label>
                 {

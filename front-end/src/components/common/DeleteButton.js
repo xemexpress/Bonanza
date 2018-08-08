@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import agent from '../../agent'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   DELETE_ARTICLE,
   DELETE_COMPANY,
@@ -45,7 +47,7 @@ const DeleteButton = props => {
 
   return (
     <button className='btn btn-outline-danger' onClick={onLoad}>
-      <i className="far fa-trash-alt"></i>
+      <FontAwesomeIcon icon={['far', 'trash-alt']} />
     </button>
   )
 }
