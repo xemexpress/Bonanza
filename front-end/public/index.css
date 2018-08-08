@@ -47,6 +47,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Functional */
 .btn {
+  border: 1px solid transparent;
   border-radius: 0.25rem;
   padding: 0.19rem;
 }
