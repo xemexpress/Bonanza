@@ -58,7 +58,7 @@ class CompanyList extends React.Component {
 
   render(){
     if(!this.props.companies){
-      return <Loader icon={['fab', 'earlybirds']} />
+      return <Loader />
     }
 
     if(this.props.companies.length === 0){
@@ -73,7 +73,7 @@ class CompanyList extends React.Component {
         dataLength={length}
         hasMore={this.state.hasMore}
         next={this.fetchMoreCompanies}
-        loader={<Loader icon="kiwi-bird" />}
+        loader={<Loader />}
         endMessage={<EndMessage />}>
       {
         pack.map((company, i) => {

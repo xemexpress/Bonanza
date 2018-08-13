@@ -17,7 +17,6 @@ import agent from '../agent'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faKiwiBird,
   faPencilAlt,
   faAngleDown,
   faAngleRight,
@@ -37,7 +36,6 @@ import {
   faHandshake
 } from '@fortawesome/free-regular-svg-icons'
 import {
-  faEarlybirds,
   faFulcrum
 } from '@fortawesome/free-brands-svg-icons'
 
@@ -71,7 +69,6 @@ class App extends React.Component {
     this.props.onLoad(token ? agent.Auth.current() : null, token)
 
     library.add(
-      faKiwiBird,
       faPencilAlt,
       faAngleDown,
       faAngleRight,
@@ -87,7 +84,6 @@ class App extends React.Component {
       faEdit,
       faPlusSquare,
       faHandshake,
-      faEarlybirds,
       faFulcrum
     )
   }

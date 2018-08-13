@@ -5,7 +5,7 @@ import Loader from './common/Loader'
 
 const RecordList = props => {
   if(!props.records){
-    return <Loader icon={['fab', 'earlybirds']} />
+    return <Loader />
   }
 
   if(props.records.length === 0){
