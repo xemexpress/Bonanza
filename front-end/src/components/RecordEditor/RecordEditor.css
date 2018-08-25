@@ -105,7 +105,7 @@
 
 /* BusinessSegs */
 .business {
-  height: 17vh;
+  min-height: 17vh;
 }
 
 .business .col-xs-6:last-child {
