@@ -40,10 +40,8 @@ class ActionsDone extends React.Component {
     this.changeNewActionDone = ev => this.setState({ newActionDone: ev.target.value })
 
     this.loadInStore = () => {
-      if(this.state.newActionDone !== ''){
-        this.props.onUpdateActionsDone(this.props.actionsDone.concat([this.state.newActionDone]))
-        this.setState({ newActionDone: '' })
-      }
+      this.props.onUpdateActionsDone(this.props.actionsDone.concat([this.state.newActionDone]))
+      this.setState({ newActionDone: '' })
     }
 
     this.watchForEnter = ev => {
@@ -54,7 +52,9 @@ class ActionsDone extends React.Component {
   }
 
   componentWillUnmount(){
-    this.loadInStore()
+    if(this.state.newActionDone !== ''){
+      this.loadInStore()
+    }
   }  
 
   render(){

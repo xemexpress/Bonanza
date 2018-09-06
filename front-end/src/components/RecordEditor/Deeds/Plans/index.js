@@ -52,15 +52,13 @@ class Plans extends React.Component {
     this.switch = port => this.setState({ canEditBadage: typeof port === 'number' ? port : false })
 
     this.loadInStore = () => {
-      if(this.state.newPlan !== ''){
-        let planUnit = {
-          plan: this.state.newPlan,
-          executed: this.state.newExecuted
-        }
-        this.props.onUpdatePlans(this.props.plans.concat([planUnit]))
-
-        this.setState({ newPlan: '', newExecuted: '' })
+      let planUnit = {
+        plan: this.state.newPlan,
+        executed: this.state.newExecuted
       }
+      this.props.onUpdatePlans(this.props.plans.concat([planUnit]))
+
+      this.setState({ newPlan: '', newExecuted: '' })
     }
 
     this.watchForEnter = ev => {
@@ -71,7 +69,9 @@ class Plans extends React.Component {
   }
 
   componentWillUnmount(){
-    this.loadInStore()
+    if(this.state.newPlan !== ''){
+      this.loadInStore()
+    }
   }
 
   render(){
