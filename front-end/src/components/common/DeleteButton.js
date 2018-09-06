@@ -29,27 +29,48 @@ const mapDispatchToProps = dispatch => ({
   })
 })
 
-const DeleteButton = props => {
-  let onLoadDelete, onLoad
+var timeout
 
-  if(window.location.hash === '#/companies'){
-    onLoadDelete = () => props.onDeleteCompany(props.companySymbol)
-  }else if(window.location.hash === '#/'){
-    onLoadDelete = () => props.onDeleteArticle(props.articleId)
-  }else if(window.location.hash.match(/#\/companies\/[0-9]+/g)){
-    onLoadDelete = () => props.onDeleteRecord(props.companySymbol, props.recordYear)
+class DeleteButton extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      deletionReady: false
+    }
+
+    this.onLoadDelete = window.location.hash === '#/companies' ? () => this.props.onDeleteCompany(this.props.companySymbol)
+                      : window.location.hash === '#/' ? () => this.props.onDeleteArticle(this.props.articleId)
+                      : window.location.hash.match(/#\/companies\/[0-9]+/g) ? () => this.props.onDeleteRecord(this.props.companySymbol, this.props.recordYear)
+                      : null
+
+    this.onLoad = ev => {
+      ev.preventDefault()
+      if(this.state.deletionReady){
+        this.onLoadDelete()
+      }else{
+        this.setState({ deletionReady: true })
+        this.resetRocket()
+      }
+    }
   }
 
-  onLoad = ev => {
-    ev.preventDefault()
-    onLoadDelete()
+  resetRocket(){
+    timeout = setTimeout(()=>{
+      this.setState({ deletionReady: false })
+    }, 500)
   }
 
-  return (
-    <button className='btn btn-outline-danger' onClick={onLoad}>
-      <FontAwesomeIcon icon={['far', 'trash-alt']} />
-    </button>
-  )
+  componentWillUnmount(){
+    clearTimeout(timeout)
+  }
+
+  render(){
+    return (
+      <button className='btn btn-outline-danger' onClick={this.onLoad}>
+        <FontAwesomeIcon icon={this.state.deletionReady ? 'minus' : ['far', 'trash-alt']} />
+      </button>
+    )
+  }
 }
 
 export default connect(()=>({}), mapDispatchToProps)(DeleteButton)
