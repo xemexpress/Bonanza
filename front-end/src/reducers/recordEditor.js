@@ -32,8 +32,8 @@ export default (state=defaultState, action) => {
                             Array(DEFAULT_DEEDS_PER_RECORD_EDITOR - action.record.actionsDone.length).fill('')
                             : []),
         plans: action.record.plans
-              .concat(action.record.actionsDone.length < DEFAULT_DEEDS_PER_RECORD_EDITOR ?
-                      Array.from({ length: DEFAULT_DEEDS_PER_RECORD_EDITOR - action.record.actionsDone.length }, () => ({ plan: '', executed: '' }))
+              .concat(action.record.plans.length < DEFAULT_DEEDS_PER_RECORD_EDITOR ?
+                      Array.from({ length: DEFAULT_DEEDS_PER_RECORD_EDITOR - action.record.plans.length }, () => ({ plan: '', executed: '' }))
                       : []),
         businessSegments: action.record.businessSegments
                           .concat(action.record.businessSegments.length < DEFAULT_SEGS_PER_RECORD_EDITOR ?
