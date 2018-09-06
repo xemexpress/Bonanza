@@ -17,6 +17,7 @@ import agent from '../agent'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
+  faMinus,
   faPencilAlt,
   faAngleDown,
   faAngleRight,
@@ -69,6 +70,7 @@ class App extends React.Component {
     this.props.onLoad(token ? agent.Auth.current() : null, token)
 
     library.add(
+      faMinus,
       faPencilAlt,
       faAngleDown,
       faAngleRight,

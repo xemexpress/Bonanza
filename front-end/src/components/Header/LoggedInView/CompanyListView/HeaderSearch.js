@@ -47,7 +47,7 @@ class HeaderSearch extends React.Component {
   render(){
     return (
       <span>
-        <FontAwesomeIcon icon="search" />
+        <FontAwesomeIcon icon='search' />
         <input
           className="search-company"
           type="text"
@@ -58,7 +58,7 @@ class HeaderSearch extends React.Component {
         {
           this.state.search !== '' ?
           <FontAwesomeIcon
-            icon="times-circle"
+            icon='times-circle'
             onClick={this.clearSearch} />
           : null
         }

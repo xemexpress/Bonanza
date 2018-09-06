@@ -54,7 +54,7 @@ class Keys extends React.Component {
       <div className="record-section keys">
         <div className="row">
           <div className="col-xs-1">
-            <FontAwesomeIcon icon="tags" />
+            <FontAwesomeIcon icon='tags' />
           </div>
           <div className="col-xs-11">
             <TagList tagList={this.props.keyList} removeTag={this.removeKey} />

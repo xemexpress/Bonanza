@@ -21,7 +21,7 @@ const BusinessSeg = ({
               onKeyUp={ev => ev.keyCode === 13 ? onSwitch('off') : null} />
             : unit.newShare || unit.share ?
             isNew ? unit.newShare : unit.share
-            : <FontAwesomeIcon icon="chart-pie" />
+            : <FontAwesomeIcon icon='chart-pie' />
           }
           </span>
           <span className={'param-gpm'.concat(unit.newGrossProfitMargin || unit.grossProfitMargin ? ' record-filled' : '').concat(canEditBadages === index ? ' border-none' : '')}>

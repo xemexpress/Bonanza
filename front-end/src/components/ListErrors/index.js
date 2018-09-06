@@ -25,7 +25,7 @@ const ListErrors = props => {
             if(index === 0){
               return (
                 <li key={key}>
-                  {key} { errors[key] } <FontAwesomeIcon icon="times" onClick={()=>props.onClearErrors()} />
+                  {key} { errors[key] } <FontAwesomeIcon icon='times' onClick={()=>props.onClearErrors()} />
                 </li>
               )
             }

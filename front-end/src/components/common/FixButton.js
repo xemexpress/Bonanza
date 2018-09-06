@@ -48,7 +48,7 @@ const FixButton = props => {
   return (
     <button className='btn btn-outline-info' onClick={onLoad}>
       <Link to={editor}>
-        <FontAwesomeIcon icon="pencil-alt" />
+        <FontAwesomeIcon icon='pencil-alt' />
       </Link>
     </button>
   )

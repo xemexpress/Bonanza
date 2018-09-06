@@ -107,8 +107,8 @@ class CompanyEditor extends React.Component {
                 <label onClick={this.expand}>
                   {
                     this.state.checked ?
-                    <FontAwesomeIcon icon="angle-down" />
-                    : <FontAwesomeIcon icon="angle-right" />
+                    <FontAwesomeIcon icon='angle-down' />
+                    : <FontAwesomeIcon icon='angle-right' />
                   }
                 </label>
                 {
