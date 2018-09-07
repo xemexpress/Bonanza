@@ -55,16 +55,14 @@ class BusinessSegs extends React.Component {
     this.switch = port => this.setState({ canEditBadages: typeof port === 'number' ? port : false })
 
     this.loadInStore = () => {
-      if(this.state.newBusiness !== ''){
-        let segment = {
-          business: this.state.newBusiness,
-          share: this.state.newShare,
-          grossProfitMargin: this.state.newGrossProfitMargin
-        }
-        this.props.onUpdateBusinessSegments(this.props.businessSegments.concat([segment]))
-
-        this.setState({ newBusiness: '', newShare: '', newGrossProfitMargin: '' })
+      let segment = {
+        business: this.state.newBusiness,
+        share: this.state.newShare,
+        grossProfitMargin: this.state.newGrossProfitMargin
       }
+      this.props.onUpdateBusinessSegments(this.props.businessSegments.concat([segment]))
+
+      this.setState({ newBusiness: '', newShare: '', newGrossProfitMargin: '' })
     }
 
     this.watchForEnter = ev => {
