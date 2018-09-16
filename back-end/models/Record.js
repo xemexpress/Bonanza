@@ -53,6 +53,7 @@ var RecordSchema = new mongoose.Schema({
 
 RecordSchema.methods.toJSONFor = function(){
   return {
+    updatedAt: this.updatedAt,
     year: this.year,
     keyList: this.keyList,
     businessSegments: this.businessSegments,

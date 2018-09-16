@@ -137,7 +137,7 @@ router.delete('/:symbol', auth.required, (req, res, next) => {
   }).catch(next)
 })
 
-// Get Records from a Company
+// Get Records from Company
 router.get('/:symbol/records', auth.required, (req, res, next) => {
   Company.find({ author: req.payload.id, symbol: req.params.symbol }).limit(1)
     .populate({
@@ -159,9 +159,9 @@ router.get('/:symbol/records', auth.required, (req, res, next) => {
     }).catch(next)
 })
 
-// Add Record to a Company
+// Add Record to Company
 router.post('/:symbol/records', auth.required, (req, res, next) => {
-  zaCompanyByAuthorSymbolWithRecordsYearPopulated(req.payload.id, req.params.symbol).then(companyResult => {
+  zaCompanyPopulatedSearch(req.payload.id, req.params.symbol, ['records', 'year']).then(companyResult => {
     let company = companyResult[0]
 
     if(!company){ return res.sendStatus(401) }
@@ -185,12 +185,12 @@ router.post('/:symbol/records', auth.required, (req, res, next) => {
 
 // Update Record
 router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
-  zaCompanyByAuthorSymbolWithRecordsYearPopulated(req.payload.id, req.params.symbol).then(companyResult => {
+  zaCompanyPopulatedSearch(req.payload.id, req.params.symbol, ['records', 'year']).then(companyResult => {
     let company = companyResult[0]
 
     if(!company){ return res.sendStatus(401) }
 
-    zaRecordFromCompanyByYear(company, req.params.year).then(record => {
+    zaDetailCat(company, 'record', req.params.year).then(record => {
       if(!record){ return res.sendStatus(401) }
       
       if(typeof req.body.record.year !== 'undefined'){
@@ -226,7 +226,7 @@ router.put('/:symbol/records/:year', auth.required, (req, res, next) => {
 
 // Delete Record
 router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
-  zaCompanyByAuthorSymbolWithRecordsYearPopulated(req.payload.id, req.params.symbol).then(companyResult => {
+  zaCompanyPopulatedSearch(req.payload.id, req.params.symbol, ['records', 'year']).then(companyResult => {
     let company = companyResult[0]
     if(!company){ return res.sendStatus(401) }
     
@@ -235,7 +235,8 @@ router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
 
     let recordId = targetRecord._id
     company.records.remove(recordId)
-    company.save().then(() => {
+    
+    return company.save().then(() => {
       Record.remove({ _id: recordId }).then(() => {
         return res.sendStatus(204)
       })
@@ -245,13 +246,19 @@ router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
 
 module.exports = router
 
-function zaCompanyByAuthorSymbolWithRecordsYearPopulated(userId, companySymbol){
+function zaCompanyPopulatedSearch(userId, companySymbol, props){
   return Company.find({ author: userId, symbol: companySymbol }).limit(1)
-                .populate('records', 'year')
+                .populate(...props)
 }
 
-function zaRecordFromCompanyByYear(company, year){
-  let recordId = company.records.find(record => record.year === year)._id
+function zaDetailCat(company, category, year){
+  if(category === 'record'){
+    let recordId = company.records.find(record => record.year === year)._id
 
-  return Record.findById(recordId)
+    return Record.findById(recordId)
+  }else if(category === 'financial'){
+    let financialId = company.financials.find(financial => financial.year === year)._id
+
+    return Financial.findById(financialId)
+  }
 }
