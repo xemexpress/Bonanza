@@ -21,6 +21,10 @@ var CompanySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Record'
   }],
+  financials: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Financial'
+  }],
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

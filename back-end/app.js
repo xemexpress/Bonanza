@@ -40,6 +40,7 @@ require('./models/Article')
 require('./models/User')
 require('./models/Company')
 require('./models/Record')
+require('./models/Financial')
 
 // Middlewares
 require('./config/passport')
