@@ -103,7 +103,8 @@
 ```JSON
 {
   "record": {
-    "year": "2014y",
+    "updatedAt": "2017-08-13T18:24:36.162Z",
+    "year": "2014Y",
     "keyList": ["關注點"],
     "businessSegments": [
       {
@@ -134,65 +135,195 @@
 
 ```JSON
 {
-  "records": [
-    {
-      "year": "2014y",
-      "keyList": ["關注點"],
-      "businessSegments": [
-        {
-          "business": "汽油機",
-          "grossProfitMargin": null,
-          "share": 73.5
-        },{
-          "business": "柴油機",
-          "grossProfitMargin": null,
-          "share": 16
-        },{
-          "business": "零件 服務",
-          "grossProfitMargin": null,
-          "share": 10.5
-        }
-      ],
-      "grossProfitMargin": null,
-      "plans": [],
-      "actionsDone": [
-        "研發能力:arrow_up:",
-        "潘陽物業租予寶馬"
-      ]
-    },
-    {
-      "year": "2015m",
-      "keyList": [],
-      "businessSegments": [
-        {
-          "business": "汽油機",
-          "grossProfitMargin": null,
-          "share": 79.9
-        },{
-          "business": "柴油機",
-          "grossProfitMargin": null,
-          "share": 10.5
-        },{
-          "business": "零件 服務",
-          "grossProfitMargin": null,
-          "share": 9.5
-        }
-      ],
-      "grossProfitMargin": 15.5,
-      "plans": [
-        {
-          "plan": "生產王子發動機",
-          "executed": "2015"
-        }
-      ],
-      "actionsDone": [
-        "收購曲軸生產線，供寶馬"
-      ]
-    },
-  ],
+  "records": [{
+    "updatedAt": "2017-08-14T00:10:59.720Z",
+    "year": "2014Y",
+    "keyList": ["關注點"],
+    "businessSegments": [
+      {
+        "business": "汽油機",
+        "grossProfitMargin": null,
+        "share": 73.5
+      },{
+        "business": "柴油機",
+        "grossProfitMargin": null,
+        "share": 16
+      },{
+        "business": "零件 服務",
+        "grossProfitMargin": null,
+        "share": 10.5
+      }
+    ],
+    "grossProfitMargin": null,
+    "plans": [],
+    "actionsDone": [
+      "研發能力:arrow_up:",
+      "潘陽物業租予寶馬"
+    ]
+  }, {
+    "updatedAt": "2017-08-13T18:24:36.162Z",
+    "year": "2015M",
+    "keyList": [],
+    "businessSegments": [
+      {
+        "business": "汽油機",
+        "grossProfitMargin": null,
+        "share": 79.9
+      },{
+        "business": "柴油機",
+        "grossProfitMargin": null,
+        "share": 10.5
+      },{
+        "business": "零件 服務",
+        "grossProfitMargin": null,
+        "share": 9.5
+      }
+    ],
+    "grossProfitMargin": 15.5,
+    "plans": [
+      {
+        "plan": "生產王子發動機",
+        "executed": "2015"
+      }
+    ],
+    "actionsDone": [
+      "收購曲軸生產線，供寶馬"
+    ]
+  }],
   "recordsCount": 2
 }
 ```
+
+### Single Financial
+```JSON
+{
+  "financial": {
+    "updatedAt": "2017-08-13T18:24:36.162Z",
+    "year": "2014Y",
+    "resonance": {
+      "revenue": 1,
+      "salesCost": 1,
+      "adminCost": 1,
+      "financingCost": 1,
+      "profit": 1
+    },
+    "position": {
+      "currentAssets": {
+        "cash": 2,
+        "receivables": 2,
+        "inventory": 2,
+        "total": 2
+      },
+      "currentLiabilities": {
+        "payables": 2,
+        "tax": 2,
+        "oneYearDebt": 2,
+        "total": 2
+      },
+      "nonCurrentAssets": {
+        "propertyPlantEquip": 2,
+        "accumulatedAmortization": 2,
+        "goodWill": 2,
+        "total": 2
+      },
+      "nonCurrentLiabilities": {
+        "aboveOneYearDebt": 2,
+        "total": 2
+      }
+    },
+    "cashFlow": {
+      "netOperating": 3,
+      "netInvesting": 3,
+      "netFinancing": 3
+    }
+  }
+}
+```
+
+### Multiple Financials
+```JSON
+{
+  "financials": [{
+    "updatedAt": "2017-08-14T00:10:59.720Z",
+    "year": "2015M",
+    "resonance": {
+      "revenue": 1,
+      "salesCost": 1,
+      "adminCost": 1,
+      "financingCost": 1,
+      "profit": 1
+    },
+    "position": {
+      "currentAssets": {
+        "cash": 2,
+        "receivables": 2,
+        "inventory": 2,
+        "total": 2
+      },
+      "currentLiabilities": {
+        "payables": 2,
+        "tax": 2,
+        "oneYearDebt": 2,
+        "total": 2
+      },
+      "nonCurrentAssets": {
+        "propertyPlantEquip": 2,
+        "accumulatedAmortization": 2,
+        "goodWill": 2,
+        "total": 2
+      },
+      "nonCurrentLiabilities": {
+        "aboveOneYearDebt": 2,
+        "total": 2
+      }
+    },
+    "cashFlow": {
+      "operating": 3,
+      "investing": 3,
+      "financing": 3
+    }
+  }, {
+    "updatedAt": "2017-08-13T18:24:36.162Z",
+    "year": "2014Y",
+    "resonance": {
+      "revenue": 1,
+      "salesCost": 1,
+      "adminCost": 1,
+      "financingCost": 1,
+      "profit": 1
+    },
+    "position": {
+      "currentAssets": {
+        "cash": 2,
+        "receivables": 2,
+        "inventory": 2,
+        "total": 2
+      },
+      "currentLiabilities": {
+        "payables": 2,
+        "tax": 2,
+        "oneYearDebt": 2,
+        "total": 2
+      },
+      "nonCurrentAssets": {
+        "propertyPlantEquip": 2,
+        "accumulatedAmortization": 2,
+        "goodWill": 2,
+        "total": 2
+      },
+      "nonCurrentLiabilities": {
+        "aboveOneYearDebt": 2,
+        "total": 2
+      }
+    },
+    "cashFlow": {
+      "operating": 3,
+      "investing": 3,
+      "financing": 3
+    }
+  }],
+  "financialsCount": 2
+}
 
 ### List of Tags
 ```JSON
@@ -340,6 +471,7 @@ Example request body:
     "abbr": "長和",
     "logo": "image.url", 
     "name": "長江和記實業有限公司",
+    "link": "link.url",
     "tagList": ["滂湃"]
   }
 }
@@ -380,13 +512,13 @@ Optional fields: `symbol`, `name`, `abbr`, `logo`, `link`, `tagList` as an array
 
 Authentication required, returns `{}`
 
-### Get Records from a Company
+### Get Records from Company
 
 `GET /api/companies/:symbol/records`
 
 Authentication required, returns [multiple records](#multiple-records), ordered by `year`
 
-### Add Record to a Company
+### Add Record to Company
 
 `POST /api/companies/:symbol/records`
 
@@ -394,7 +526,7 @@ Example request body:
 ```JSON
 {
   "record": {
-    "year": "2014y",
+    "year": "2014Y",
     "keyList": ["關注點"],
     "businessSegments": [
       {
@@ -447,6 +579,94 @@ Optional fields: `keyList` as an array of Strings, `businessSegments`, `grossPro
 ### Delete Record
 
 `DELETE /api/companies/:symbol/records/:year`
+
+Authentication required, returns `{}`
+
+### Get Financials from Company
+
+`GET /api/companies/:symbol/financials`
+
+Authentication required, returns [multiple financials](#multiple-financials), ordered by `year`
+
+### Add Financial to Company
+
+`POST /api/companies/:symbol/financials`
+
+Example request body:
+```JSON
+{
+  "financial": {
+    "year": "2014Y",
+    "resonance": {
+      "revenue": 1,
+      "salesCost": 1,
+      "adminCost": 1,
+      "financingCost": 1,
+      "profit": 1
+    },
+    "position": {
+      "currentAssets": {
+        "cash": 2,
+        "receivables": 2,
+        "inventory": 2,
+        "total": 2
+      },
+      "currentLiabilities": {
+        "payables": 2,
+        "tax": 2,
+        "oneYearDebt": 2,
+        "total": 2
+      },
+      "nonCurrentAssets": {
+        "propertyPlantEquip": 2,
+        "accumulatedAmortization": 2,
+        "goodWill": 2,
+        "total": 2
+      },
+      "nonCurrentLiabilities": {
+        "aboveOneYearDebt": 2,
+        "total": 2
+      }
+    },
+    "cashFlow": {
+      "netOperating": 3,
+      "netInvesting": 3,
+      "netFinancing": 3
+    }
+  }
+}
+```
+
+Authentication required, returns the [Financial](#single-financial)
+
+Required field: `year`
+
+Optional fields: `resonance`, `position`, `cashFlow`
+
+### Update Financial
+
+`PUT /api/companies/:symbol/records/:year`
+
+Example request body:
+```JSON
+{
+  "financial": {
+    "cashFlow": {
+      "netOperating": 3,
+      "netInvesting": 3,
+      "netFinancing": 3
+    }
+  }
+}
+```
+
+Authentication required, returns the updated [Financial](#single-financial)
+
+Optional fields: `resonance`, `position`, `cashFlow`, `year`
+
+### Delete Financial
+
+`DELETE /api/companies/:symbol/financials/:year`
 
 Authentication required, returns `{}`
 
@@ -617,14 +837,14 @@ Admin pass required, return multiple profiles
   "records": [
     {
       "symbol": "1148",
-      "year": "2014m",
+      "year": "2014M",
       "author": {
         "username": "testtest",
         "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
       } 
     },{
       "company": "1148",
-      "year": "2014y",
+      "year": "2014Y",
       "author": {
         "username": "testtest",
         "proPic": "https://static.productionready.io/images/smiley-cyrus.jpg"
