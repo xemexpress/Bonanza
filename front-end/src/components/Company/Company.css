@@ -1,6 +1,14 @@
 .company {
   margin: 10px;
   cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.company.interaction-card:hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.27), 0 0.7px 4px 0 rgba(0,0,0,0.12);
+     -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.27), 0 0.7px 4px 0 rgba(0,0,0,0.12);
+          box-shadow: 0 1px 2px 0 rgba(0,0,0,0.27), 0 0.7px 4px 0 rgba(0,0,0,0.12);
+  transform: scale(1.04);
 }
 
 .company-name-abbr {
