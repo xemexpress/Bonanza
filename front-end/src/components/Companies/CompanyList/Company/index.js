@@ -30,8 +30,7 @@ const mapDispatchToProps = dispatch => ({
 const Company = props => {
   let { company, canEdit, isSetDummy } = props
 
-  let className = 'company'
-  className += isSetDummy ? ' invisible' : ' interaction-card'
+  let className = 'company'.concat(isSetDummy ? ' invisible' : ' interaction-card')
   
   let select = company => ev => {
     ev.preventDefault()

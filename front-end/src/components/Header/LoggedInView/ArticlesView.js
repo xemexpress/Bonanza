@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import UsernameSpan from './common/UsernameSpan'
 import SaveButton from './common/SaveButton'
 import Overlay from './common/Overlay'
-import UserControll from './common/UserControll'
+import UserControl from './common/UserControl'
 import agent from '../../../agent'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,7 +16,7 @@ import {
 
 const mapStateToProps = state => ({
   ...state.articleEditor,   // For saving an article
-  allowEdit: state.articleList.canEdit
+  canEdit: state.articleList.canEdit
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -61,9 +61,8 @@ class ArticlesView extends React.Component {
           {/* Right Section */}
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
-            <Overlay allowEdit={this.props.allowEdit}>
-              <UserControll
-                addNewTo='/articleEditor' />
+            <Overlay canEdit={this.props.canEdit}>
+              <UserControl />
             </Overlay>
           </div>
         </React.Fragment>

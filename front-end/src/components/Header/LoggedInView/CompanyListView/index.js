@@ -6,20 +6,20 @@ import HeaderSearch from './HeaderSearch'
 import UsernameSpan from '../common/UsernameSpan'
 import SaveButton from '../common/SaveButton'
 import Overlay from '../common/Overlay'
-import UserControll from '../common/UserControll'
+import UserControl from '../common/UserControl'
 import agent from '../../../../agent'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   ZA_LOGO,
-  SUBMIT_COMPANY,
-  THE_TAG
+  SUBMIT_COMPANY
 } from '../../../../constants'
 
 const mapStateToProps = state => ({
   ...state.companyEditor,    // For saving a company
-  allowEdit: state.companyList.canEdit
+  canEdit: state.companyList.canEdit,
+  isSodium: state.companyList.isSodium
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -65,10 +65,14 @@ class CompanyListView extends React.Component {
           {/* Right Section */}
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
-            <Overlay allowEdit={this.props.allowEdit}>
-              <UserControll
-                addNewTo="/companyEditor"
-                switchTag={THE_TAG} />
+            <Overlay canEdit={this.props.canEdit}>
+            {
+              this.props.isSodium ?
+              // ******************* REPAIR
+              <span></span>
+              :
+              <UserControl />
+            }
             </Overlay>
           </div>
         </React.Fragment>

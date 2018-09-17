@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import UserControll from './common/UserControll'
+import UserControl from './common/UserControl'
 import SaveButton from './common/SaveButton'
 import TagList from '../../common/TagList'
 import agent from '../../../agent'
@@ -89,9 +89,7 @@ class RecordsView extends React.Component {
   
           {/* Right Section */}
           <div className="nav-item right-layout">
-            <UserControll
-              addNewTo={`/recordEditor/${company.symbol}`}
-              jumpstartTo="/companies" />
+            <UserControl />
           </div>
         </React.Fragment>
       )

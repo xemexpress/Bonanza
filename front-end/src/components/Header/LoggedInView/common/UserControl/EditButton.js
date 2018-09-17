@@ -7,7 +7,7 @@ import {
   ALLOW_EDIT_ARTICLES,
   ALLOW_EDIT_COMPANIES,
   ALLOW_EDIT_RECORDS
-} from '../../../../constants'
+} from '../../../../../constants'
 
 const mapStateToProps = state => ({
   canEdit: state.articleList.canEdit || state.companyList.canEdit || state.recordList.canEdit
@@ -30,20 +30,20 @@ class EditButton extends React.Component {
     super(props)
 
     this.edit = () => {
-      var toggle = this.props.onHash === '#/' ?
+      let toggle = this.props.onHash === '#/' ?
                   this.props.onAllowEditArticles
                   : this.props.onHash === '#/companies' ?
                   this.props.onAllowEditCompanies
                   : this.props.onHash.match(/#\/companies\/[0-9]+/g) ?
                   this.props.onAllowEditRecords
-                  : null
+                  : () => {}
       toggle()
     }
   }
 
   render(){
-    let className = 'btn btn-outline-info'
-    className += this.props.canEdit ? ' selected' : ''
+    let className = 'btn btn-outline-info'.concat(this.props.canEdit ? ' selected' : '')
+    
     return (
       <button className={className} onClick={this.edit}>
         <FontAwesomeIcon icon={['far', 'edit']} size="lg" />

@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import agent from '../../../../agent'
+import agent from '../../../../../agent'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   COMPANIES_PAGE_TAG_LOADED,
   LOGOUT,
-  JUMPSTART
-} from '../../../../constants'
+  JUMPSTART,
+  THE_TAG
+} from '../../../../../constants'
 
 const mapStateToProps = state => ({
   search: state.companyList.search,
@@ -43,8 +44,12 @@ class JumpstartButton extends React.Component {
 
     this.jumpstart = () => {
       if(this.state.jumpstartConfirm){
-        if(this.props.to){
-          this.props.onJumpstart(this.props.to)
+        let target = this.props.onHash === '#/' || this.props.onHash === '#/companies' ? null
+            : this.props.onHash.match(/#\/companies\/[0-9]+/g) ? '/companies'
+            : null
+
+        if(target){
+          this.props.onJumpstart(target)
         }else{
           this.props.onLogOut()
         }
@@ -54,8 +59,8 @@ class JumpstartButton extends React.Component {
           iconName: 'sign-out-alt'
         })
 
-        if(this.props.switchTag){
-          this.props.onSwitchTag(this.props.search, this.props.tag === this.props.switchTag ? '' : this.props.switchTag)
+        if(this.props.onHash === '#/companies'){
+          this.props.onSwitchTag(this.props.search, this.props.tag === THE_TAG ? '' : THE_TAG)
         }
 
         this.resetRocket()
