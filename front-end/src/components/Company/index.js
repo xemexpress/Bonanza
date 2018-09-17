@@ -31,7 +31,7 @@ const Company = props => {
   let { company, canEdit, isSetDummy } = props
 
   let className = 'company'
-  className += isSetDummy ? ' dummy' : ' interaction-card'
+  className += isSetDummy ? ' invisible' : ' interaction-card'
   
   let select = company => ev => {
     ev.preventDefault()
