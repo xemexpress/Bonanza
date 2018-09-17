@@ -69,18 +69,21 @@ class Header extends React.Component {
 
   render(){
     return (
-      <nav className={this.state.className}>
-      {/* Original */}
-        <LoggedOutView currentUser={this.props.currentUser} appName={this.props.appName} />
-        <LoggedInView
-          currentUser={this.props.currentUser}
-          locationHash={this.props.locationHash}
-          company={this.props.company} appName={this.props.appName} />
-      
-      {/* Testing */}
-        {/* <CompanyListView /> */}
-        {/* <RecordsView /> */}
-      </nav>
+      <React.Fragment>
+        <div style={{ height: '67px'}}></div>
+        <nav className={this.state.className}>
+        {/* Original */}
+          <LoggedOutView currentUser={this.props.currentUser} appName={this.props.appName} />
+          <LoggedInView
+            currentUser={this.props.currentUser}
+            locationHash={this.props.locationHash}
+            company={this.props.company} appName={this.props.appName} />
+        
+        {/* Testing */}
+          {/* <CompanyListView /> */}
+          {/* <RecordsView /> */}
+        </nav>
+      </React.Fragment>
     )
   }
 }

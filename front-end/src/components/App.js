@@ -5,7 +5,6 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import GitLink from './common/GitLink'
 import Header from './Header'
-import MainView from './MainView'
 import Home from './Home'
 import Login from './Login'
 import ArticleEditor from './ArticleEditor'
@@ -106,21 +105,19 @@ class App extends React.Component {
         <GitLink />
       }
         <Header locationHash={window.location.hash} currentUser={this.props.currentUser} appName={this.props.appName} />
-        <MainView>
-          <Switch>
-            {/* Testing Purpose */}
-            {/* <Route path='/' component={Records} /> */}
+        <Switch>
+          {/* Testing Purpose */}
+          {/* <Route path='/' component={Records} /> */}
 
-            <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route path='/articleEditor/:id?' component={ArticleEditor} />
-            <Route exact path='/companies' component={Companies} />
-            <Route path='/companyEditor/:symbol?' component={CompanyEditor} />
-            <Route exact path='/companies/:symbol' component={Records} />
-            <Route path='/recordEditor/:symbol?/:year?' component={RecordEditor} />
-            <Redirect to='/' />
-          </Switch>
-        </MainView>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route path='/articleEditor/:id?' component={ArticleEditor} />
+          <Route exact path='/companies' component={Companies} />
+          <Route path='/companyEditor/:symbol?' component={CompanyEditor} />
+          <Route exact path='/companies/:symbol' component={Records} />
+          <Route path='/recordEditor/:symbol?/:year?' component={RecordEditor} />
+          <Redirect to='/' />
+        </Switch>
       </div>
     )
   }
