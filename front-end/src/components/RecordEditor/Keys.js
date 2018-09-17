@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TagList from '../TagList'
+import TagList from '../common/TagList'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

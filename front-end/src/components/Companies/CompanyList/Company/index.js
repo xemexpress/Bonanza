@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import FixButton from '../common/FixButton'
-import DeleteButton from '../common/DeleteButton'
+import FixButton from '../../../common/FixButton'
+import DeleteButton from '../../../common/DeleteButton'
 
 import './Company.css'
 
 import {
   SELECT_COMPANY,
   JUMPSTART
-} from '../../constants'
+} from '../../../../constants'
 
 const mapStateToProps = state => ({
   selectedCompany: state.recordList.company,

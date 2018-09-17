@@ -2,15 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import ListErrors from './ListErrors'
+import ListErrors from '../common/ListErrors'
 import Footer from './Footer'
-import agent from '../agent'
+import agent from '../../agent'
 
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   AUTH_PAGE_UNLOADED
-} from '../constants'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   ...state.auth,

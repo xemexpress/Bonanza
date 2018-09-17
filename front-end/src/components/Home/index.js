@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import ArticleList from './ArticleList'
-import agent from '../agent'
+import agent from '../../agent'
 
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED
-} from '../constants'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   articles: state.articleList.articles,

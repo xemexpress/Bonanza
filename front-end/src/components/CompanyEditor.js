@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import ListErrors from './ListErrors'
-import TagList from './TagList'
+import ListErrors from './common/ListErrors'
+import TagList from './common/TagList'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

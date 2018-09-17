@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Record from './Record'
-import Loader from './common/Loader'
+import Loader from '../../common/Loader'
 
 const RecordList = props => {
   if(!props.records){

@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import RecordList from './RecordList'
-import agent from '../agent'
+import agent from '../../agent'
 
 import {
   RECORDS_PAGE_LOADED
-} from '../constants'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   company: state.recordList.company,

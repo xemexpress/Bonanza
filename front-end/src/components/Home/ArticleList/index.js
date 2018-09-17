@@ -3,14 +3,14 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { connect } from 'react-redux'
 
 import Article from './Article'
-import Loader from './common/Loader'
-import EndMessage from './common/EndMessage'
-import agent from '../agent'
+import Loader from '../../common/Loader'
+import EndMessage from '../../common/EndMessage'
+import agent from '../../../agent'
 
 import {
   HOME_PAGE_LOADED,
   ARTICLES_PER_PAGE
-} from '../constants'
+} from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   onLoadMoreArticles: (articlesDeleted, page) => dispatch({

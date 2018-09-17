@@ -4,7 +4,7 @@ import './Footer.css'
 
 import {
   UNIMEMO_LOGO
-} from '../../constants'
+} from '../../../constants'
 
 const Footer = props => {
   return (

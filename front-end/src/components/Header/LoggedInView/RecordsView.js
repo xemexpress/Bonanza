@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import UserControll from './common/UserControll'
 import SaveButton from './common/SaveButton'
-import TagList from '../../TagList'
+import TagList from '../../common/TagList'
 import agent from '../../../agent'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

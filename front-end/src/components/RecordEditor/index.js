@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import ListErrors from '../ListErrors'
+import ListErrors from '../common/ListErrors'
 import TimeGpmBrief from './TimeGpmBrief'
 import Deeds from './Deeds'
 import BusinessSegs from './BusinessSegs'

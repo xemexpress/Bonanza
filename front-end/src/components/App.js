@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import GitLink from './GitLink'
+import GitLink from './common/GitLink'
 import Header from './Header'
 import MainView from './MainView'
 import Home from './Home'

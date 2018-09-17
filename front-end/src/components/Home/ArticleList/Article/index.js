@@ -2,8 +2,8 @@ import React from 'react'
 import marked from 'marked'
 import { connect } from 'react-redux'
 
-import FixButton from '../common/FixButton'
-import DeleteButton from '../common/DeleteButton'
+import FixButton from '../../../common/FixButton'
+import DeleteButton from '../../../common/DeleteButton'
 import './Article.css'
 
 const mapStateToProps = state => ({

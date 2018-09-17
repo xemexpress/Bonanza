@@ -3,14 +3,14 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { connect } from 'react-redux'
 
 import Company from './Company'
-import Loader from './common/Loader'
-import EndMessage from './common/EndMessage'
-import agent from '../agent'
+import Loader from '../../common/Loader'
+import EndMessage from '../../common/EndMessage'
+import agent from '../../../agent'
 
 import {
   COMPANIES_PAGE_LOADED,
   COMPANIES_PER_PAGE
-} from '../constants'
+} from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   onLoadMoreCompanies: (companiesDeleted, page, companyName) => dispatch({

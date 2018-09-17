@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import FixButton from '../common/FixButton'
-import DeleteButton from '../common/DeleteButton'
-import TagList from '../TagList'
+import FixButton from '../../../common/FixButton'
+import DeleteButton from '../../../common/DeleteButton'
+import TagList from '../../../common/TagList'
 import './Record.css'
 
 const mapStateToProps = state => ({

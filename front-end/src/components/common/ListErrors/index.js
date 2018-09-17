@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   CLEAN_ERROR
-} from '../../constants'
+} from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   onClearErrors: () => dispatch({
