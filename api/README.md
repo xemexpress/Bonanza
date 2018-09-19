@@ -200,41 +200,42 @@
   "financial": {
     "updatedAt": "2017-08-13T18:24:36.162Z",
     "year": "2014Y",
+    "sharesOutstanding": 0,
+    "cashFlow": {
+      "netOperating": 1,
+      "netInvesting": 1,
+      "netFinancing": 1
+    },
     "resonance": {
-      "revenue": 1,
-      "salesCost": 1,
-      "adminCost": 1,
-      "financingCost": 1,
-      "profit": 1
+      "revenue": 2,
+      "salesCost": 2,
+      "adminCost": 2,
+      "financingCost": 2,
+      "profit": 2
     },
     "position": {
       "currentAssets": {
-        "cash": 2,
-        "receivables": 2,
-        "inventory": 2,
-        "total": 2
+        "cash": 3,
+        "receivables": 3,
+        "inventory": 3,
+        "total": 3
       },
       "currentLiabilities": {
-        "payables": 2,
-        "tax": 2,
-        "oneYearDebt": 2,
-        "total": 2
+        "payables": 3,
+        "tax": 3,
+        "oneYearDebt": 3,
+        "total": 3
       },
       "nonCurrentAssets": {
-        "propertyPlantEquip": 2,
-        "accumulatedAmortization": 2,
-        "goodWill": 2,
-        "total": 2
+        "propertyPlantEquip": 3,
+        "accumulatedAmortization": 3,
+        "goodWill": 3,
+        "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 2,
-        "total": 2
+        "aboveOneYearDebt": 3,
+        "total": 3
       }
-    },
-    "cashFlow": {
-      "netOperating": 3,
-      "netInvesting": 3,
-      "netFinancing": 3
     }
   }
 }
@@ -244,86 +245,89 @@
 ```JSON
 {
   "financials": [{
-    "updatedAt": "2017-08-14T00:10:59.720Z",
-    "year": "2015M",
-    "resonance": {
-      "revenue": 1,
-      "salesCost": 1,
-      "adminCost": 1,
-      "financingCost": 1,
-      "profit": 1
-    },
-    "position": {
-      "currentAssets": {
-        "cash": 2,
-        "receivables": 2,
-        "inventory": 2,
-        "total": 2
-      },
-      "currentLiabilities": {
-        "payables": 2,
-        "tax": 2,
-        "oneYearDebt": 2,
-        "total": 2
-      },
-      "nonCurrentAssets": {
-        "propertyPlantEquip": 2,
-        "accumulatedAmortization": 2,
-        "goodWill": 2,
-        "total": 2
-      },
-      "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 2,
-        "total": 2
-      }
-    },
-    "cashFlow": {
-      "operating": 3,
-      "investing": 3,
-      "financing": 3
-    }
-  }, {
     "updatedAt": "2017-08-13T18:24:36.162Z",
     "year": "2014Y",
+    "sharesOutstanding": 0,
+    "cashFlow": {
+      "netOperating": 1,
+      "netInvesting": 1,
+      "netFinancing": 1
+    },
     "resonance": {
-      "revenue": 1,
-      "salesCost": 1,
-      "adminCost": 1,
-      "financingCost": 1,
-      "profit": 1
+      "revenue": 2,
+      "salesCost": 2,
+      "adminCost": 2,
+      "financingCost": 2,
+      "profit": 2
     },
     "position": {
       "currentAssets": {
-        "cash": 2,
-        "receivables": 2,
-        "inventory": 2,
-        "total": 2
+        "cash": 3,
+        "receivables": 3,
+        "inventory": 3,
+        "total": 3
       },
       "currentLiabilities": {
-        "payables": 2,
-        "tax": 2,
-        "oneYearDebt": 2,
-        "total": 2
+        "payables": 3,
+        "tax": 3,
+        "oneYearDebt": 3,
+        "total": 3
       },
       "nonCurrentAssets": {
-        "propertyPlantEquip": 2,
-        "accumulatedAmortization": 2,
-        "goodWill": 2,
-        "total": 2
+        "propertyPlantEquip": 3,
+        "accumulatedAmortization": 3,
+        "goodWill": 3,
+        "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 2,
-        "total": 2
+        "aboveOneYearDebt": 3,
+        "total": 3
       }
-    },
+    }
+  }, {
+    "updatedAt": "2017-08-14T00:10:59.720Z",
+    "year": "2015M",
+    "sharesOutstanding": 0,
     "cashFlow": {
-      "operating": 3,
-      "investing": 3,
-      "financing": 3
+      "netOperating": 1,
+      "netInvesting": 1,
+      "netFinancing": 1
+    },
+    "resonance": {
+      "revenue": 2,
+      "salesCost": 2,
+      "adminCost": 2,
+      "financingCost": 2,
+      "profit": 2
+    },
+    "position": {
+      "currentAssets": {
+        "cash": 3,
+        "receivables": 3,
+        "inventory": 3,
+        "total": 3
+      },
+      "currentLiabilities": {
+        "payables": 3,
+        "tax": 3,
+        "oneYearDebt": 3,
+        "total": 3
+      },
+      "nonCurrentAssets": {
+        "propertyPlantEquip": 3,
+        "accumulatedAmortization": 3,
+        "goodWill": 3,
+        "total": 3
+      },
+      "nonCurrentLiabilities": {
+        "aboveOneYearDebt": 3,
+        "total": 3
+      }
     }
   }],
   "financialsCount": 2
 }
+```
 
 ### List of Tags
 ```JSON

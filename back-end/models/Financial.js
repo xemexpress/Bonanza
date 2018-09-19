@@ -6,6 +6,16 @@ var FinancialSchema = new mongoose.Schema({
     required: [true, "can't be blank"],
     match: [/\d{4}[MY]/, 'is invalid']
   },
+  sharesOutstanding: {
+    type: Number,
+    min: 1,
+    default: 1
+  },
+  cashFlow: {
+    netOperating: Number,
+    netInvesting: Number,
+    netFinancing: Number
+  },
   resonance: {
     revenue: Number,
     salesCost: Number,
@@ -36,11 +46,6 @@ var FinancialSchema = new mongoose.Schema({
       aboveOneYearDebt: Number,
       total: Number
     }
-  },
-  cashFlow: {
-    netOperating: Number,
-    netInvesting: Number,
-    netFinancing: Number
   }
 }, { timestamps: true })
 
