@@ -4,7 +4,12 @@ var FinancialSchema = new mongoose.Schema({
   year: {
     type: String,
     required: [true, "can't be blank"],
-    match: [/\d{4}[MY]/, 'is invalid']
+    match: [/\d{8}/, 'is invalid']
+  },
+  currency: {
+    type: String,
+    required: [true, "can't be blank"],
+    match: [/.?[A-Z]{3}/, 'is invalid']
   },
   sharesOutstanding: {
     type: Number,
@@ -18,9 +23,12 @@ var FinancialSchema = new mongoose.Schema({
   },
   resonance: {
     revenue: Number,
+    sellingExpense: Number,
     salesCost: Number,
     adminCost: Number,
     financingCost: Number,
+    otherRevenues: Number,
+    profitBeforeTax: Number,
     profit: Number
   },
   position: {
@@ -33,17 +41,13 @@ var FinancialSchema = new mongoose.Schema({
     currentLiabilities: {
       payables: Number,
       tax: Number,
-      oneYearDebt: Number,
       total: Number
     },
     nonCurrentAssets: {
       propertyPlantEquip: Number,
-      accumulatedAmortization: Number,
-      goodWill: Number,
       total: Number
     },
     nonCurrentLiabilities: {
-      aboveOneYearDebt: Number,
       total: Number
     }
   }
