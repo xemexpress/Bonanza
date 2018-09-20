@@ -199,8 +199,9 @@
 {
   "financial": {
     "updatedAt": "2017-08-13T18:24:36.162Z",
-    "year": "2014Y",
-    "sharesOutstanding": 0,
+    "year": "20141231",
+    "sharesOutstanding": 1,
+    "currency": "億HKD",
     "cashFlow": {
       "netOperating": 1,
       "netInvesting": 1,
@@ -208,9 +209,12 @@
     },
     "resonance": {
       "revenue": 2,
+      "sellingExpense": 2,
       "salesCost": 2,
       "adminCost": 2,
       "financingCost": 2,
+      "otherRevenues": 2,
+      "profitBeforeTax": 2,
       "profit": 2
     },
     "position": {
@@ -223,17 +227,13 @@
       "currentLiabilities": {
         "payables": 3,
         "tax": 3,
-        "oneYearDebt": 3,
         "total": 3
       },
       "nonCurrentAssets": {
         "propertyPlantEquip": 3,
-        "accumulatedAmortization": 3,
-        "goodWill": 3,
         "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 3,
         "total": 3
       }
     }
@@ -246,8 +246,9 @@
 {
   "financials": [{
     "updatedAt": "2017-08-13T18:24:36.162Z",
-    "year": "2014Y",
-    "sharesOutstanding": 0,
+    "year": "20141231",
+    "sharesOutstanding": 1,
+    "currency": "億HKD",
     "cashFlow": {
       "netOperating": 1,
       "netInvesting": 1,
@@ -255,9 +256,12 @@
     },
     "resonance": {
       "revenue": 2,
+      "sellingExpense": 2,
       "salesCost": 2,
       "adminCost": 2,
       "financingCost": 2,
+      "otherRevenues": 2,
+      "profitBeforeTax": 2,
       "profit": 2
     },
     "position": {
@@ -270,24 +274,21 @@
       "currentLiabilities": {
         "payables": 3,
         "tax": 3,
-        "oneYearDebt": 3,
         "total": 3
       },
       "nonCurrentAssets": {
         "propertyPlantEquip": 3,
-        "accumulatedAmortization": 3,
-        "goodWill": 3,
         "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 3,
         "total": 3
       }
     }
   }, {
     "updatedAt": "2017-08-14T00:10:59.720Z",
-    "year": "2015M",
-    "sharesOutstanding": 0,
+    "year": "20150630",
+    "sharesOutstanding": 1,
+    "currency": "億HKD",
     "cashFlow": {
       "netOperating": 1,
       "netInvesting": 1,
@@ -295,9 +296,12 @@
     },
     "resonance": {
       "revenue": 2,
+      "sellingExpense": 2,
       "salesCost": 2,
       "adminCost": 2,
       "financingCost": 2,
+      "otherRevenues": 2,
+      "profitBeforeTax": 2,
       "profit": 2
     },
     "position": {
@@ -310,17 +314,13 @@
       "currentLiabilities": {
         "payables": 3,
         "tax": 3,
-        "oneYearDebt": 3,
         "total": 3
       },
       "nonCurrentAssets": {
         "propertyPlantEquip": 3,
-        "accumulatedAmortization": 3,
-        "goodWill": 3,
         "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 3,
         "total": 3
       }
     }
@@ -520,7 +520,7 @@ Authentication required, returns `{}`
 
 `GET /api/companies/:symbol/records`
 
-Authentication required, returns [multiple records](#multiple-records), ordered by `year`
+Authentication required, returns [multiple records](#multiple-records), ordered ascendingly by `year`
 
 ### Add Record to Company
 
@@ -590,7 +590,7 @@ Authentication required, returns `{}`
 
 `GET /api/companies/:symbol/financials`
 
-Authentication required, returns [multiple financials](#multiple-financials), ordered by `year`
+Authentication required, returns [multiple financials](#multiple-financials), ordered ascendingly by `year`
 
 ### Add Financial to Company
 
@@ -600,42 +600,43 @@ Example request body:
 ```JSON
 {
   "financial": {
-    "year": "2014Y",
+    "year": "20141231",
+    "sharesOutstanding": 1,
+    "currency": "億HKD",
+    "cashFlow": {
+      "netOperating": 1,
+      "netInvesting": 1,
+      "netFinancing": 1
+    },
     "resonance": {
-      "revenue": 1,
-      "salesCost": 1,
-      "adminCost": 1,
-      "financingCost": 1,
-      "profit": 1
+      "revenue": 2,
+      "sellingExpense": 2,
+      "salesCost": 2,
+      "adminCost": 2,
+      "financingCost": 2,
+      "otherRevenues": 2,
+      "profitBeforeTax": 2,
+      "profit": 2
     },
     "position": {
       "currentAssets": {
-        "cash": 2,
-        "receivables": 2,
-        "inventory": 2,
-        "total": 2
+        "cash": 3,
+        "receivables": 3,
+        "inventory": 3,
+        "total": 3
       },
       "currentLiabilities": {
-        "payables": 2,
-        "tax": 2,
-        "oneYearDebt": 2,
-        "total": 2
+        "payables": 3,
+        "tax": 3,
+        "total": 3
       },
       "nonCurrentAssets": {
-        "propertyPlantEquip": 2,
-        "accumulatedAmortization": 2,
-        "goodWill": 2,
-        "total": 2
+        "propertyPlantEquip": 3,
+        "total": 3
       },
       "nonCurrentLiabilities": {
-        "aboveOneYearDebt": 2,
-        "total": 2
+        "total": 3
       }
-    },
-    "cashFlow": {
-      "netOperating": 3,
-      "netInvesting": 3,
-      "netFinancing": 3
     }
   }
 }
@@ -643,13 +644,13 @@ Example request body:
 
 Authentication required, returns the [Financial](#single-financial)
 
-Required field: `year`
+Required fields: `year`, `currency`
 
-Optional fields: `resonance`, `position`, `cashFlow`
+Optional fields: `sharesOutstanding`, `resonance`, `position`, `cashFlow`
 
 ### Update Financial
 
-`PUT /api/companies/:symbol/records/:year`
+`PUT /api/companies/:symbol/financials/:year`
 
 Example request body:
 ```JSON
@@ -666,7 +667,7 @@ Example request body:
 
 Authentication required, returns the updated [Financial](#single-financial)
 
-Optional fields: `resonance`, `position`, `cashFlow`, `year`
+Optional fields: `resonance`, `position`, `cashFlow`, `sharesOutstanding`, `currency`, `year`
 
 ### Delete Financial
 
@@ -834,7 +835,7 @@ Optional field: `symbols` as an array of symbols. All the owner(as author)'s com
 
 `GET /api/admin/records`
 
-Admin pass required, return multiple profiles
+Admin pass required, returns multiple profiles
 
 ```JSON
 {
@@ -876,6 +877,6 @@ Example request body:
 }
 ```
 
-Admin pass required, return the last modified sample.
+Admin pass required, returns the last modified sample.
 
 Required fields: `name`, `default` (if `default` equals `'index'`, `index` would be assigned accordingly), `forModel`
