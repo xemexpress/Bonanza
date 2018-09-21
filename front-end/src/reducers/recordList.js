@@ -1,5 +1,5 @@
 import {
-  SELECT_COMPANY,
+  VIEW_COMPANY_RECORDS,
   RECORDS_PAGE_UNLOADED,
   RECORDS_PAGE_LOADED,
   TOGGLE_PLAN,
@@ -22,7 +22,7 @@ export default (state=defaultState, action) => {
         company: action.error ? null : action.payload[0].company,
         records: action.error ? null : action.payload[1].records
       }
-    case SELECT_COMPANY:
+    case VIEW_COMPANY_RECORDS:
       return {
         ...state,
         company: action.company

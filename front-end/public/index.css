@@ -92,6 +92,19 @@ input[type=number]::-webkit-outer-spin-button {
   color: #FFF;
 }
 
+.btn-outline-essential {
+  border-color: #FFE200;
+  background-color: #FFF;
+  color: #FFE200;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-essential:hover, .btn-outline-essential.selected {
+  border-color: transparent;
+  background-color: #FFE200;
+  color: #FFF;
+}
+
 .form-control {
   padding: 20px;
   font-size: 14px;

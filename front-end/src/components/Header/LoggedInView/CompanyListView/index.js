@@ -18,8 +18,7 @@ import {
 
 const mapStateToProps = state => ({
   ...state.companyEditor,    // For saving a company
-  canEdit: state.companyList.canEdit,
-  isSodium: state.companyList.isSodium
+  canEdit: state.companyList.canEdit
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -66,13 +65,7 @@ class CompanyListView extends React.Component {
           <div className="nav-item right-layout username">
             <UsernameSpan username={this.props.currentUser.username} />
             <Overlay canEdit={this.props.canEdit}>
-            {
-              this.props.isSodium ?
-              // ******************* REPAIR
-              <span></span>
-              :
               <UserControl />
-            }
             </Overlay>
           </div>
         </React.Fragment>

@@ -1,0 +1,20 @@
+.sodium-controller {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 3.5%;
+  z-index: 1;
+}
+
+.sodium-controller button {
+  border-color: rgba(256,256,256, 0.5);
+}
+
+.sodium-controller button:hover {
+  border-color: rgba(256,256,256,1);
+}
+
+.sodium-controller:hover + .sodium-panel {
+  opacity: 1;
+}

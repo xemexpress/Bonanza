@@ -7,18 +7,24 @@ import DeleteButton from '../../../common/DeleteButton'
 import './Company.css'
 
 import {
-  SELECT_COMPANY,
-  JUMPSTART
+  VIEW_COMPANY_RECORDS,
+  JUMPSTART,
+  SELECT_COMPANY
 } from '../../../../constants'
 
 const mapStateToProps = state => ({
-  selectedCompany: state.recordList.company,
-  canEdit: state.companyList.canEdit
+  canEdit: state.companyList.canEdit,
+  isSodium: state.companyList.isSodium,
+  soCompanies: state.companyList.soCompanies
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSelect: company => dispatch({
+  onSelectCompany: company => dispatch({
     type: SELECT_COMPANY,
+    company
+  }),
+  onViewCompanyRecords: company => dispatch({
+    type: VIEW_COMPANY_RECORDS,
     company
   }),
   onJumpStart: pathname => dispatch({
@@ -28,24 +34,26 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const Company = props => {
-  let { company, canEdit, isSetDummy } = props
+  let { company, isSodium, canEdit, isSetDummy } = props
 
   let className = 'company'.concat(isSetDummy ? ' invisible' : ' interaction-card')
   
   let select = company => ev => {
     ev.preventDefault()
     
-    if(!canEdit && !isSetDummy){
-      props.onSelect(company)
+    if(isSodium){
+      props.onSelectCompany(company)
+    }else if(!canEdit && !isSetDummy){
+      props.onViewCompanyRecords(company)
       props.onJumpStart(`/companies/${company.symbol}`)
     }
   }
 
   return (
-    <div className={className} onClick={select(company)}>
+    <div className={className.concat(props.soCompanies.indexOf(company) !== -1 ? ' selected' : '')} onClick={select(company)}>
       <span className="badage-attachment">
         <img className="center-image" src={company.logo} alt={company.abbr} />
-        <span className={'functional-badage-list'.concat(canEdit && !isSetDummy ? '' : ' invisible')}>
+        <span className={'functional-badage-list'.concat(!isSodium && canEdit && !isSetDummy ? '' : ' invisible')}>
           <FixButton company={company} />
           <DeleteButton companySymbol={company.symbol} />
         </span>

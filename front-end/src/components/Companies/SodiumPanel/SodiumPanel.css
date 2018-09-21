@@ -1,0 +1,18 @@
+.sodium-panel {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(400%);
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: -1.7%;
+  opacity: 0;
+}
+
+.sodium-panel.show-up {
+  transform: unset;
+  opacity: 0.5;
+}
+
+.sodium-panel.show-up:hover {
+  opacity: 1;
+}

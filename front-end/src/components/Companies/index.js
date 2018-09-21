@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import CompanyList from './CompanyList'
+import SodiumController from './SodiumController'
+import SodiumPanel from './SodiumPanel'
 import agent from '../../agent'
 
 import {
@@ -40,16 +42,24 @@ class Companies extends React.Component {
     if(!this.props.currentUser){ return <Redirect to='/' /> }
     
     return (
-      <div className="row">
-        <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
-          <CompanyList
-            search={this.props.search}
-            tag={this.props.tag}
-            companies={this.props.companies}
-            companiesCount={this.props.companiesCount}
-            companiesDeleted={this.props.companiesDeleted} />
+      <React.Fragment>
+        <div className="row">
+          <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
+            <CompanyList
+              search={this.props.search}
+              tag={this.props.tag}
+              companies={this.props.companies}
+              companiesCount={this.props.companiesCount}
+              companiesDeleted={this.props.companiesDeleted} />
+          </div>
         </div>
-      </div>
+        <SodiumController
+          canEdit={this.props.canEdit}
+          isSodium={this.props.isSodium} />
+        <SodiumPanel
+          isSodium={this.props.isSodium}
+          soCompanies={this.props.soCompanies} />
+      </React.Fragment>
     )
   }
 }
