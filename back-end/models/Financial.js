@@ -57,6 +57,8 @@ FinancialSchema.methods.toJSONFor = function(){
   return {
     updatedAt: this.updatedAt,
     year: this.year,
+    currency: this.currency,
+    sharesOutstanding: this.sharesOutstanding,
     resonance: this.resonance,
     position: this.position,
     cashFlow: this.cashFlow
