@@ -164,7 +164,7 @@ router.get('/records', auth.required, (req, res, next) => {
   }
 })
 
-// Count Financials
+// Count all Financials
 router.get('/financials', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
     Financial.find({})
