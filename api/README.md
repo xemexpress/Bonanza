@@ -675,6 +675,12 @@ Optional fields: `resonance`, `position`, `cashFlow`, `sharesOutstanding`, `curr
 
 Authentication required, returns `{}`
 
+### Delete all Financials from Company
+
+`DELETE /api/companies/:symbol/financials`
+
+Authentication required, returns `{}`
+
 ### Get Tags
 
 `GET /api/tags`
@@ -857,6 +863,18 @@ Admin pass required, returns multiple profiles
     }
   ],
   "recordsCount": 2
+}
+```
+
+### Count Financials
+
+`GET /api/admin/financials`
+
+Admin pass required, returns `financialsCount`
+
+```JSON
+{
+  "financialsCount": 2
 }
 ```
 

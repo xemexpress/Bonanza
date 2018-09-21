@@ -344,6 +344,20 @@ router.delete('/:symbol/financials/:year', auth.required, (req, res, next) => {
   }).catch(next)
 })
 
+// Delete all Financials
+router.delete('/:symbol/financials', auth.required, (req, res, next) => {
+  zaCompanyPopulatedSearch(req.payload.id, req.params.symbol, []).then(companyResult => {
+    let company = companyResult[0]
+    if(!company){ return res.sendStatus(401) }
+    
+    Financial.remove({ _id: { $in: company.financials } }).then(() => {
+      company.financials = []
+
+      return company.save().then(() => res.sendStatus(204))
+    })
+  }).catch(next)
+})
+
 module.exports = router
 
 function zaCompanyPopulatedSearch(userId, companySymbol, props){

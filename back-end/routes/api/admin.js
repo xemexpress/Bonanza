@@ -4,6 +4,7 @@ var auth = require('../auth')
 var User = mongoose.model('User'),
     Company = mongoose.model('Company'),
     Record = mongoose.model('Record'),
+    Financial = mongoose.model('Financial'),
     Article = mongoose.model('Article')
 
 // List Users
@@ -158,6 +159,17 @@ router.get('/records', auth.required, (req, res, next) => {
           recordsCount: records.length
         })
       }).catch(next)
+  }else{
+    return res.sendStatus(403)
+  }
+})
+
+// Count Financials
+router.get('/financials', auth.required, (req, res, next) => {
+  if(req.payload.username === auth.admin){
+    Financial.find({})
+      .then(financials => res.json({ financialsCount: financials.length }))
+      .catch(next)
   }else{
     return res.sendStatus(403)
   }
