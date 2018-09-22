@@ -8,7 +8,7 @@ import {
   DEFAULT_DEEDS_PER_RECORD_EDITOR,
   DEFAULT_SEGS_PER_RECORD_EDITOR,
   RECORD_EDITOR_PAGE_LOADED
-} from "../constants"
+} from '../constants'
 
 const defaultState = {
   year: '',

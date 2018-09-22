@@ -70,6 +70,11 @@ const Records = {
     requests.del(`/companies/${symbol}/records/${year}`)
 }
 
+const Financials = {
+  all: symbol =>
+    requests.get(`/companies/${symbol}/financials`)
+}
+
 const Auth = {
   current: () =>
     requests.get('/user'),
@@ -81,6 +86,7 @@ export default {
   Articles,
   Companies,
   Records,
+  Financials,
   Auth,
   setToken: _token => { token = _token }
 }

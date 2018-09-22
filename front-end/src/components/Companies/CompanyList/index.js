@@ -71,7 +71,7 @@ class CompanyList extends React.Component {
     return (
       <InfiniteScroll style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}
         dataLength={length}
-        hasMore={this.state.hasMore}
+        hasMore={!this.props.sodiumLoaded && this.state.hasMore}
         next={this.fetchMoreCompanies}
         loader={<Loader />}
         endMessage={<EndMessage />}>

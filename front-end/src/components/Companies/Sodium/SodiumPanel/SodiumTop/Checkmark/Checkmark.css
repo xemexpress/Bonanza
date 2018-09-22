@@ -25,3 +25,8 @@
   margin-right: -3px;
   cursor: pointer;
 }
+
+.checkmark.go-pick::after {
+  border-color: #000;
+  cursor: pointer;
+}

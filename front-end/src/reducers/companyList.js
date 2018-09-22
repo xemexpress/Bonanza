@@ -4,19 +4,13 @@ import {
   ALLOW_EDIT_COMPANIES,
   DELETE_COMPANY,
   COMPANIES_PAGE_SEARCH_LOADED,
-  COMPANIES_PAGE_TAG_LOADED,
-  SWITCH_SODIUM,
-  SELECT_COMPANY
-} from "../constants"
+  COMPANIES_PAGE_TAG_LOADED
+} from '../constants'
 
 const defaultState = {
   search: '',
   tag: '',
-  canEdit: false,
-  // Testing
-  isSodium: true,
-  // isSodium: false,
-  soCompanies: []
+  canEdit: false
 }
 
 export default (state=defaultState, action) => {
@@ -55,24 +49,6 @@ export default (state=defaultState, action) => {
         companiesDeleted: (state.companiesDeleted || 0) + 1,
         companies: state.companies.filter(company => company.symbol !== companySymbol),
         canEdit: false
-      }
-    case SWITCH_SODIUM:
-      return {
-        ...state,
-        isSodium: !state.isSodium,
-        soCompanies: []
-      }
-    case SELECT_COMPANY:
-      if(state.soCompanies.length !== 0 && state.soCompanies.indexOf(action.company) !== -1){
-        return {
-          ...state,
-          soCompanies: state.soCompanies.filter(company => company.symbol !== action.company.symbol)
-        }
-      }else{
-        return {
-          ...state,
-          soCompanies: state.soCompanies.concat(action.company)
-        }
       }
     default:
   }

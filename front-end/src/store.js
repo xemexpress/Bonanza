@@ -8,6 +8,7 @@ import companyList from './reducers/companyList'
 import companyEditor from './reducers/companyEditor'
 import recordList from './reducers/recordList'
 import recordEditor from './reducers/recordEditor'
+import sodium from './reducers/sodium'
 
 import { localStorageMiddleware, promiseMiddleware } from './middleware'
 
@@ -19,7 +20,8 @@ const reducer = combineReducers({
   companyList,
   companyEditor,
   recordList,
-  recordEditor
+  recordEditor,
+  sodium
 })
 
 const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware)

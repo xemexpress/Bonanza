@@ -5,7 +5,7 @@ import './SodiumController.css'
 
 import {
   SWITCH_SODIUM
-} from '../../../constants'
+} from '../../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   onSodium: () => dispatch({
@@ -14,8 +14,12 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const SodiumController = props => {
-  let className = 'btn btn-outline-essential'.concat(props.canEdit || props.isSodium ? '' : ' invisible').concat(props.isSodium ? ' selected' : '')
-
+  let controllerClassName = 'sodium-controller'.concat(props.loaded ? ' follow' : '')
+  
+  let buttonClassName = 'btn btn-outline-essential'
+                          .concat(props.canEdit || props.isSodium ? '' : ' invisible')
+                          .concat(props.isSodium ? ' selected' : '')
+  
   let switchSodium = ev => {
     ev.preventDefault()
 
@@ -23,8 +27,8 @@ const SodiumController = props => {
   }
 
   return (
-    <div className='sodium-controller'>
-      <button className={className} onClick={switchSodium}>
+    <div className={controllerClassName}>
+      <button className={buttonClassName} onClick={switchSodium}>
         Na
       </button>
     </div>

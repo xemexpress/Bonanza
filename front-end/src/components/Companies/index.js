@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import CompanyList from './CompanyList'
-import SodiumController from './SodiumController'
-import SodiumPanel from './SodiumPanel'
+import Sodium from './Sodium'
 import agent from '../../agent'
 
 import {
@@ -14,6 +13,7 @@ import {
 
 const mapStateToProps = state => ({
   ...state.companyList,
+  sodiumLoaded: state.sodium.loaded,
   currentUser: state.common.currentUser
 })
 
@@ -50,15 +50,11 @@ class Companies extends React.Component {
               tag={this.props.tag}
               companies={this.props.companies}
               companiesCount={this.props.companiesCount}
-              companiesDeleted={this.props.companiesDeleted} />
+              companiesDeleted={this.props.companiesDeleted}
+              sodiumLoaded={this.props.sodiumLoaded} />
           </div>
         </div>
-        <SodiumController
-          canEdit={this.props.canEdit}
-          isSodium={this.props.isSodium} />
-        <SodiumPanel
-          isSodium={this.props.isSodium}
-          soCompanies={this.props.soCompanies} />
+        <Sodium canEdit={this.props.canEdit} />
       </React.Fragment>
     )
   }

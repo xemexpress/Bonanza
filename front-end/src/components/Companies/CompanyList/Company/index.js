@@ -14,8 +14,8 @@ import {
 
 const mapStateToProps = state => ({
   canEdit: state.companyList.canEdit,
-  isSodium: state.companyList.isSodium,
-  soCompanies: state.companyList.soCompanies
+  isSodium: state.sodium.isSodium,
+  selectedCompanies: state.sodium.selectedCompanies
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +50,7 @@ const Company = props => {
   }
 
   return (
-    <div className={className.concat(props.soCompanies.indexOf(company) !== -1 ? ' selected' : '')} onClick={select(company)}>
+    <div className={className.concat(props.selectedCompanies.filter(selectedCompany => selectedCompany.symbol === company.symbol).length === 1 ? ' selected' : '')} onClick={select(company)}>
       <span className="badage-attachment">
         <img className="center-image" src={company.logo} alt={company.abbr} />
         <span className={'functional-badage-list'.concat(!isSodium && canEdit && !isSetDummy ? '' : ' invisible')}>

@@ -5,7 +5,7 @@ import {
   TOGGLE_PLAN,
   ALLOW_EDIT_RECORDS,
   DELETE_RECORD
-} from "../constants"
+} from '../constants'
 
 const defaultState = {
   company: null,
