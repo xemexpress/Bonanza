@@ -21,7 +21,7 @@ router.get('/', auth.required, (req, res, next) => {
   }
 
   if(typeof req.query.tag !== 'undefined'){
-    query.tagList = { $in: [req.query.tag]}
+    query.tagList = { $in: req.query.tag.split(',') }
   }
 
   if(typeof req.query.companyName !== 'undefined'){
@@ -297,7 +297,7 @@ router.put('/:symbol/financials/:year', auth.required, (req, res, next) => {
     let company = companyResult[0]
 
     if(!company){ return res.sendStatus(401) }
-
+    
     zaDetailCat(company, 'financial', req.params.year).then(financial => {
       if(!financial){ return res.sendStatus(401) }
       
@@ -305,12 +305,34 @@ router.put('/:symbol/financials/:year', auth.required, (req, res, next) => {
         financial.year = req.body.financial.year
       }
 
+      if(typeof req.body.financial.currency !== 'undefined'){
+        financial.currency = req.body.financial.currency
+      }
+
+      if(typeof req.body.financial.sharesOutstanding !== 'undefined'){
+        financial.sharesOutstanding = req.body.financial.sharesOutstanding
+      }
+
       if(typeof req.body.financial.resonance !== 'undefined'){
         financial.resonance = req.body.financial.resonance
       }
 
       if(typeof req.body.financial.position !== 'undefined'){
-        financial.position = req.body.financial.position
+        if(typeof req.body.financial.position.currentAssets !== 'undefined'){
+          financial.position.currentAssets = req.body.financial.position.currentAssets
+        }
+
+        if(typeof req.body.financial.position.currentLiabilities !== 'undefined'){
+          financial.position.currentLiabilities = req.body.financial.position.currentLiabilities
+        }
+
+        if(typeof req.body.financial.position.nonCurrentAssets !== 'undefined'){
+          financial.position.nonCurrentAssets = req.body.financial.position.nonCurrentAssets
+        }
+
+        if(typeof req.body.financial.position.nonCurrentLiabilities !== 'undefined'){
+          financial.position.nonCurrentLiabilities = req.body.financial.position.nonCurrentLiabilities
+        }
       }
 
       if(typeof req.body.financial.cashFlow !== 'undefined'){
