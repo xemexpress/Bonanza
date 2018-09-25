@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Loader = () => {
+const Loader = props => {
   return (
-    <h4 className="loader">
-      .
-    </h4>
+    <div className="loader">
+      {props.children}
+    </div>
   )
 }
 

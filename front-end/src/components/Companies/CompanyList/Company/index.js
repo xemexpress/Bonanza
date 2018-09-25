@@ -9,7 +9,9 @@ import './Company.css'
 import {
   VIEW_COMPANY_RECORDS,
   JUMPSTART,
-  SELECT_COMPANY
+  SELECT_COMPANY,
+  API_ROOT,
+  SMILEY
 } from '../../../../constants'
 
 const mapStateToProps = state => ({
@@ -52,7 +54,7 @@ const Company = props => {
   return (
     <div className={className.concat(props.selectedCompanies.filter(selectedCompany => selectedCompany.symbol === company.symbol).length === 1 ? ' selected' : '')} onClick={select(company)}>
       <span className="badage-attachment">
-        <img className="center-image" src={company.logo} alt={company.abbr} />
+        <img className="center-image" src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : company.logo} alt={company.abbr} />
         <span className={'functional-badage-list'.concat(!isSodium && canEdit && !isSetDummy ? '' : ' invisible')}>
           <FixButton company={company} />
           <DeleteButton companySymbol={company.symbol} />

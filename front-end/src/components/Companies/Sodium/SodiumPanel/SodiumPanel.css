@@ -16,7 +16,7 @@
   z-index: unset;
 }
 
-.sodium-panel.partial:hover {
+.sodium-panel.partial.in-progress, .sodium-panel.partial:hover {
   opacity: 1;
 }
 

@@ -53,7 +53,7 @@ class ArticleList extends React.Component {
 
   render(){
     if(!this.props.articles){
-      return <Loader />
+      return <Loader><b>.</b></Loader>
     }
   
     if(this.props.articles.length === 0){
@@ -65,7 +65,7 @@ class ArticleList extends React.Component {
         dataLength={this.props.articles.length}
         hasMore={this.state.hasMore}
         next={this.fetchMoreArticles}
-        loader={<Loader />}
+        loader={<Loader><b>.</b></Loader>}
         endMessage={<EndMessage />}>
         {
           this.props.articles.map(article => <Article article={article} key={article.id} />)

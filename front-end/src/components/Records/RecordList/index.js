@@ -5,7 +5,7 @@ import Loader from '../../common/Loader'
 
 const RecordList = props => {
   if(!props.records){
-    return <Loader />
+    return <Loader><b>.</b></Loader>
   }
 
   if(props.records.length === 0){

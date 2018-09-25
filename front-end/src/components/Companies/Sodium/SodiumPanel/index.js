@@ -8,8 +8,10 @@ import './SodiumPanel.css'
 
 const SodiumPanel = props => {
   let className = 'sodium-panel interaction-card'
-                    .concat(props.loaded ? '' : props.isSodium ? ' partial' : ' hidden')
-                    
+                    .concat(props.loaded ? ''
+                          : props.isSodium ? props.inProgress ? ' partial in-progress' : ' partial'
+                          : ' hidden')
+
   return (
     <div className={className}>
       <Cloak visibleCondition={props.loaded} inTime={.3} outTime={.1}>
@@ -19,8 +21,11 @@ const SodiumPanel = props => {
           loaded={true} />
       </Cloak>
       <SodiumTop
-        selectedCompanies={props.selectedCompanies}
-        loaded={props.loaded} />
+        loaded={props.loaded}
+        selectedCompanies={props.selectedCompanies} />
+      <div>
+        {/* {props.financials} */}
+      </div>
     </div>
   )
 }

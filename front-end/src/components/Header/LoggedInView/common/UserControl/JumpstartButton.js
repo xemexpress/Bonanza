@@ -9,19 +9,19 @@ import {
   COMPANIES_PAGE_TAG_LOADED,
   LOGOUT,
   JUMPSTART,
-  THE_TAG
+  THE_TAGS
 } from '../../../../../constants'
 
 const mapStateToProps = state => ({
   search: state.companyList.search,
-  tag: state.companyList.tag
+  tags: state.companyList.tags
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSwitchTag: (companyName, tag) => dispatch({
+  onSwitchTag: (companyName, tags) => dispatch({
     type: COMPANIES_PAGE_TAG_LOADED,
-    payload: agent.Companies.all(0, 0, companyName, tag),
-    tag
+    payload: agent.Companies.all(0, 0, companyName, tags),
+    tags
   }),
   onLogOut: () => dispatch({
     type: LOGOUT
@@ -60,7 +60,7 @@ class JumpstartButton extends React.Component {
         })
 
         if(this.props.onHash === '#/companies'){
-          this.props.onSwitchTag(this.props.search, this.props.tag === THE_TAG ? '' : THE_TAG)
+          this.props.onSwitchTag(this.props.search, this.props.tags === THE_TAGS ? [] : THE_TAGS)
         }
 
         this.resetRocket()

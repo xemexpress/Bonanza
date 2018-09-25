@@ -9,7 +9,7 @@ import {
 
 const defaultState = {
   search: '',
-  tag: '',
+  tags: '',
   canEdit: false
 }
 
@@ -33,7 +33,7 @@ export default (state=defaultState, action) => {
         ...state,
         companies: action.payload.companies,
         companiesCount: action.payload.companiesCount,
-        tag: action.tag
+        tags: action.tags
       }
     case COMPANIES_PAGE_UNLOADED:
       return defaultState

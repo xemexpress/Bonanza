@@ -1,8 +1,3 @@
-.checkmark {
-  float: right;
-  margin-top: 0.9%;
-}
-
 .checkmark::after {
   content: '';
   display: block;

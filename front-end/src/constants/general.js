@@ -1,7 +1,7 @@
 // Settings
 export const API_ROOT = 'http://localhost:3000/api'
 export const APP_NAME = 'Bonanza'
-export const THE_TAG = '持有'
+export const THE_TAGS = ['Resonate', 'Grow', 'Belong', 'Ease', 'Live', 'Approach']
 
 // Display-related
 export const ARTICLES_PER_PAGE = 4

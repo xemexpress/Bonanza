@@ -60,7 +60,7 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-outline-positive:hover {
+.btn-outline-positive:hover, .btn-outline-positive.selected {
   border-color: transparent;
   background-color: #5CB85C;
   color: #FFF;
@@ -86,7 +86,7 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-outline-danger:hover {
+.btn-outline-danger:hover, .btn-outline-danger.selected {
   border-color: transparent;
   background-color: #B85C5C;
   color: #FFF;

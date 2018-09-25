@@ -12,7 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   SUBMIT_RECORD,
   RECORDS_PAGE_UNLOADED,
-  TOGGLE_PLAN
+  TOGGLE_PLAN,
+  API_ROOT,
+  SMILEY
 } from '../../../constants'
 
 const mapStateToProps = state => ({
@@ -74,7 +76,7 @@ class RecordsView extends React.Component {
         <React.Fragment>
           {/* Left Section */}
           <a className="left-layout" onClick={this.togglePlan}>
-            <img src={company.logo} height="20px" style={{ borderRadius: "50%", border: "1px solid #586069" }} alt={company.abbr} />
+            <img src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : company.logo} height="20px" style={{ borderRadius: "50%", border: "1px solid #586069" }} alt={company.abbr} />
           </a>
   
           {/* Middle Section */}

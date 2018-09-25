@@ -58,7 +58,7 @@ class CompanyList extends React.Component {
 
   render(){
     if(!this.props.companies){
-      return <Loader />
+      return <Loader><b>.</b></Loader>
     }
 
     if(this.props.companies.length === 0){
@@ -73,7 +73,7 @@ class CompanyList extends React.Component {
         dataLength={length}
         hasMore={!this.props.sodiumLoaded && this.state.hasMore}
         next={this.fetchMoreCompanies}
-        loader={<Loader />}
+        loader={<Loader><b>.</b></Loader>}
         endMessage={<EndMessage />}>
       {
         pack.map((company, i) => {

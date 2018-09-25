@@ -1,26 +1,17 @@
 import React from 'react'
 
-import Counter from './Counter'
-import Checkmark from './Checkmark'
-
-import './SodiumTop.css'
+import SConfirm from './SConfirm'
+import SProfile from './SProfile'
 
 const SodiumTop = props => {
   return (
     <div className="sodium-top">
-      <div>
-        <Counter number={props.selectedCompanies.length} />
-        <Checkmark
-          selected={props.selectedCompanies.length > 0}
-          loaded={props.loaded} />
-      </div>
-    {
-      props.loaded && props.selectedCompanies.length === 1 ?
-      <div>
-        {props.selectedCompanies[0].name}
-      </div>
-      : null
-    }
+      <SConfirm
+        loaded={props.loaded}
+        number={props.selectedCompanies.length} />
+      <SProfile
+        loaded={props.loaded}
+        company={props.selectedCompanies.length === 1 ? props.selectedCompanies[0] : null} />
     </div>
   )
 }

@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 const Sodium = props => {
   return (
     <React.Fragment>
-      <Cloak visibleCondition={!props.loaded} inTime={.3} outTime={.1}>
+      <Cloak visibleCondition={!props.loaded} inTime={.1} outTime={.3}>
         <SodiumController
           canEdit={props.canEdit}
           isSodium={props.isSodium}
@@ -21,7 +21,9 @@ const Sodium = props => {
       <SodiumPanel
         isSodium={props.isSodium}
         loaded={props.loaded}
-        selectedCompanies={props.selectedCompanies} />
+        inProgress={props.inProgress}
+        selectedCompanies={props.selectedCompanies}
+        financials={props.financials} />
     </React.Fragment>
   )
 }

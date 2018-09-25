@@ -1,0 +1,9 @@
+.sodium-confirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sodium-confirm .loader {
+  width: unset;
+}
