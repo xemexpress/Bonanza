@@ -318,6 +318,14 @@ router.put('/:symbol/financials/:year', auth.required, (req, res, next) => {
       }
 
       if(typeof req.body.financial.position !== 'undefined'){
+        if(typeof req.body.financial.position.totalAssets !== 'undefined'){
+          financial.position.totalAssets = req.body.financial.position.totalAssets
+        }
+
+        if(typeof req.body.financial.position.totalLiabilities !== 'undefined'){
+          financial.position.totalLiabilities = req.body.financial.position.totalLiabilities
+        }
+
         if(typeof req.body.financial.position.currentAssets !== 'undefined'){
           financial.position.currentAssets = req.body.financial.position.currentAssets
         }

@@ -49,7 +49,9 @@ var FinancialSchema = new mongoose.Schema({
     },
     nonCurrentLiabilities: {
       total: Number
-    }
+    },
+    totalAssets: Number,
+    totalLiabilities: Number
   }
 }, { timestamps: true })
 
