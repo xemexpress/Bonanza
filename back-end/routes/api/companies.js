@@ -132,9 +132,10 @@ router.delete('/:symbol', auth.required, (req, res, next) => {
   Company.findOneAndRemove({ author: req.payload.id, symbol: req.params.symbol }).then(company => {
     if(!company){ return res.sendStatus(401) }
     
-    return Record.remove({ company: company._id }).then(() => {
-      return res.sendStatus(204)
-    })
+    return Promise.all([
+      Record.remove({ _id: { $in: company.records } }),
+      Financial.remove({ _id: { $in: company.financials } })
+    ]).then(() => res.sendStatus(204))
   }).catch(next)
 })
 
@@ -169,7 +170,6 @@ router.post('/:symbol/records', auth.required, (req, res, next) => {
     
     if(company.records.every(record => record.year !== req.body.record.year)){
       var record = new Record(req.body.record)
-      record.forCompany = company
 
       return record.save().then(() => {
         company.records.push(record)
@@ -276,7 +276,6 @@ router.post('/:symbol/financials', auth.required, (req, res, next) => {
     
     if(company.financials.every(financial => financial.year !== req.body.financial.year)){
       var financial = new Financial(req.body.financial)
-      financial.forCompany = company
 
       return financial.save().then(() => {
         company.financials.push(financial)
@@ -360,8 +359,8 @@ router.delete('/:symbol/financials/:year', auth.required, (req, res, next) => {
     let company = companyResult[0]
     if(!company){ return res.sendStatus(401) }
     
-    let target = company.financials.find(financial => financial.year === req.params.year)
-    if(!target){ return res.sendStatus(401) }
+    let financial = company.financials.find(financial => financial.year === req.params.year)
+    if(!financial){ return res.sendStatus(401) }
 
     let financialId = target._id
     company.financials.remove(financialId)
