@@ -199,7 +199,7 @@
 {
   "financial": {
     "updatedAt": "2017-08-13T18:24:36.162Z",
-    "year": "20141231",
+    "year": "20141231Y",
     "sharesOutstanding": 1,
     "currency": "億HKD",
     "cashFlow": {
@@ -235,7 +235,9 @@
       },
       "nonCurrentLiabilities": {
         "total": 3
-      }
+      },
+      "totalAssets": 4,
+      "totalLiabilities": 5
     }
   }
 }
@@ -246,7 +248,7 @@
 {
   "financials": [{
     "updatedAt": "2017-08-13T18:24:36.162Z",
-    "year": "20141231",
+    "year": "20141231Y",
     "sharesOutstanding": 1,
     "currency": "億HKD",
     "cashFlow": {
@@ -282,7 +284,9 @@
       },
       "nonCurrentLiabilities": {
         "total": 3
-      }
+      },
+      "totalAssets": 4,
+      "totalLiabilities": 5
     }
   }, {
     "updatedAt": "2017-08-14T00:10:59.720Z",
@@ -322,7 +326,9 @@
       },
       "nonCurrentLiabilities": {
         "total": 3
-      }
+      },
+      "totalAssets": 4,
+      "totalLiabilities": 5
     }
   }],
   "financialsCount": 2
@@ -600,7 +606,7 @@ Example request body:
 ```JSON
 {
   "financial": {
-    "year": "20141231",
+    "year": "20141231Y",
     "sharesOutstanding": 1,
     "currency": "億HKD",
     "cashFlow": {
