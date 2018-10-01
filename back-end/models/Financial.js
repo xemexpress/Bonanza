@@ -4,7 +4,7 @@ var FinancialSchema = new mongoose.Schema({
   year: {
     type: String,
     required: [true, "can't be blank"],
-    match: [/\d{8}/, 'is invalid']
+    match: [/\d{8}Y*/, 'is invalid']
   },
   currency: {
     type: String,
