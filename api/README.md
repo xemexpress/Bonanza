@@ -763,18 +763,18 @@ Admin Pass required, returns multiple profiles
 
 ### Delete Users
 
-`DELETE /api/admin/users`
+`DELETE /api/admin/user`
 
 Example request body:
 ```JSON
 {
-  "users": ["username1"]
+  "user": "username"
 }
 ```
 
 Admin Pass required, returns `{}`
 
-Optional field: `users` as an array of usernames
+Optional field: `user` as username of the targeted User.
 
 ### List Companies
 
