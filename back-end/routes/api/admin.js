@@ -31,7 +31,7 @@ router.delete('/user', auth.required, (req, res, next) => {
 
       Company.find({ author: user._id }).then(companies => {
         if(companies.length){
-          companyIds = companies.map(company => company._id).flat()
+          companyIds = companies.map(company => company._id)
           recordIds = companies.map(company => company.records).flat()
           financialIds = companies.map(company => company.financials).flat()
 
