@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SConfirm from './SConfirm'
-import SProfile from './SProfile'
+import SProfiles from './SProfiles'
 
 const SodiumTop = props => {
   return (
@@ -9,9 +9,9 @@ const SodiumTop = props => {
       <SConfirm
         loaded={props.loaded}
         number={props.selectedCompanies.length} />
-      <SProfile
+      <SProfiles
         loaded={props.loaded}
-        company={props.selectedCompanies.length === 1 ? props.selectedCompanies[0] : null} />
+        selectedCompanies={props.selectedCompanies} />
     </div>
   )
 }

@@ -4,7 +4,9 @@ import _superagent from 'superagent'
 import {
   API_ROOT,
   ARTICLES_PER_PAGE,
-  COMPANIES_PER_PAGE
+  COMPANIES_PER_PAGE,
+  ALPHAVANTAHE_API_ROOT,
+  ALPHAVANTAHE_API_KEY
 } from './constants'
 
 const superagent = superagentPromise(_superagent, global.Promise)
@@ -82,11 +84,21 @@ const Auth = {
     requests.post('/users/login', { user: { username: username, password: password }})
 }
 
+const makeUp4 = s => '0'.repeat(4-s.length)+s
+const namingConv = currency => currency === 'RMB' ? 'CNY' : currency
+const XSodium = {
+  getQuote: symbol =>
+    superagent.get(`${ALPHAVANTAHE_API_ROOT}/query?function=GLOBAL_QUOTE&symbol=${makeUp4(symbol)}.HK&apikey=${ALPHAVANTAHE_API_KEY}`),
+  getHKDFrom: currency =>
+    superagent.get(`${ALPHAVANTAHE_API_ROOT}/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${namingConv(currency)}&to_currency=HKD&apikey=${ALPHAVANTAHE_API_KEY}`)
+}
+
 export default {
   Articles,
   Companies,
   Records,
   Financials,
   Auth,
+  XSodium,
   setToken: _token => { token = _token }
 }

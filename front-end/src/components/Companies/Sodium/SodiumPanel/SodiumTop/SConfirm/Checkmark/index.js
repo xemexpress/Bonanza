@@ -7,7 +7,8 @@ import agent from '../../../../../../../agent'
 import './Checkmark.css'
 
 import {
-  LOAD_SODIUM,
+  LOAD_SODIUM_FINANCIALS,
+  LOAD_XSODIUM_QUOTES,
   UNLOAD_SODIUM
 } from '../../../../../../../constants'
 
@@ -17,9 +18,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: symbols => dispatch({
-    type: LOAD_SODIUM,
+  onLoadFinancials: symbols => dispatch({
+    type: LOAD_SODIUM_FINANCIALS,
     payload: Promise.all(symbols.map(symbol => agent.Financials.all(symbol)))
+  }),
+  onLoadQuotes: symbols => dispatch({
+    type: LOAD_XSODIUM_QUOTES,
+    payload: Promise.all(symbols.map(symbol => agent.XSodium.getQuote(symbol)))
   }),
   onUnload: () => dispatch({
     type: UNLOAD_SODIUM
@@ -35,7 +40,8 @@ const Checkmark = props => {
     if(props.loaded || props.inProgress){
       props.onUnload()
     }else if(props.selected){
-      props.onLoad(props.symbols)
+      props.onLoadFinancials(props.symbols)
+      props.onLoadQuotes(props.symbols)
     }
   }
   

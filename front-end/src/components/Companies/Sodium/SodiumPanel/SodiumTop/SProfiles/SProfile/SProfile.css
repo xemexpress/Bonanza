@@ -1,0 +1,38 @@
+.s-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.s-profile .logo {
+  object-fit: cover;
+  vertical-align: middle;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.s-profile .indices {
+  display: flex;
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.indices .PE, .indices .PB, .indices .R {
+  pointer-events: none;
+  transform: scale(0.98);
+}
+
+.updated-since {
+  font-size: 70%;
+  transition: opacity 0.3s ease-in-out;
+}
