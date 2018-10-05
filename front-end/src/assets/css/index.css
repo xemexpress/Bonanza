@@ -719,24 +719,26 @@ input[type=number]::-webkit-outer-spin-button {
   }  
 }
 
-/* CSS of each screen.
-
-Specifics - xs - iphone6s portrait
+/* Specifics - xs - iphone6s portrait */
+/* Height: 667px      Width: 375px */
 @media (max-width: 375px) {
   
 }
 
-Specifics - sm - iphone6s landscape
+/* Specifics - sm - iphone6s landscape */
+/* Height: 375px      Width: 667px */
 @media (min-width: 376px) and (max-width: 667px) {
   
 }
 
-Specifics - md - ipadII portrait
+/* Specifics - md - ipadII portrait */
+/* Height: 1024px      Width: 768px */
 @media (min-width: 668px) and (max-width: 768px) {
   
 }
 
-Specifics - lg - ipadII landscape
+/* Specifics - lg - ipadII landscape */
+/* Height: 768px      Width: 1024px */
 @media (min-width: 769px) {
   
-} */
+}
