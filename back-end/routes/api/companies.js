@@ -133,8 +133,8 @@ router.delete('/:symbol', auth.required, (req, res, next) => {
     if(!company){ return res.sendStatus(401) }
     
     return Promise.all([
-      Record.remove({ _id: { $in: company.records } }),
-      Financial.remove({ _id: { $in: company.financials } })
+      Record.deleteMany({ _id: { $in: company.records } }),
+      Financial.deleteMany({ _id: { $in: company.financials } })
     ]).then(() => res.sendStatus(204))
   }).catch(next)
 })
@@ -235,10 +235,10 @@ router.delete('/:symbol/records/:year', auth.required, (req, res, next) => {
     if(!targetRecord){ return res.sendStatus(401) }
 
     let recordId = targetRecord._id
-    company.records.remove(recordId)
+    company.records.deleteMany(recordId)
     
     return company.save().then(() => {
-      Record.remove({ _id: recordId }).then(() => {
+      Record.deleteMany({ _id: recordId }).then(() => {
         return res.sendStatus(204)
       })
     })
@@ -363,10 +363,10 @@ router.delete('/:symbol/financials/:year', auth.required, (req, res, next) => {
     if(!financial){ return res.sendStatus(401) }
 
     let financialId = target._id
-    company.financials.remove(financialId)
+    company.financials.deleteMany(financialId)
     
     return company.save().then(() => {
-      Financial.remove({ _id: financialId }).then(() => {
+      Financial.deleteMany({ _id: financialId }).then(() => {
         return res.sendStatus(204)
       })
     })
@@ -379,7 +379,7 @@ router.delete('/:symbol/financials', auth.required, (req, res, next) => {
     let company = companyResult[0]
     if(!company){ return res.sendStatus(401) }
     
-    Financial.remove({ _id: { $in: company.financials } }).then(() => {
+    Financial.deleteMany({ _id: { $in: company.financials } }).then(() => {
       company.financials = []
 
       return company.save().then(() => res.sendStatus(204))

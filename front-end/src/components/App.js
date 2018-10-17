@@ -47,7 +47,7 @@ import {
 } from '../constants'
 
 const mapStateToProps = state => ({
-  ...state.common,
+  ...state.common
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -108,9 +108,6 @@ class App extends React.Component {
       }
         <Header locationHash={window.location.hash} currentUser={this.props.currentUser} appName={this.props.appName} />
         <Switch>
-          {/* Testing Purpose */}
-          {/* <Route path='/' component={Records} /> */}
-
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route path='/articleEditor/:id?' component={ArticleEditor} />

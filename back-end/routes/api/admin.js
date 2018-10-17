@@ -36,9 +36,9 @@ router.delete('/user', auth.required, (req, res, next) => {
           financialIds = companies.map(company => company.financials).flat()
 
           return Promise.all([
-            Company.remove({ _id: { $in: companyIds } }),
-            Record.remove({ _id: { $in: recordIds } }),
-            Financial.remove({ _id: { $in: financialIds } })
+            Company.deleteMany({ _id: { $in: companyIds } }),
+            Record.deleteMany({ _id: { $in: recordIds } }),
+            Financial.deleteMany({ _id: { $in: financialIds } })
           ]).then(() => res.sendStatus(204))
         }
 
@@ -126,8 +126,8 @@ router.delete('/companies', auth.required, (req, res, next) => {
 
         Company.find(query).then(companies => {
           let targetCompanies = companies.map(company => company._id)
-          Record.remove({ company: { $in: targetCompanies } }).then(() => {
-            Company.remove({ _id: { $in: targetCompanies } }).then(() => {
+          Record.deleteMany({ company: { $in: targetCompanies } }).then(() => {
+            Company.deleteMany({ _id: { $in: targetCompanies } }).then(() => {
               return res.sendStatus(204)
             })
           })
@@ -180,7 +180,7 @@ router.get('/financials', auth.required, (req, res, next) => {
 // Delete Articles
 router.delete('/articles', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    Article.remove({}).then(() => {
+    Article.deleteMany({}).then(() => {
       return res.sendStatus(204)
     }).catch(next)
   }else{

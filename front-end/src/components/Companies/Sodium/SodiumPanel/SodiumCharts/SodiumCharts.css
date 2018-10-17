@@ -1,0 +1,36 @@
+.s-charts {
+  position: relative;
+  top: 7px;
+  height: 88%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+/* Specifics - sm - iphone6s landscape */
+/* Height: 375px      Width: 667px */
+@media (min-width: 376px) and (max-width: 667px) {
+  .s-charts {
+    height: 80%;
+  }
+}
+
+.s-chart {
+  height: 284px;
+  margin-bottom: 10px;
+}
+
+/* Specifics - md - ipadII portrait */
+/* Height: 1024px      Width: 768px */
+@media (min-width: 668px) and (max-width: 768px) {
+  .s-chart {
+    margin-bottom: 100px;
+  }
+}
+
+/* Specifics - lg - ipadII landscape */
+/* Height: 768px      Width: 1024px */
+@media (min-width: 769px) {
+  .s-chart {
+    margin-bottom: 60px;
+  }
+}

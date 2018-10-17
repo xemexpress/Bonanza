@@ -23,7 +23,7 @@ const Sodium = props => {
         loaded={props.loaded}
         inProgress={props.inProgress}
         selectedCompanies={props.selectedCompanies}
-        financials={props.financials} />
+        financialsList={props.financialsList} />
     </React.Fragment>
   )
 }

@@ -7,9 +7,7 @@ import {
 } from '../constants'
 
 const defaultState = {
-  // Testing
-  isSodium: true,
-  // isSodium: false,
+  isSodium: false,
   loaded: false,
   selectedCompanies: [],
   financialsList: [],

@@ -3,6 +3,7 @@ import React from 'react'
 import Cloak from '../../../common/Cloak'
 import SodiumController from '../SodiumController'
 import SodiumTop from './SodiumTop'
+import SodiumCharts from './SodiumCharts'
 
 import './SodiumPanel.css'
 
@@ -23,9 +24,9 @@ const SodiumPanel = props => {
       <SodiumTop
         loaded={props.loaded}
         selectedCompanies={props.selectedCompanies} />
-      <div>
-        {/* {props.financials} */}
-      </div>
+      <SodiumCharts
+        loaded={props.loaded}
+        financialsList={props.financialsList} />
     </div>
   )
 }

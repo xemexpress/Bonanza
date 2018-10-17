@@ -85,7 +85,7 @@ router.put('/:article', auth.required, (req, res, next) => {
 // Delete Article (Admin pass required)
 router.delete('/:article', auth.required, (req, res, next) => {
   if(req.payload.username === auth.admin){
-    req.article.remove().then(() => {
+    req.article.deleteMany().then(() => {
       return res.sendStatus(204)
     }).catch(next)
   }else{

@@ -386,7 +386,7 @@ Offset number of articles (default is 0):
 
 Authentication optional, returns [multiple articles](#multiple-articles), ordered by most recent first
 
-### Authentication:
+### Authentication
 
 `POST /api/users/login`
 
@@ -404,7 +404,7 @@ No authentication required, returns a [User](#users-for-authentication)
 
 Required fields: `username`, `password`
 
-### Registration:
+### Registration
 
 `POST /api/users`
 

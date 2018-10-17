@@ -28,6 +28,9 @@ if(!isProduction){
   app.use(errorhandler())
 }
 
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useCreateIndex', true)
+
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI) 
 }else{
