@@ -10,8 +10,7 @@ const defaultState = {
   isSodium: false,
   loaded: false,
   selectedCompanies: [],
-  financialsList: [],
-  currencies: []
+  financialsList: []
 }
 
 export default (state=defaultState, action) => {
@@ -51,8 +50,7 @@ export default (state=defaultState, action) => {
         ...state,
         inProgress: false,
         loaded: !action.error && state.inProgress,
-        financialsList: action.error || !state.inProgress ? [] : action.payload.map(companyData => companyData.financials),
-        currencies: action.error || !state.inProgress ? [] : action.payload.map(companyData => companyData.financials).map(financials => financials.map(financial => financial.currency)).flat().filter((value, index, array) => array.indexOf(value) === index).map(currency => currency.slice(-3))
+        financialsList: action.error || !state.inProgress ? [] : action.payload.map(companyData => companyData.financials)
       }
     case UNLOAD_SODIUM:
       return {

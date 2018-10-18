@@ -75,9 +75,9 @@ class RecordsView extends React.Component {
       return (
         <React.Fragment>
           {/* Left Section */}
-          <a className="left-layout" onClick={this.togglePlan}>
+          <span className="left-layout" onClick={this.togglePlan}>
             <img src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : company.logo} height="20px" style={{ borderRadius: "50%", border: "1px solid #586069" }} alt={company.abbr} />
-          </a>
+          </span>
   
           {/* Middle Section */}
           <div className="nav-item middle-layout company-name">

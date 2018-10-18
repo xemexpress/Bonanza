@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Plot from 'react-plotly.js'
+
+import SChart from './SChart'
 
 import {
   RECENT_SODIUM,
@@ -9,6 +12,10 @@ import {
 const commonProps = {
   type: 'bar'
 }
+
+const mapStateToProps = state => ({
+  showCosts: state.dSodium.showCosts
+})
 
 class Costs extends React.Component {
   constructor(props){
@@ -109,16 +116,20 @@ class Costs extends React.Component {
   }
 
   render(){
+    if(!this.props.showCosts){ return null }
+    
     return (
-      <Plot
-        data={this.state.showingRecent ? this.state.recentData : this.state.data}
-        layout={this.state.layout}
-        config={this.state.config}
-        style={this.state.style}
-        onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
-        useResizeHandler={this.state.useResizeHandler} />
+      <SChart>
+        <Plot
+          data={this.state.showingRecent ? this.state.recentData : this.state.data}
+          layout={this.state.layout}
+          config={this.state.config}
+          style={this.state.style}
+          onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
+          useResizeHandler={this.state.useResizeHandler} />
+      </SChart>
     )
   }
 }
 
-export default Costs
+export default connect(mapStateToProps, ()=>({}))(Costs)

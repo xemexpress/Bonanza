@@ -6,12 +6,9 @@ import PEButton from './PEButton'
 import PBButton from './PBButton'
 import RButton from './RButton'
 
-import agent from '../../../../../../../agent'
-
 import './SProfile.css'
 
 import {
-  LOAD_XSODIUM_EXCHANGE_RATES,
   API_ROOT,
   SMILEY
 } from '../../../../../../../constants'
@@ -21,17 +18,8 @@ const latestYRecord = financials => financials.filter(financial => financial.yea
 const average = financials => financials.reduce((prev, financial) => prev + financial.resonance.profit, 0) / financials.length
 
 const mapStateToProps = state => ({
-  currencies: state.sodium.currencies,
   hkdFromCurrency: state.xSodium.hkdFromCurrency,
-  exchangeRatesUpdated: state.xSodium.exchangeRatesUpdated,
   unitScale: state.xSodium.unitScale
-})
-
-const mapDispatchToProps = dispatch => ({
-  onLoadExchangeRates: currencies => dispatch({
-    type: LOAD_XSODIUM_EXCHANGE_RATES,
-    payload: Promise.all(currencies.map(currency => agent.XSodium.getHKDFrom(currency)))
-  })
 })
 
 class SProfile extends React.Component {
@@ -60,11 +48,6 @@ class SProfile extends React.Component {
       totalAssets: latestYRecord(this.props.financials).position.totalAssets,
       totalLiabilities: latestYRecord(this.props.financials).position.totalLiabilities
     })
-    
-    const exchangeRatesToBeUpdated = this.props.currencies.filter(currency => !this.props.exchangeRatesUpdated[currency])
-    if(exchangeRatesToBeUpdated.length > 0){
-      this.props.onLoadExchangeRates(exchangeRatesToBeUpdated)
-    }
   }
 
   render(){
@@ -118,4 +101,4 @@ class SProfile extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SProfile)
+export default connect(mapStateToProps, ()=>({}))(SProfile)

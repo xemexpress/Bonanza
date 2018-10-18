@@ -5,7 +5,7 @@ import {
 
 const defaultState = {
   showCosts: false,
-  showNetAssetValuePerShare: false
+  showNetAssetValuesPerShare: false
 }
 
 export default (state=defaultState, action) => {
@@ -20,7 +20,7 @@ export default (state=defaultState, action) => {
       if(action.schart === 'dNetAssetValuesPerShare'){
         return {
           ...state,
-          showNetAssetValuePerShare: !state.showNetAssetValuePerShare
+          showNetAssetValuesPerShare: !state.showNetAssetValuesPerShare
         }
       }
       break

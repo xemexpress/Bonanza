@@ -4,10 +4,15 @@ import {
   UNLOAD_SODIUM
 } from '../constants'
 
+// Helper function
+const namingFix = fromCurrency => fromCurrency === 'CNY' ? 'RMB' : fromCurrency
+
+// Local Storage
+const exchangeRates = JSON.parse(window.localStorage.getItem('exchangeRates'))
+
 const defaultState = {
   quotes: [],
-  hkdFromCurrency: { HKD: 1, RMB: 1.2496, USD: 7.85 },
-  exchangeRatesUpdated: { HKD: false, RMB: false, USD: false },
+  hkdFromCurrency: exchangeRates !== null ? exchangeRates : { HKD: 1, RMB: 1.2496, USD: 7.85 },
   unitScale: { '億': 100000000 }
 }
 
@@ -20,28 +25,23 @@ export default (state=defaultState, action) => {
       }
     case LOAD_XSODIUM_EXCHANGE_RATES:
       if(!action.error){
-        const realTimeQuotes = state.hkdFromCurrency
-        const updateCheck = state.exchangeRatesUpdated
-
-        const results = action.payload.map(res => [res.body['Realtime Currency Exchange Rate']['1. From_Currency Code'], Number(res.body['Realtime Currency Exchange Rate']['5. Exchange Rate'])])
-        // Results in format: [[fromCurrency, toHKD]]
-        results.forEach(([fromCurrency, toHKD]) => {
-          fromCurrency = fromCurrency === 'CNY' ? 'RMB' : fromCurrency
-          realTimeQuotes[fromCurrency] = toHKD
-          updateCheck[fromCurrency] = true
+        const exchangeRates = state.hkdFromCurrency
+        action.payload.forEach(res => {
+          let fromCurrency = namingFix(res.body['Realtime Currency Exchange Rate']['1. From_Currency Code'])
+          let toHKD = Number(res.body['Realtime Currency Exchange Rate']['5. Exchange Rate'])
+          exchangeRates[fromCurrency] = toHKD
         })
+        window.localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates))
+        window.localStorage.setItem('exchangeRatesUpdatedAt', Date.now())
+        
         return {
           ...state,
-          hkdFromCurrency: realTimeQuotes,
-          exchangeRatesUpdated: updateCheck
+          hkdFromCurrency: exchangeRates
         }
       }
       break
     case UNLOAD_SODIUM:
-      return {
-        ...defaultState,
-        exchangeRatesUpdated: state.exchangeRatesUpdated
-      }
+      return defaultState
     default:
   }
 

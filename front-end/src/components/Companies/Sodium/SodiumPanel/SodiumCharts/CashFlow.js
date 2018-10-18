@@ -1,6 +1,8 @@
 import React from 'react'
 import Plot from 'react-plotly.js'
 
+import SChart from './SChart'
+
 import {
   RECENT_SODIUM,
   NET_OPERATING_COLOR,
@@ -109,13 +111,15 @@ class CashFlow extends React.Component {
   
   render(){
     return (
-      <Plot
-        data={this.state.showingRecent ? this.state.recentData : this.state.data}
-        layout={this.state.layout}
-        config={this.state.config}
-        style={this.state.style}
-        onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
-        useResizeHandler={this.state.useResizeHandler} />
+      <SChart>
+        <Plot
+          data={this.state.showingRecent ? this.state.recentData : this.state.data}
+          layout={this.state.layout}
+          config={this.state.config}
+          style={this.state.style}
+          onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
+          useResizeHandler={this.state.useResizeHandler} />
+      </SChart>
     )
   }
 }

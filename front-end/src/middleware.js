@@ -44,6 +44,8 @@ const localStorageMiddleware = store => next => action => {
     }
   }else if(action.type === LOGOUT){
     window.localStorage.setItem('jwt', '')
+    window.localStorage.setItem('exchangeRates', '')
+    window.localStorage.setItem('exchangeRatesUpdatedAt', '')
     agent.setToken(null)
   }
 
