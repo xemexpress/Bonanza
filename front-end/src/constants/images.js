@@ -1,7 +1,3 @@
-import _UNIMEMO_LOGO from '../assets/img/UniMemo.jpg'
-import _ZA_LOGO from '../assets/img/ZA.svg'
-import _SMILEY from '../assets/img/Smiley.jpg'
-
-export const UNIMEMO_LOGO = _UNIMEMO_LOGO
-export const ZA_LOGO = _ZA_LOGO
-export const SMILEY = _SMILEY
+export const UNIMEMO_LOGO = 'https://res.cloudinary.com/unimemo-dfd94/image/upload/v1539924378/za/UniMemo.jpg'
+export const ZA_LOGO = 'https://res.cloudinary.com/unimemo-dfd94/image/upload/v1539924377/za/ZA.svg'
+export const SMILEY = 'https://res.cloudinary.com/unimemo-dfd94/image/upload/v1539924378/za/Smiley.jpg'

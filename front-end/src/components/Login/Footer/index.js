@@ -6,7 +6,7 @@ import {
   UNIMEMO_LOGO
 } from '../../../constants'
 
-const Footer = props => {
+const Footer = () => {
   return (
     <div className="footer">
       <div>Powered by UniMemo</div>

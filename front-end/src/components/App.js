@@ -39,7 +39,7 @@ import {
   faFulcrum
 } from '@fortawesome/free-brands-svg-icons'
 
-import '../assets/css/index.css'
+import './index.css'
 
 import {
   APP_LOADED,
