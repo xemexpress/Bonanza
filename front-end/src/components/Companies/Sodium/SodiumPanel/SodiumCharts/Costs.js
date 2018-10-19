@@ -97,7 +97,8 @@ class Costs extends React.Component {
         },
         yaxis: {
           title: 'Hundred Million HKD',
-          titlefont: { size: 7 }
+          titlefont: { size: 7 },
+          fixedrange: true
         }
       },
       config: {
