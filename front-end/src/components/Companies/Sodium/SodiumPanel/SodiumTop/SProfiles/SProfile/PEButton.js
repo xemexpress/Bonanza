@@ -9,7 +9,9 @@ const PEButton = ({ quote, averageEarningsPerShare }) => {
       <button className='btn btn-outline-info'>
       {
         !quote ?
-        <span>PE ~</span>
+        'PE ~'
+        : isNaN(value) ?
+        'PE ***'
         : value <= 14 ?
         <b>PE {present}</b>
         : `PE ${present}`

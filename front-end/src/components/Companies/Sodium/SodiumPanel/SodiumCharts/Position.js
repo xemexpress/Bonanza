@@ -114,7 +114,6 @@ class Position extends React.Component {
           orientation: 'h',
           font: { size: 7 },
         },
-        xaxis: { fixedrange: true },
         yaxis: {
           title: 'Hundred Million HKD',
           titlefont: { size: 7 },

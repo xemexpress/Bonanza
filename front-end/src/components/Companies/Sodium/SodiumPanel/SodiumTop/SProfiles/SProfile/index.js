@@ -14,7 +14,7 @@ import {
 } from '../../../../../../../constants'
 
 // Helper functions
-const latestYRecord = financials => financials.filter(financial => financial.year.endsWith('Y')).slice(-1)[0]
+const getLatestYRecord = financials => financials.filter(financial => financial.year.endsWith('Y')).slice(-1)
 const average = financials => financials.reduce((prev, financial) => prev + financial.resonance.profit, 0) / financials.length
 
 const mapStateToProps = state => ({
@@ -38,16 +38,20 @@ class SProfile extends React.Component {
   }
 
   componentWillMount(){
-    this.setState({
-      date: latestYRecord(this.props.financials).year.slice(0,6),
-      currency: latestYRecord(this.props.financials).currency.slice(-3),         // 3-letter: 'HKD', 'RMB', 'USD'
-      currencyScale: latestYRecord(this.props.financials).currency.replace(latestYRecord(this.props.financials).currency.slice(-3), ''),
-      sharesOutstanding: latestYRecord(this.props.financials).sharesOutstanding,
-      profit: latestYRecord(this.props.financials).resonance.profit,
-      averageProfit: average(this.props.financials.filter(financial => financial.year.endsWith('Y')).slice(-7)),
-      totalAssets: latestYRecord(this.props.financials).position.totalAssets,
-      totalLiabilities: latestYRecord(this.props.financials).position.totalLiabilities
-    })
+    let latestYRecord = getLatestYRecord(this.props.financials)
+    if(latestYRecord.length !== 0){
+      latestYRecord = latestYRecord[0]
+      this.setState({
+        date: latestYRecord.year.slice(0,6),
+        currency: latestYRecord.currency.slice(-3),         // 3-letter: 'HKD', 'RMB', 'USD'
+        currencyScale: latestYRecord.currency.replace(latestYRecord.currency.slice(-3), ''),
+        sharesOutstanding: latestYRecord.sharesOutstanding,
+        profit: latestYRecord.resonance.profit,
+        averageProfit: average(this.props.financials.filter(financial => financial.year.endsWith('Y')).slice(-7)),
+        totalAssets: latestYRecord.position.totalAssets,
+        totalLiabilities: latestYRecord.position.totalLiabilities
+      })
+    }
   }
 
   render(){
@@ -68,7 +72,7 @@ class SProfile extends React.Component {
     const setUnitHKD = amount => amount * unitScale[currencyScale] * hkdFromCurrency[currency]
     
     // Processed data
-    const netAssetValue = totalAssets !== null && totalLiabilities !== null ? totalAssets - totalLiabilities : NaN
+    const netAssetValue = totalAssets && totalLiabilities ? totalAssets - totalLiabilities : NaN
     const netAssetValuePerShare = netAssetValue ? setUnitHKD(netAssetValue) / sharesOutstanding : NaN
     const averageEarningsPerShare = setUnitHKD(averageProfit) / sharesOutstanding
 
@@ -80,9 +84,9 @@ class SProfile extends React.Component {
             {
               company.link ?
               <a href={company.link} target="_blank" rel="noopener noreferrer">
-                <img className='logo' src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : company.logo} alt={company.abbr} />
+                <img className='logo' src={company.logo} alt={company.abbr} />
               </a>
-              : <img className='logo' src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : company.logo} alt={company.abbr} />
+              : <img className='logo' src={company.logo} alt={company.abbr} />
             }
               <div className='name'>{company.abbr}</div>
               <UpdatedSince date={date} />

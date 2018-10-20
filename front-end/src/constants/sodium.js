@@ -1,6 +1,6 @@
 export const OTHER_CURRENCIES = ['RMB', 'USD']
 export const RECENT_SODIUM = 14
-export const COMPULSORY_MODE_BAR_BUTTONS = ['toImage', 'zoomIn2d', 'zoomOut2d', 'autoScale2d']
+export const COMPULSORY_MODE_BAR_BUTTONS = ['zoomIn2d', 'zoomOut2d', 'autoScale2d']
 
 // Color Schemes
 // cashFlow

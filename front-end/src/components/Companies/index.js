@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import ScrollLock from 'react-scrolllock'
 
 import CompanyList from './CompanyList'
 import Sodium from './Sodium'
@@ -44,11 +43,6 @@ class Companies extends React.Component {
     
     return (
       <React.Fragment>
-      {
-        this.props.sodiumLoaded ?
-        <ScrollLock accountForScrollbars={false} />
-        : null
-      }
         <div className="row">
           <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
             <CompanyList

@@ -3,7 +3,8 @@ import {
   SELECT_COMPANY,
   LOAD_SODIUM_FINANCIALS,
   UNLOAD_SODIUM,
-  ASYNC_START
+  ASYNC_START,
+  ALLOW_EDIT_COMPANIES
 } from '../constants'
 
 const defaultState = {
@@ -59,6 +60,11 @@ export default (state=defaultState, action) => {
         loaded: false,
         financialsList: []
       }
+    case ALLOW_EDIT_COMPANIES:
+      if(state.isSodium){
+        return defaultState
+      }
+      break
     default:
   }
 

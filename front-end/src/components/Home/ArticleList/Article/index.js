@@ -37,7 +37,7 @@ const Article = props => {
       article.image ?
       <div className="row">
         <div className="offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8 offset-xs-1 col-xs-10">
-          <img width="100%" src={API_ROOT === 'http://localhost:3000/api' ? SMILEY : article.image} alt={`${article.body.slice(17)}...`} />
+          <img width="100%" src={article.image} alt={`${article.body.slice(17)}...`} />
         </div>
       </div>
       : null

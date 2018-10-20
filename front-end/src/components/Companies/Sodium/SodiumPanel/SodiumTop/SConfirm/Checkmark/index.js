@@ -39,9 +39,11 @@ const Checkmark = props => {
 
     if(props.loaded || props.inProgress){
       props.onUnload()
+      document.body.classList.remove('locked')
     }else if(props.selected){
       props.onLoadFinancials(props.symbols)
       props.onLoadQuotes(props.symbols)
+      document.body.classList.add('locked')
     }
   }
   

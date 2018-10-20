@@ -46,6 +46,10 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 0 !important;
 }
 
+.locked {
+  overflow-y: hidden;
+}
+
 /* Functional */
 .btn {
   border: 1px solid transparent;

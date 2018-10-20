@@ -56,7 +56,6 @@ class NetAssetValuesPerShare extends React.Component {
         },
         autosize: true,
         showlegend: false,
-        xaxis: { fixedrange: true },
         yaxis: {
           title: 'HKD',
           titlefont: { size: 7 },

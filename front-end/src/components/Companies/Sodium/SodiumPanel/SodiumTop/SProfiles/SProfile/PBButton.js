@@ -9,7 +9,9 @@ const PBButton = ({ quote, netAssetValuePerShare }) => {
       <button className='btn btn-outline-positive'>
       {
         !quote ?
-        <span>PB ~</span>
+        'PB ~'
+        : isNaN(value) ?
+        'PB ***'
         : value <= 0.67 ?
         <b>PB {present}</b>
         : `PB ${present}`

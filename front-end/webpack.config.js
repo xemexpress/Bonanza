@@ -1,5 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ManifestPlugin = require('webpack-manifest-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   module: {
@@ -34,6 +36,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
+    }),
+    new ManifestPlugin(),
+    new FaviconsWebpackPlugin({
+      logo: './public/favicon.ico',
+      title: 'Bonanza'
     })
   ]
 }
