@@ -1,7 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const ManifestPlugin = require('webpack-manifest-plugin')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const AppManifestWebpackPlugin = require("app-manifest-webpack-plugin")
 
 module.exports = {
   module: {
@@ -37,10 +36,15 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
-    new ManifestPlugin(),
-    new FaviconsWebpackPlugin({
-      logo: './public/favicon.ico',
-      title: 'Bonanza'
+    new AppManifestWebpackPlugin({
+      logo: "./public/favicon.ico",
+      config: {
+        appName: "Bonanza",
+        short_name: "ZA",
+        appDescription: "To know what you're investing in",
+        developerName: "xemexpress",
+        start_url: "./index.html",
+      }
     })
   ]
 }
