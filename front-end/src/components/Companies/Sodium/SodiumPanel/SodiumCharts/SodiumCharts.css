@@ -6,17 +6,36 @@
   overflow-y: scroll;
 }
 
+.s-chart {
+  height: 284px;
+  margin-bottom: 10px;
+}
+
+.chart-details {
+  margin-top: 30px;
+  font-size: small;
+  opacity: 0.5;
+}
+
+.chart-details:hover {
+  opacity: 1;
+}
+
+.chart-detail {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
 /* Specifics - sm - iphone6s landscape */
 /* Height: 375px      Width: 667px */
 @media (min-width: 376px) and (max-width: 667px) {
   .s-charts {
     height: 80%;
   }
-}
-
-.s-chart {
-  height: 284px;
-  margin-bottom: 10px;
+  .chart-detail {
+    width: 31%;
+  }
 }
 
 /* Specifics - md - ipadII portrait */
@@ -25,6 +44,9 @@
   .s-chart {
     margin-bottom: 100px;
   }
+  .chart-detail {
+    width: 27%;
+  }
 }
 
 /* Specifics - lg - ipadII landscape */
@@ -32,5 +54,8 @@
 @media (min-width: 769px) {
   .s-chart {
     margin-bottom: 60px;
+  }
+  .chart-detail {
+    width: 19.8%;
   }
 }

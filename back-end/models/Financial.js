@@ -9,7 +9,7 @@ var FinancialSchema = new mongoose.Schema({
   currency: {
     type: String,
     required: [true, "can't be blank"],
-    match: [/.?[A-Z]{3}/, 'is invalid']
+    match: [/.*[A-Z]{3}/, 'is invalid']
   },
   sharesOutstanding: {
     type: Number,

@@ -9,9 +9,7 @@ import './Company.css'
 import {
   VIEW_COMPANY_RECORDS,
   JUMPSTART,
-  SELECT_COMPANY,
-  API_ROOT,
-  SMILEY
+  SELECT_COMPANY
 } from '../../../../constants'
 
 const mapStateToProps = state => ({

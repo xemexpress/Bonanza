@@ -17,6 +17,8 @@ const defaultState = {
 export default (state=defaultState, action) => {
   switch(action.type){
     case SWITCH_SODIUM:
+      if(state.isSodium){ document.body.classList.remove('locked') }
+      
       return {
         ...state,
         isSodium: !state.isSodium,
@@ -25,7 +27,7 @@ export default (state=defaultState, action) => {
         financialsList: []
       }
     case SELECT_COMPANY:
-      if(state.selectedCompanies.length !== 0 && state.selectedCompanies.indexOf(action.company) !== -1){
+      if(state.selectedCompanies.length !== 0 && state.selectedCompanies.some(company => company.symbol === action.company.symbol)){
         return {
           ...state,
           inProgress: false,

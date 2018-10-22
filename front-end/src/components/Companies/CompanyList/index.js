@@ -13,9 +13,9 @@ import {
 } from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
-  onLoadMoreCompanies: (companiesDeleted, page, companyName) => dispatch({
+  onLoadMoreCompanies: (companiesDeleted, page, companyName, tags) => dispatch({
     type: COMPANIES_PAGE_LOADED,
-    payload: agent.Companies.all(companiesDeleted, page, companyName)
+    payload: agent.Companies.all(companiesDeleted, page, companyName, tags)
   })
 })
 
@@ -37,7 +37,7 @@ class CompanyList extends React.Component {
       
       timeout = setTimeout(() => {
         this.setState({ page: this.state.page + 1 })
-        this.props.onLoadMoreCompanies(this.props.companiesDeleted, this.state.page, this.props.search, this.props.tag)
+        this.props.onLoadMoreCompanies(this.props.companiesDeleted, this.state.page, this.props.search, this.props.tags)
 
         if(companiesRemained <= COMPANIES_PER_PAGE){
           this.setState({ hasMore: false })

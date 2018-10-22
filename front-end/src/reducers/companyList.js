@@ -4,12 +4,13 @@ import {
   ALLOW_EDIT_COMPANIES,
   DELETE_COMPANY,
   COMPANIES_PAGE_SEARCH_LOADED,
-  COMPANIES_PAGE_TAG_LOADED
+  COMPANIES_PAGE_TAG_LOADED,
+  THE_TAGS
 } from '../constants'
 
 const defaultState = {
   search: '',
-  tags: '',
+  tags: THE_TAGS,
   canEdit: false
 }
 

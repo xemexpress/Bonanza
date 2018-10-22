@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 class Companies extends React.Component {
   componentWillMount(){
     if(this.props.currentUser){
-      this.props.onLoad(agent.Companies.all())
+      this.props.onLoad(agent.Companies.all(0, 0, '', this.props.tags))
     }
   }
 
@@ -47,7 +47,7 @@ class Companies extends React.Component {
           <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
             <CompanyList
               search={this.props.search}
-              tag={this.props.tag}
+              tags={this.props.tags}
               companies={this.props.companies}
               companiesCount={this.props.companiesCount}
               companiesDeleted={this.props.companiesDeleted}

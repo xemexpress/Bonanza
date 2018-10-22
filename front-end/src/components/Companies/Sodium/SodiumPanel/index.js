@@ -26,6 +26,7 @@ const SodiumPanel = props => {
         selectedCompanies={props.selectedCompanies} />
       <SodiumCharts
         loaded={props.loaded}
+        selectedCompanies={props.selectedCompanies}
         financialsList={props.financialsList} />
     </div>
   )

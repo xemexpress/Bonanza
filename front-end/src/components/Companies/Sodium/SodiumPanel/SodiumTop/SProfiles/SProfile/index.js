@@ -8,14 +8,9 @@ import RButton from './RButton'
 
 import './SProfile.css'
 
-import {
-  API_ROOT,
-  SMILEY
-} from '../../../../../../../constants'
-
 // Helper functions
 const getLatestYRecord = financials => financials.filter(financial => financial.year.endsWith('Y')).slice(-1)
-const average = financials => financials.reduce((prev, financial) => prev + financial.resonance.profit, 0) / financials.length
+const getAverageProfit = financials => financials.reduce((prev, financial, i, financials) => prev + financial.resonance.profit / financials.length, 0)
 
 const mapStateToProps = state => ({
   hkdFromCurrency: state.xSodium.hkdFromCurrency,
@@ -47,7 +42,7 @@ class SProfile extends React.Component {
         currencyScale: latestYRecord.currency.replace(latestYRecord.currency.slice(-3), ''),
         sharesOutstanding: latestYRecord.sharesOutstanding,
         profit: latestYRecord.resonance.profit,
-        averageProfit: average(this.props.financials.filter(financial => financial.year.endsWith('Y')).slice(-7)),
+        averageProfit: getAverageProfit(this.props.financials.filter(financial => financial.year.endsWith('Y')).slice(-7)),
         totalAssets: latestYRecord.position.totalAssets,
         totalLiabilities: latestYRecord.position.totalLiabilities
       })

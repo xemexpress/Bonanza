@@ -12,9 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   SUBMIT_RECORD,
   RECORDS_PAGE_UNLOADED,
-  TOGGLE_PLAN,
-  API_ROOT,
-  SMILEY
+  TOGGLE_PLAN
 } from '../../../constants'
 
 const mapStateToProps = state => ({

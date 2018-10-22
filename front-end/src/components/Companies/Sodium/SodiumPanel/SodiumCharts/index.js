@@ -6,6 +6,7 @@ import Resonance from './Resonance'
 import Costs from './Costs'
 import Position from './Position'
 import NetAssetValuesPerShare from './NetAssetValuesPerShare'
+import SCompare from './SCompare'
 
 import './SodiumCharts.css'
 
@@ -16,23 +17,27 @@ const mapStateToProps = state => ({
 
 const SodiumCharts = props => {
   const {
-    loaded, financialsList,
+    loaded, selectedCompanies, financialsList,
     hkdFromCurrency, unitScale
   } = props
   
   if(!loaded){ return null }
 
-  if(financialsList.length === 1 && financialsList[0].length > 0){
-    const financials = financialsList[0].filter(financial => financial.resonance.revenue !== null)
+  if(selectedCompanies.length === 1){
+    let financials = financialsList[0]
+    if(financials.length === 0){ return null }
+
+    financials = financials.filter(financial => financial.resonance.revenue !== null)
 
     // Common
     const years = financials.map(financial => Number(financial.year.slice(0,6)) / 100)
     const currency = financials[0].currency.slice(-3)
     const currencyScale = financials[0].currency.replace(currency, '')
-
+  
     // Helper functions
     const setHKD = amount => amount * hkdFromCurrency[currency]
-    
+    const makeScale = amount => amount * unitScale[currencyScale]
+
     // Supplementary chart props: Costs
     const salesCosts = financials.map(financial => setHKD(financial.resonance.salesCost))
     const sellingExpenses = financials.map(financial => setHKD(financial.resonance.sellingExpense))
@@ -40,11 +45,11 @@ const SodiumCharts = props => {
     const financingCosts = financials.map(financial => setHKD(financial.resonance.financingCost))
 
     // Supplementary chart props: NetAssetValuePerShare
-    const netAssetValuesPerShare = financials.map(financial => financial.position.totalAssets !== null && financial.position.totalLiabilities !== null && financial.sharesOutstanding !== 1 ? setHKD(financial.position.totalAssets - financial.position.totalLiabilities) * unitScale[currencyScale] / financial.sharesOutstanding : null)
+    const netAssetValuesPerShare = financials.map(financial => financial.position.totalAssets && financial.position.totalLiabilities && financial.sharesOutstanding !== 1 ? makeScale(setHKD(financial.position.totalAssets - financial.position.totalLiabilities)) / financial.sharesOutstanding : null)
 
     // Resonance
     const revenues = financials.map(financial => setHKD(financial.resonance.revenue))
-    const grossProfits = financials.map((financial, i) => Math.round(setHKD(financial.resonance.revenue - salesCosts[i] - sellingExpenses[i])*1000000)/1000000)
+    const grossProfits = financials.map((financial, i) => Math.round(setHKD(financial.resonance.revenue - salesCosts[i] - sellingExpenses[i]) * 1000000) / 1000000)
     const profits = financials.map(financial => setHKD(financial.resonance.profit))
 
     // Position
@@ -87,13 +92,28 @@ const SodiumCharts = props => {
           netAssetValuesPerShare={netAssetValuesPerShare} />
       </div>
     )
-  }
+  }else if(selectedCompanies.length > 1){    
+    const companyAbbrNamesAndSymbols = selectedCompanies.map(company => company.abbr.concat(` ${company.symbol}`))
+    const yFinancialsList = financialsList.map(financials => financials.filter(financial => financial.year.endsWith('Y')))
+    const currencyList = yFinancialsList.map(financials => financials.length > 0 ? financials[0].currency.slice(-3) : null)
+    const setHKD = (amount, i) => amount * hkdFromCurrency[currencyList[i]]
 
-  return (
-    <div>
-      {String(financialsList)}
-    </div>
-  )
+    const yearsList = yFinancialsList.map(financials => financials.map(financial => financial.year.slice(0,4)))
+    const netAssetValuesList = yFinancialsList.map((financials, i) => financials.map(financial => financial.position.totalAssets && financial.position.totalLiabilities ? setHKD(financial.position.totalAssets - financial.position.totalLiabilities, i) : null))
+    const netCashFlowsList = yFinancialsList.map((financials, i) => financials.map(financial => financial.cashFlow.netOperating && financial.cashFlow.netInvesting && financial.cashFlow.netFinancing ? setHKD(financial.cashFlow.netOperating + financial.cashFlow.netInvesting + financial.cashFlow.netFinancing, i) : null))
+    const resonancesList = yFinancialsList.map((financials, i) => financials.map((financial, j) => financial.resonance.profit && netAssetValuesList[i][j] ? setHKD(financial.resonance.profit, i) / netAssetValuesList[i][j] : null))
+
+    return (
+      <div className='s-charts'>
+        <SCompare
+          companyInfos={companyAbbrNamesAndSymbols}
+          yearsList={yearsList}
+          netAssetValuesList={netAssetValuesList}
+          netCashFlowsList={netCashFlowsList}
+          resonancesList={resonancesList} />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps, ()=>({}))(SodiumCharts)

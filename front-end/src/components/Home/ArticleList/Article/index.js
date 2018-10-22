@@ -7,11 +7,6 @@ import DeleteButton from '../../../common/DeleteButton'
 
 import './Article.css'
 
-import {
-  API_ROOT,
-  SMILEY
-} from '../../../../constants'
-
 const mapStateToProps = state => ({
   canEdit: state.articleList.canEdit
 })
