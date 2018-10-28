@@ -8,45 +8,43 @@ var User = mongoose.model('User'),
 
 // List Companies
 router.get('/', auth.required, (req, res, next) => {
-  let query = { author: req.payload.id }
-  let limit = 24
-  let offset = 0
+  User.findById(req.payload.id).then(user => {
+    if(!user){ return res.sendStatus(401) }
+    let query = { author: req.payload.id }
+    let limit = 24
+    let offset = 0
 
-  if(typeof req.query.limit !== 'undefined'){
-    limit = req.query.limit
-  }
-
-  if(typeof req.query.offset !== 'undefined'){
-    offset = req.query.offset
-  }
-
-  if(typeof req.query.tag !== 'undefined'){
-    query.tagList = { $in: req.query.tag.split(',') }
-  }
-
-  if(typeof req.query.companyName !== 'undefined'){
-    query.name = {
-      $regex: req.query.companyName,
-      $options: "i"
+    if(typeof req.query.limit !== 'undefined'){
+      limit = req.query.limit
     }
-  }
 
-  Promise.all([
+    if(typeof req.query.offset !== 'undefined'){
+      offset = req.query.offset
+    }
+
+    if(typeof req.query.tag !== 'undefined'){
+      query.tagList = { $in: req.query.tag.split(',') }
+    }
+
+    if(typeof req.query.companyName !== 'undefined'){
+      query.name = {
+        $regex: req.query.companyName,
+        $options: "i"
+      }
+    }
+
     Company.find(query)
       .skip(Number(offset))
       .limit(Number(limit))
-      .sort({ createdAt: -1 }),
-    Company.count(query)
-  ]).then(results => {
-    let companies = results[0]
-    let companiesCount = results[1]
-
-    return res.json({
-      companies: companies.map(company => {
-        return company.toJSONFor()
-      }),
-      companiesCount: companiesCount
-    })
+      .sort({ createdAt: -1 })
+      .then(companies => {
+        return res.json({
+          companies: companies.map(company => {
+            return company.toJSONFor()
+          }),
+          companiesCount: companies.length
+        })
+      }).catch(next)
   }).catch(next)
 })
 

@@ -78,34 +78,29 @@ router.get('/companies', auth.required, (req, res, next) => {
         query.author = user._id
       }
 
-      Promise.all([
-        Company.find(query)
-          .skip(Number(offset))
-          .limit(Number(limit))
-          .sort({ createdAt: -1 })
-          .populate('author', 'username proPic')
-          .populate({
-            path: 'records',
-            select: 'year',
-            options: {
-              sort: {
-                year: 1
-              }
+      Company.find(query)
+        .skip(Number(offset))
+        .limit(Number(limit))
+        .sort({ createdAt: -1 })
+        .populate('author', 'username proPic')
+        .populate({
+          path: 'records',
+          select: 'year',
+          options: {
+            sort: {
+              year: 1
             }
-          }),
-        Company.count(query)
-      ]).then(results => {
-        let companies = results[0]
-        let companiesCount = results[1]
-
-        return res.json({
-          companies: companies.map(company => {
-            return company.toJSONForAdmin()
-          }),
-          companiesCount: companiesCount
+          }
         })
-      }).catch(next)
-    })
+        .then(companies => {
+          return res.json({
+            companies: companies.map(company => {
+              return company.toJSONForAdmin()
+            }),
+            companiesCount: companies.length
+          })
+        }).catch(next)
+    }).catch(next)
   }else{
     return res.sendStatus(403)
   }
