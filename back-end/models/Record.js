@@ -1,45 +1,41 @@
 var mongoose = require('mongoose')
 
-var SegmentSchema = new mongoose.Schema({
-  business: {
-    type: String,
-    required: [true, "can't be blank"]
-  },
-  grossProfitMargin: Number,
-  share: {
-    type: Number,
-    min: 0,
-    max: 100,
-    default: 0
-  }
-})
-
-var PlanSchema = new mongoose.Schema({
-  plan: {
-    type: String,
-    required: [true, "can't be blank"]
-  },
-  executed: {
-    type: String,
-    match: [/\d{4}[MY]/, 'is invalid']
-  }
-})
-
 var RecordSchema = new mongoose.Schema({
   year: {
     type: String,
     required: [true, "can't be blank"],
     match: [/\d{4}[MY]/, 'is invalid']
   },
-  keyList: [{ type: String }],
-  businessSegments: [SegmentSchema],
+  keyList: [String],
+  businessSegments: [{
+    business: {
+      type: String,
+      required: [true, "can't be blank"]
+    },
+    grossProfitMargin: Number,
+    share: {
+      type: Number,
+      min: 0,
+      max: 100,
+      default: 0
+    }
+  }],
   grossProfitMargin: {
     type: Number,
     min: 0,
     max: 100,
     default: 0
   },
-  plans: [PlanSchema],
+  plans: [{
+    plan: {
+      type: String,
+      required: [true, "can't be blank"]
+    },
+    executed: {
+      type: String,
+      match: [/\d{4}[MY]/, 'is invalid']
+    }
+  }],
   actionsDone: [{
     type: String,
     required: [true, "can't be blank"]
