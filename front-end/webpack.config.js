@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const AppManifestWebpackPlugin = require("app-manifest-webpack-plugin")
+const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin")
 
 module.exports = {
   module: {
@@ -45,6 +46,9 @@ module.exports = {
         developerName: "xemexpress",
         start_url: "./index.html",
       }
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: "./src/registerServiceWorker.js"
     })
   ]
 }
