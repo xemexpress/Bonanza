@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import RecordList from './RecordList'
 import agent from '../../agent'
@@ -31,15 +31,14 @@ class Records extends React.Component {
   }
 
   render(){
-    if(!this.props.currentUser){ return <Redirect to='/' /> }
-
-    if(!this.props.company){ return <Redirect to='/companies' /> }
-
     return (
       <div className="row">
         <div className="offset-lg-1 col-lg-10 col-md-12 col-xs-12 col-sm-12">
-          <RecordList
-            records={this.props.records} />
+        {
+          !this.props.currentUser ? <div>&emsp;&nbsp;&nbsp;<Link to='/'>Back</Link></div>
+          : !this.props.company ? <div>&emsp;&nbsp;&nbsp;Loading...</div>
+          : <RecordList records={this.props.records} />
+        }
         </div>
       </div>
     )
