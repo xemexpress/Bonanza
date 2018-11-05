@@ -1,28 +1,23 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Plot from 'react-plotly.js'
 import Plotly from 'plotly.js'
 
-import SChart from './SChart'
+import SChart from '../common/SChart'
+import CurrentAssets from './CurrentAssets'
+import NonCurrentAssets from './NonCurrentAssets'
+import CurrentLiabilities from './CurrentLiabilities'
+import NetAssetValuesPerShare from './NetAssetValuesPerShare'
 
 import {
-  TOGGLE_SCHART,
   RECENT_SODIUM,
   CURRENT_ASSET_COLOR,
   CURRENT_LIABILITY_COLOR,
   NON_CURRENT_ASSET_COLOR,
   NON_CURRENT_LIABILITY_COLOR,
   COMPULSORY_MODE_BAR_BUTTONS
-} from '../../../../../constants'
+} from '../../../../../../constants'
 
 // https://coolors.co/export/copic/000000-f79256-fbd1a2-7dcfb6-00b2ca
-
-const mapDispatchToProps = dispatch => ({
-  onToggleSChart: () => dispatch({
-    type: TOGGLE_SCHART,
-    schart: 'dNetAssetValuesPerShare'
-  })
-})
 
 const commonProps = {
   type: 'bar'
@@ -32,6 +27,7 @@ class Position extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      showDetails: false,
       showingRecent: true,
       data: [
         {
@@ -129,7 +125,7 @@ class Position extends React.Component {
           [{
             name: 'Net Asset Value per share',
             icon: Plotly.Icons.zoombox,
-            click: this.props.onToggleSChart
+            click: () => this.setState({ showDetails: !this.state.showDetails })
           }]
         ]
       },
@@ -142,19 +138,48 @@ class Position extends React.Component {
   }
 
   render(){
+    const { data, recentData, layout, config, style, useResizeHandler, showingRecent, showDetails } = this.state
+    const { years, currentAssets, nonCurrentAssets, currentLiabilities, cash, receivables, inventory, propertyPlantEquip, payables, tax, netAssetValuesPerShare } = this.props
+
     return (
-      <SChart>
-        <Plot
-          data={this.state.showingRecent ? this.state.recentData : this.state.data}
-          layout={this.state.layout}
-          config={this.state.config}
-          style={this.state.style}
-          onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
-          useResizeHandler={this.state.useResizeHandler} />
-      </SChart>
+      <React.Fragment>
+        <SChart>
+          <Plot
+            data={showingRecent ? recentData : data}
+            layout={layout}
+            config={config}
+            style={style}
+            onDoubleClick={() => this.setState({ showingRecent: !showingRecent })}
+            useResizeHandler={useResizeHandler} />
+        </SChart>
+      {
+        showDetails ?
+        <React.Fragment>
+          <CurrentAssets
+            years={years}
+            cash={cash}
+            receivables={receivables}
+            inventory={inventory}
+            others={currentAssets.map((total, i) => total - cash[i] - receivables[i] - inventory[i])} />
+          <NonCurrentAssets
+            years={years}
+            propertyPlantEquip={propertyPlantEquip}
+            others={nonCurrentAssets.map((total, i) => total - propertyPlantEquip[i])} />
+          <CurrentLiabilities
+            years={years}
+            payables={payables}
+            tax={tax}
+            others={currentLiabilities.map((total, i) => total - payables[i] - tax[i])} />
+          <NetAssetValuesPerShare
+            years={years}
+            netAssetValuesPerShare={netAssetValuesPerShare} />
+        </React.Fragment>
+        : null
+      }
+      </React.Fragment>
     )
   }
 }
 
-export default connect(()=>({}), mapDispatchToProps)(Position)
+export default Position
             

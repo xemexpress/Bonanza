@@ -1,81 +1,66 @@
 import React from 'react'
 import Plot from 'react-plotly.js'
 
-import SChart from './common/SChart'
+import SChart from '../common/SChart'
 
 import {
   RECENT_SODIUM,
-  NET_OPERATING_COLOR,
-  NET_INVESTING_COLOR,
-  NET_FINANCING_COLOR,
-  COMPULSORY_MODE_BAR_BUTTONS
-} from '../../../../../constants'
+  COMPULSORY_MODE_BAR_BUTTONS,
+  D1_COLOR,
+  OTHERS_COLOR
+} from '../../../../../../constants'
 
-// https://coolors.co/export/copic/000000-ff8821-3e7cb1-dbe4ee-000000
+// https://coolors.co/91df29-e63b2e-1e91d6-ffe319-62616c
 
 const commonProps = {
   type: 'bar'
 }
 
-class CashFlow extends React.Component {
+class NonCurrentAssets extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       showingRecent: true,
       data: [
         {
-          name: 'Net Operating',
+          name: 'Property, plant and equipment',
           x: this.props.years,
-          y: this.props.netOperatings,
-          marker: { color: NET_OPERATING_COLOR },
+          y: this.props.propertyPlantEquip,
+          marker: { color: D1_COLOR },
           ...commonProps
         },
         {
-          name: 'Net Investing',
+          name: 'Others',
           x: this.props.years,
-          y: this.props.netInvestings,
-          marker: { color: NET_INVESTING_COLOR },
-          ...commonProps
-        },
-        {
-          name: 'Net Financing',
-          x: this.props.years,
-          y: this.props.netFinancings,
-          marker: { color: NET_FINANCING_COLOR },
+          y: this.props.others,
+          marker: { color: OTHERS_COLOR },
           ...commonProps
         }
       ],
       recentData: [
         {
-          name: 'Net Operating',
+          name: 'Property, plant and equipment',
           x: this.props.years.slice(-RECENT_SODIUM),
-          y: this.props.netOperatings.slice(-RECENT_SODIUM),
-          marker: { color: NET_OPERATING_COLOR },
+          y: this.props.propertyPlantEquip.slice(-RECENT_SODIUM),
+          marker: { color: D1_COLOR },
           ...commonProps
         },
         {
-          name: 'Net Investing',
+          name: 'Others',
           x: this.props.years.slice(-RECENT_SODIUM),
-          y: this.props.netInvestings.slice(-RECENT_SODIUM),
-          marker: { color: NET_INVESTING_COLOR },
-          ...commonProps
-        },
-        {
-          name: 'Net Financing',
-          x: this.props.years.slice(-RECENT_SODIUM),
-          y: this.props.netFinancings.slice(-RECENT_SODIUM),
-          marker: { color: NET_FINANCING_COLOR },
+          y: this.props.others.slice(-RECENT_SODIUM),
+          marker: { color: OTHERS_COLOR },
           ...commonProps
         }
       ],
       layout: {
-        barmode: 'relative',
-        title: 'Cash Flow',
+        barmode: 'stack',
+        title: 'Non Current Assets',
         titlefont: {
           size: 17
         },
         margin: {
-          t: 30,
+          t: 50,
           b: 24,
           l: 40,
           r: 10
@@ -96,7 +81,7 @@ class CashFlow extends React.Component {
         }
       },
       config: {
-        showTips: false,
+        showtTips: false,
         displaylogo: false,
         modeBarButtons: [
           COMPULSORY_MODE_BAR_BUTTONS
@@ -109,10 +94,10 @@ class CashFlow extends React.Component {
       useResizeHandler : true
     }
   }
-  
+
   render(){
     const { data, recentData, layout, config, style, useResizeHandler, showingRecent } = this.state
-
+    
     return (
       <SChart>
         <Plot
@@ -127,4 +112,4 @@ class CashFlow extends React.Component {
   }
 }
 
-export default CashFlow
+export default NonCurrentAssets

@@ -1,7 +1,7 @@
 import React from 'react'
 import Plot from 'react-plotly.js'
 
-import SChart from './SChart'
+import SChart from './common/SChart'
 
 const desired_maximum_marker_size = 40
 
@@ -11,13 +11,30 @@ class SCompare extends React.Component {
     const common = Math.min(...this.props.yearsList.map(years => years.length))
     this.state = {
       common: common,
+      showingRecent: false,
       data: [
         {
           type: 'scatter',
-          mode: 'markers',
+          mode: 'markers+text',
           text: this.props.companyInfos,
-          x: this.props.resonancesList.map(resonances => resonances.slice(-common).reduce((prev, resonance, i, resonances) => prev + resonance / resonances.length, 0) * 100),
-          y: this.props.netCashFlowsList.map(netCashFlows => netCashFlows.slice(-common).reduce((prev, netCashFlow, i, netCashFlows) => prev + netCashFlow / netCashFlows.length, 0)),
+          textposition: 'middle right',
+          x: this.props.resonancesList.map(resonances => resonances.slice(-common).reduce((prev, resonance, i, targetedResonances) => prev + resonance / targetedResonances.length, 0) * 100),
+          y: this.props.netCashFlowsList.map(netCashFlows => netCashFlows.slice(-common).reduce((prev, netCashFlow, i, targetedNetCashFlows) => prev + netCashFlow / targetedNetCashFlows.length, 0)),
+          marker: {
+            size: this.props.netAssetValuesList.map(netAssetValues => netAssetValues.slice(-1)[0]),
+            sizeref: 2.0 * Math.max(...this.props.netAssetValuesList.map(netAssetValues => netAssetValues.slice(-1)[0])) / (desired_maximum_marker_size**2),
+            sizemode: 'area'
+          }
+        }
+      ],
+      recentData: [
+        {
+          type: 'scatter',
+          mode: 'markers+text',
+          text: this.props.companyInfos,
+          textposition: 'middle right',
+          x: this.props.resonancesList.map(resonances => resonances.slice(-3).reduce((prev, resonance, i, targetedResonances) => prev + resonance / targetedResonances.length, 0) * 100),
+          y: this.props.netCashFlowsList.map(netCashFlows => netCashFlows.slice(-3).reduce((prev, netCashFlow, i, targetedNetCashFlows) => prev + netCashFlow / targetedNetCashFlows.length, 0)),
           marker: {
             size: this.props.netAssetValuesList.map(netAssetValues => netAssetValues.slice(-1)[0]),
             sizeref: 2.0 * Math.max(...this.props.netAssetValuesList.map(netAssetValues => netAssetValues.slice(-1)[0])) / (desired_maximum_marker_size**2),
@@ -26,10 +43,6 @@ class SCompare extends React.Component {
         }
       ],
       layout: {
-        title: '.',
-        titlefont: {
-          size: 17
-        },
         margin: {
           t: 50,
           b: 24,
@@ -63,17 +76,18 @@ class SCompare extends React.Component {
   }
 
   render(){
-    const { data, layout, config, style, useResizeHandler, common } = this.state
+    const { data, recentData, layout, config, style, useResizeHandler, common, showingRecent } = this.state
     const { yearsList, companyInfos } = this.props
     
     return (
       <React.Fragment>
         <SChart>
           <Plot
-            data={data}
+            data={common >= 3 && showingRecent ? recentData : data}
             layout={layout}
             config={config}
             style={style}
+            onDoubleClick={() => this.setState({ showingRecent: !showingRecent })}
             useResizeHandler={useResizeHandler} />
         </SChart>
         <div className='chart-details'>

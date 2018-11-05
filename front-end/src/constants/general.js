@@ -1,5 +1,5 @@
 // Settings
-export const API_ROOT = 'http://localhost:3000/api'
+export const API_ROOT = 'https://fathomless-reaches-53509.herokuapp.com/api'
 export const APP_NAME = 'Bonanza'
 export const THE_TAGS = ['Resonate', 'Grow', 'Belong', 'Ease', 'Live', 'Approach']
 

@@ -1,27 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Plot from 'react-plotly.js'
 import Plotly from 'plotly.js'
 
-import SChart from './SChart'
+import SChart from '../common/SChart'
+import Costs from './Costs'
 
 import {
-  TOGGLE_SCHART,
   RECENT_SODIUM,
   REVENUE_COLOR,
   GROSS_PROFIT_COLOR,
   PROFIT_COLOR,
   COMPULSORY_MODE_BAR_BUTTONS
-} from '../../../../../constants'
+} from '../../../../../../constants'
 
 // https://coolors.co/export/copic/ffffff-98dfaf-5fb49c-414288-ffffff
-
-const mapDispatchToProps = dispatch => ({
-  onToggleSChart: () => dispatch({
-    type: TOGGLE_SCHART,
-    schart: 'dCosts'
-  })
-})
 
 const commonProps = {
   type: 'scatter',
@@ -34,6 +26,7 @@ class Resonance extends React.Component {
     super(props)
     this.state = {
       showingRecent: true,
+      showCosts: false,
       data: [
         {
           name: 'Revenue',
@@ -114,7 +107,7 @@ class Resonance extends React.Component {
           [{
             name: 'Costs',
             icon: Plotly.Icons.zoombox,
-            click: this.props.onToggleSChart
+            click: () => this.setState({ showCosts: !this.state.showCosts })
           }]
         ]
       },
@@ -127,18 +120,33 @@ class Resonance extends React.Component {
   }
   
   render(){
+    const { data, recentData, layout, config, style, useResizeHandler, showingRecent, showCosts } = this.state
+    const { years, salesCosts, sellingExpenses, adminCosts, financingCosts } = this.props
+    
     return (
-      <SChart>
-        <Plot
-          data={this.state.showingRecent ? this.state.recentData : this.state.data}
-          layout={this.state.layout}
-          config={this.state.config}
-          style={this.state.style}
-          onDoubleClick={() => this.setState({ showingRecent: !this.state.showingRecent })}
-          useResizeHandler={this.state.useResizeHandler} />
-      </SChart>
+      <React.Fragment>
+        <SChart>
+          <Plot
+            data={showingRecent ? recentData : data}
+            layout={layout}
+            config={config}
+            style={style}
+            onDoubleClick={() => this.setState({ showingRecent: !showingRecent })}
+            useResizeHandler={useResizeHandler} />
+        </SChart>
+      {
+        showCosts ?
+        <Costs
+          years={years}
+          salesCosts={salesCosts}
+          sellingExpenses={sellingExpenses}
+          adminCosts={adminCosts}
+          financingCosts={financingCosts} />
+        : null
+      }
+      </React.Fragment>
     )
   }
 }
 
-export default connect(()=>({}), mapDispatchToProps)(Resonance)
+export default Resonance

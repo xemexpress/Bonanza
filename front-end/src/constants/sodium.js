@@ -21,6 +21,11 @@ export const CURRENT_LIABILITY_COLOR = '#F56C5B'
 export const NON_CURRENT_ASSET_COLOR = '#35567A'
 export const NON_CURRENT_LIABILITY_COLOR = '#875869'
 
-// Color Schemes
+// Details
+export const OTHERS_COLOR = '#62616C'
+export const D1_COLOR = '#E63B2E'
+export const D2_COLOR = '#1E91D6'
+export const D3_COLOR = '#FFE319'
+
 // cashFlow
 export const NET_ASSET_VALUE_COLOR = '#252237'

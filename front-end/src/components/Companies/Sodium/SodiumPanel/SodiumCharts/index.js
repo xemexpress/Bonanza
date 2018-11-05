@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 
 import CashFlow from './CashFlow'
 import Resonance from './Resonance'
-import Costs from './Costs'
 import Position from './Position'
-import NetAssetValuesPerShare from './NetAssetValuesPerShare'
 import SCompare from './SCompare'
 
 import './SodiumCharts.css'
@@ -43,10 +41,7 @@ const SodiumCharts = props => {
     const sellingExpenses = financials.map(financial => setHKD(financial.resonance.sellingExpense))
     const adminCosts = financials.map(financial => setHKD(financial.resonance.sellingExpense))
     const financingCosts = financials.map(financial => setHKD(financial.resonance.financingCost))
-
-    // Supplementary chart props: NetAssetValuePerShare
-    const netAssetValuesPerShare = financials.map(financial => financial.position.totalAssets && financial.position.totalLiabilities && financial.sharesOutstanding !== 1 ? makeScale(setHKD(financial.position.totalAssets - financial.position.totalLiabilities)) / financial.sharesOutstanding : null)
-
+    
     // Resonance
     const revenues = financials.map(financial => setHKD(financial.resonance.revenue))
     const grossProfits = financials.map((financial, i) => Math.round(setHKD(financial.resonance.revenue - salesCosts[i] - sellingExpenses[i]) * 1000000) / 1000000)
@@ -57,6 +52,17 @@ const SodiumCharts = props => {
     const currentLiabilities = financials.map(financial => setHKD(financial.position.currentLiabilities.total))
     const nonCurrentAssets = financials.map(financial => setHKD(financial.position.nonCurrentAssets.total))
     const nonCurrentLiabilities = financials.map(financial => setHKD(financial.position.nonCurrentLiabilities.total))
+    // Supplementary chart props: CurrentAssets
+    const cash = financials.map(financial => setHKD(financial.position.currentAssets.cash))
+    const receivables = financials.map(financial => setHKD(financial.position.currentAssets.receivables))
+    const inventory = financials.map(financial => setHKD(financial.position.currentAssets.inventory))
+    // Supplementary chart props: NonCurrentAssets
+    const propertyPlantEquip = financials.map(financial => setHKD(financial.position.nonCurrentAssets.propertyPlantEquip))
+    // Supplementary chart props: CurrentLiabilities
+    const payables = financials.map(financial => setHKD(financial.position.currentLiabilities.payables))
+    const tax = financials.map(financial => setHKD(financial.position.currentLiabilities.tax))
+    // Supplementary chart props: NetAssetValuePerShare
+    const netAssetValuesPerShare = financials.map(financial => financial.position.totalAssets && financial.position.totalLiabilities && financial.sharesOutstanding !== 1 ? makeScale(setHKD(financial.position.totalAssets - financial.position.totalLiabilities)) / financial.sharesOutstanding : null)
 
     // CashFlow
     const netOperatings = financials.map(financial => setHKD(financial.cashFlow.netOperating))
@@ -74,9 +80,8 @@ const SodiumCharts = props => {
           years={years}
           revenues={revenues}
           grossProfits={grossProfits}
-          profits={profits} />
-        <Costs
-          years={years}
+          profits={profits}
+          // Costs-related
           salesCosts={salesCosts}
           sellingExpenses={sellingExpenses}
           adminCosts={adminCosts}
@@ -86,9 +91,17 @@ const SodiumCharts = props => {
           currentAssets={currentAssets}
           currentLiabilities={currentLiabilities}
           nonCurrentAssets={nonCurrentAssets}
-          nonCurrentLiabilities={nonCurrentLiabilities} />
-        <NetAssetValuesPerShare
-          years={years}
+          nonCurrentLiabilities={nonCurrentLiabilities}
+          // CurrentAssets-related
+          cash={cash}
+          receivables={receivables}
+          inventory={inventory}
+          // NonCurrentAssets-related
+          propertyPlantEquip={propertyPlantEquip}
+          // CurrentLiabilities-related
+          payables={payables}
+          tax={tax}
+          // NetAssetValuesPerShare-related
           netAssetValuesPerShare={netAssetValuesPerShare} />
       </div>
     )
