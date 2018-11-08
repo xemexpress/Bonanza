@@ -86,7 +86,9 @@ class ArticlesView extends React.Component {
     
           {/* Right Section */}
           <div className="nav-item right-layout">
-            <SaveButton inProgress={this.props.inProgress} onSave={this.submitForm(title, body, image)} />
+            <SaveButton
+              inProgress={this.props.inProgress}
+              onSave={this.submitForm(title, body, image)} />
           </div>
         </React.Fragment>
       )

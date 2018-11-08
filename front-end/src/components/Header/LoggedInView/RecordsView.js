@@ -112,7 +112,9 @@ class RecordsView extends React.Component {
     
           {/* Right Section */}
           <div className="nav-item right-layout">
-            <SaveButton inProgress={this.props.inProgress} onSave={this.submitForm(year, keyList, businessSegments, grossProfitMargin, plans, actionsDone)} />
+            <SaveButton
+              inProgress={this.props.inProgress}
+              onSave={this.submitForm(year, keyList, businessSegments, grossProfitMargin, plans, actionsDone)} />
           </div>
         </React.Fragment>
       )
